@@ -20,14 +20,18 @@ const counterSlice = createSlice({
   name: 'display',
   initialState,
   reducers: {
-    addItem(state, action: PayloadAction<DisplayItem>) {
+    updateDisplayItem(state, action: PayloadAction<DisplayItem>) {
+      if (state.items[action.payload.id] !== undefined)
+        state.items[action.payload.id].item = action.payload;
+    },
+    addDisplayItem(state, action: PayloadAction<DisplayItem>) {
       if (state.items[action.payload.id] === undefined)
         state.items[action.payload.id] = {
           order: getDisplayStateItemsTopOrder(state) + 1,
           item: action.payload,
         };
     },
-    removeItem(state, action: PayloadAction<string>) {
+    removeDisplayItem(state, action: PayloadAction<string>) {
       const items: Record<string, DisplayStateItem> = {};
       Object.keys(state.items).forEach((key) => {
         if (key === action.payload) return;
@@ -39,16 +43,31 @@ const counterSlice = createSlice({
 });
 
 // INTERNAL GETTERS
-const getDisplayStateItemsTopOrder = (state: DisplayState) => {
-  let orderMax = 0;
-  for (const item of Object.values(state.items)) {
-    if (item.order > orderMax) orderMax = item.order;
+const getDisplayStateItems = (state: DisplayState) => state.items;
+const getDisplayStateItemsTopOrder = createSelector(
+  getDisplayStateItems,
+  (items) => {
+    let orderMax = 0;
+    for (const item of Object.values(items)) {
+      if (item.order > orderMax) orderMax = item.order;
+    }
+    return orderMax;
   }
-  return orderMax;
-};
+);
 
 // SELECTORS
-const selectDisplayStateItems = (state: RootState) => state.display.items;
+const selectDisplayStateItems = (state: RootState) =>
+  getDisplayStateItems(state.display);
+const selectGetDisplayItem = createSelector(
+  selectDisplayStateItems,
+  (items) => {
+    return (id: string) => {
+      const item = items[id];
+      if (item === undefined) return null;
+      return item.item;
+    };
+  }
+);
 const selectOrderedDisplayStateItems = createSelector(
   selectDisplayStateItems,
   (items) => {
@@ -77,8 +96,10 @@ const selectOrderedDisplayItems = createSelector(
 );
 
 // EXPORTS
-export const { addItem, removeItem } = counterSlice.actions;
+export const { addDisplayItem, removeDisplayItem, updateDisplayItem } =
+  counterSlice.actions;
 export {
+  selectGetDisplayItem,
   selectDisplayStateItems,
   selectOrderedDisplayStateItems,
   selectOrderedDisplayStateItemsTop,
