@@ -2,16 +2,25 @@ import { useCallback } from 'react';
 import Test from './components/Test';
 import { type DisplayItem } from './types/DisplayTypes';
 import { v4 as uuid } from 'uuid';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from './store';
+
 import {
-  addItem,
-  removeItem,
+  addDisplayItem,
+  removeDisplayItem,
   selectOrderedDisplayStateItemsTop,
+  selectGetDisplayItem,
 } from './store/displaySlice';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const topDisplayStateItem = useSelector(selectOrderedDisplayStateItemsTop);
+  const dispatch = useAppDispatch();
+  const topDisplayStateItem = useAppSelector(selectOrderedDisplayStateItemsTop);
+  const getCurrentTopDisplayItem = useAppSelector(selectGetDisplayItem);
+  // const [ topDisplayItemText, setTopDisplayItemText ] = useState('');
+
+  const currentTopDisplayItem =
+    topDisplayStateItem !== null
+      ? getCurrentTopDisplayItem(topDisplayStateItem.item.id)?.text ?? 'no data'
+      : ' no data 2';
 
   const addTestingDisplayItem = useCallback(() => {
     const displayItem: DisplayItem = {
@@ -20,12 +29,12 @@ const App = () => {
       text: 'test',
     };
 
-    dispatch(addItem(displayItem));
+    dispatch(addDisplayItem(displayItem));
   }, [dispatch]);
 
   const removeTestingDisplayItemTop = useCallback(() => {
     if (topDisplayStateItem !== null) {
-      dispatch(removeItem(topDisplayStateItem.item.id));
+      dispatch(removeDisplayItem(topDisplayStateItem.item.id));
     }
   }, [dispatch, topDisplayStateItem]);
 
@@ -35,6 +44,7 @@ const App = () => {
       <button onClick={removeTestingDisplayItemTop}>
         Delete top store item
       </button>
+      <p>{currentTopDisplayItem}</p>
       <Test></Test>
     </>
   );
