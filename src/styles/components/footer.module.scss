@@ -1,0 +1,4 @@
+.footer {
+  @include mixin-center-children;
+  @include mixin-w-h-fill;
+}
