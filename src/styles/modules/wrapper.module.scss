@@ -8,11 +8,17 @@
 }
 
 .container-console {
-  @include mixin-w-h-fill(calc(100% - 2rem));
+  @include mixin-w-h-fill(calc(100% - #{$padding-container-main} * 2));
   max-width: 62.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-container-main;
+  }
 
 }
 

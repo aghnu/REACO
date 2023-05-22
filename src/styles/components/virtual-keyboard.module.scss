@@ -1,0 +1,35 @@
+.virtual-keyboard {
+  @include mixin-center-children;
+  flex-direction: column;
+
+  .row {
+    @include mixin-center-children;
+    width: 100%;
+    max-width: 35rem;
+    min-width: 18rem;
+    
+    .key {
+      cursor: pointer;
+      height: 2.35rem;
+      padding: 0.2rem;
+
+      &--small {
+        width: 10%;
+      }
+      &--mid {
+        width: 25%;
+      }
+      &--large {
+        width: 50%;
+      }
+    }
+
+    .key .label {
+      @include mixin-w-h-fill;
+      @include mixin-center-children;
+      
+      border: 2px solid var(--color-text-plain);
+      border-radius: 0.3rem;
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import Display from './Display';
-import Prompt from './Prompt';
-import Footer from './Footer';
+import Display from '@components/Display';
+import Prompt from '@components/Prompt';
+import Footer from '@components/Footer';
+import VirtualKeyboard from '@components/VirtualKeyboard';
 
-export { Display, Prompt, Footer };
+export { Display, Prompt, Footer, VirtualKeyboard };

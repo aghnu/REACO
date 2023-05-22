@@ -1,5 +1,5 @@
-import { Prompt, Display, Footer } from '@/components';
-import styles from '@styles/modules/wrapper.module.scss';
+import { Prompt, Display, Footer, VirtualKeyboard } from '@/components';
+import styles from '../styles/modules/wrapper.module.scss';
 import useStartKeyboardInput from '@hooks/useStartKeyboardInput';
 
 const ConsolePage = () => {
@@ -11,7 +11,8 @@ const ConsolePage = () => {
         <Display />
         <Prompt />
       </div>
-      <div>
+      <div className={styles.bottom}>
+        <VirtualKeyboard />
         <Footer />
       </div>
     </div>
