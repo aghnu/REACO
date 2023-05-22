@@ -1,9 +1,16 @@
-import { atom, useSetAtom, useAtomValue } from 'jotai';
+import { atom, useSetAtom, useAtomValue, type PrimitiveAtom } from 'jotai';
+import { splitAtom } from 'jotai/utils';
+import { focusAtom } from 'jotai-optics';
+import { type AppState } from '@type/DisplayTypes';
 
 interface PromptInfo {
   userName: string;
   systemDomain: string;
   systemPath: string;
+}
+
+interface DisplayAppState {
+  apps: AppState[];
 }
 
 // atoms
@@ -13,6 +20,15 @@ const promptInfoAtom = atom<PromptInfo>({
   systemPath: '/',
 });
 const userInputAtom = atom<string>('');
+const displayAppStateAtom = atom<DisplayAppState>({
+  apps: [],
+});
+
+// derived atoms
+const appStateAtom = focusAtom(displayAppStateAtom, (optics) =>
+  optics.prop('apps')
+) as PrimitiveAtom<AppState[]>;
+const appStateAtomsAtom = splitAtom(appStateAtom);
 
 // getters
 function useUserInput() {
@@ -38,6 +54,11 @@ function useUpdateUserInput() {
   };
 }
 
-export { promptInfoAtom, userInputAtom };
+export {
+  promptInfoAtom,
+  userInputAtom,
+  displayAppStateAtom,
+  appStateAtomsAtom,
+};
 export { usePromptInfo, useUserInput };
 export { useBackspaceUserInput, useUpdateUserInput };
