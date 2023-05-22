@@ -10,5 +10,9 @@
 .container-console {
   @include mixin-w-h-fill(calc(100% - 2rem));
   max-width: 62.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
