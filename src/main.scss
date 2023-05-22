@@ -1,0 +1,20 @@
+:root {
+  // vars
+  --color-text-plain: #b0b8ad;
+  --color-text-focus: #f59879;
+  --color-text-desc: #1ca0a9;
+  --color-background: #000c18;
+
+
+  // fonts
+  font-family: 'Robot Mono', monospace;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  // others
+  background-color: var(--color-background);
+  color: var(--color-text-plain);
+}

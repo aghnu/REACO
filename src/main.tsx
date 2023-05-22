@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { enableMapSet } from 'immer';
 import { Provider } from 'jotai';
-import '@/styles/index.css';
+import './main.scss';
 
 enableMapSet();
 

@@ -1,0 +1,5 @@
+.display {
+  @include mixin-clear-p-style();
+  display: flex;
+  flex-direction: row;
+}

@@ -1,7 +1,9 @@
+import Display from '@components/Display';
+
 const App = () => {
   return (
     <>
-      <p>Test</p>
+      <Display></Display>
     </>
   );
 };

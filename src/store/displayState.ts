@@ -1,40 +1,43 @@
 import { atom, useSetAtom, useAtomValue } from 'jotai';
-import { withImmer } from 'jotai-immer';
 
-interface DisplaySystemState {
+interface PromptInfo {
   userName: string;
   systemDomain: string;
   systemPath: string;
-  userInput: string;
 }
 
-// states
-const displaySystemState = atom<DisplaySystemState>({
+// atoms
+const promptInfoAtom = atom<PromptInfo>({
   userName: 'guest',
   systemDomain: 'aghnu.me',
   systemPath: '/',
-  userInput: '',
 });
-
-// derived states
-const displayPromptString = atom((get) => {
-  const { userName, systemDomain, systemPath } = get(displaySystemState);
-  return `${userName}@${systemDomain}:~${systemPath}`;
-});
+const userInputAtom = atom<string>('');
 
 // getters
+function useUserInput() {
+  return useAtomValue(userInputAtom);
+}
 
-function useDisplayPromptString() {
-  return useAtomValue(displayPromptString);
+function usePromptInfo() {
+  return useAtomValue(promptInfoAtom);
 }
 
 // actions
-function useUpdateDisplaySystemState() {
-  const setDisplaySystemState = useSetAtom(withImmer(displaySystemState));
-  return (newStatePartial: Partial<DisplaySystemState>) => {
-    setDisplaySystemState((state) => Object.assign(state, newStatePartial));
+function useBackspaceUserInput() {
+  const setUserInput = useSetAtom(userInputAtom);
+  return () => {
+    setUserInput((prev) => prev.slice(0, -1));
   };
 }
 
-export { useDisplayPromptString };
-export { useUpdateDisplaySystemState };
+function useUpdateUserInput() {
+  const setUserInput = useSetAtom(userInputAtom);
+  return (input: string) => {
+    setUserInput((prev) => prev + input);
+  };
+}
+
+export { promptInfoAtom, userInputAtom };
+export { usePromptInfo, useUserInput };
+export { useBackspaceUserInput, useUpdateUserInput };
