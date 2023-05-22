@@ -1,0 +1,14 @@
+.container-page {
+  @include mixin-center-children;
+  @include mixin-align-top-left;
+  @include mixin-w-h-fill;
+  @include mixin-clear-p-style;
+  position: fixed;
+  line-height: 1.25em;
+}
+
+.container-console {
+  @include mixin-w-h-fill(calc(100% - 2rem));
+  max-width: 62.5rem;
+}
+
