@@ -13,6 +13,8 @@
     "immer": "^10.0.2",
     "jotai": "^2.1.0",
     "jotai-immer": "^0.2.0",
+    "jotai-optics": "^0.3.0",
+    "optics-ts": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "uuid": "^9.0.0"
