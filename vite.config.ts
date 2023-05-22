@@ -12,7 +12,9 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@store': path.resolve(__dirname, './src/store'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@types': path.resolve(__dirname, './src/types'),
+      '@type': path.resolve(__dirname, './src/type'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@utilities': path.resolve(__dirname, './src/utilities'),
     },
   },
   css: {

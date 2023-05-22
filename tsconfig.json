@@ -9,7 +9,9 @@
       "@styles/*": ["./src/styles/*"],
       "@store/*": ["./src/store/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@types/*": ["./src/types/*"],
+      "@type/*": ["./src/type/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utilities/*": ["./src/utilities/*"],
     },
 
     /* Bundler mode */
