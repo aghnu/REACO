@@ -4,7 +4,7 @@ const UserInput = () => {
   const userInput = useUserInput();
   return (
     <>
-      <p>{userInput}</p>
+      <span>{userInput}</span>
     </>
   );
 };

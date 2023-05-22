@@ -15,7 +15,7 @@ const BlinkingCursor = () => {
   }, []);
   return (
     <>
-      <p>{cursor}</p>
+      <span>{cursor}</span>
     </>
   );
 };
