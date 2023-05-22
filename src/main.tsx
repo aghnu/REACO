@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import GlobalStyle from './styles/global';
+import { enableMapSet } from 'immer';
+import { Provider } from 'jotai';
+import '@/styles/index.css';
+
+enableMapSet();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <Provider>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
