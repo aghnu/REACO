@@ -5,7 +5,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
       "@store/*": ["./src/store/*"],
@@ -13,6 +12,7 @@
       "@type/*": ["./src/type/*"],
       "@pages/*": ["./src/pages/*"],
       "@utilities/*": ["./src/utilities/*"],
+      "@/*": ["./src/*"],
     },
 
     /* Bundler mode */
