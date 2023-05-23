@@ -1,4 +1,7 @@
+import usePointerClick from '@hooks/usePointerClick';
 import styles from '@styles/components/virtual-keyboard.module.scss';
+import { useAtomValue } from 'jotai';
+import { useRef } from 'react';
 
 export type KeySize = 'small' | 'mid' | 'large';
 
@@ -14,18 +17,26 @@ const KeyPad = ({
   size = 'small',
 }: {
   label: string;
-  onKeyClick?: (label: string) => void;
+  onKeyClick?: () => void;
   size?: KeySize;
 }) => {
+  const keyRef = useRef<HTMLDivElement>(null);
+  const { pointerDownAtom } = usePointerClick(keyRef, onKeyClick);
+  const pointerDown = useAtomValue(pointerDownAtom);
+
   return (
     <div
-      className={[styles.key, getKeySizeClass(size)].join(' ')}
-      onClick={() => {
-        onKeyClick(label);
-      }}
+      className={[
+        styles.key,
+        getKeySizeClass(size),
+        pointerDown && styles['key--down'],
+      ].join(' ')}
+      ref={keyRef}
     >
-      <div className={styles.label}>
-        <p>{label}</p>
+      <div className={styles.pad}>
+        <div className={styles.label}>
+          <p>{label}</p>
+        </div>
       </div>
     </div>
   );
