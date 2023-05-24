@@ -9,9 +9,10 @@
     min-width: 18rem;
 
     .key {
+      @include mixin-disable-selection;
       position: relative;
       cursor: pointer;
-      height: 2.35rem;
+      height: 2.5rem;
 
       &--small {
         width: 10%;
@@ -26,14 +27,15 @@
 
     .key {
       .pad {
+        position: absolute;
         padding: 0.2rem;
         height: 100%;
         width: 100%;
+        bottom: 0;
+        transition: height 0.1s;
       }
 
       &--down .pad {
-        position: absolute;
-        bottom: 0;
         height: 175%;
       }
     }
@@ -41,10 +43,9 @@
     .key .label {
       @include mixin-w-h-fill;
       @include mixin-center-children;
-      @include mixin-disable-selection;
 
       border: 2px solid var(--color-text-plain);
-      border-radius: 0.3rem;
+      border-radius: 0.35rem;
       background-color: var(--color-background);
     }
   }
