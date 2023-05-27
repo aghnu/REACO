@@ -31,6 +31,7 @@ const VirtualKeyboard = () => {
           {row.map((key, ii) => (
             <KeyPad
               key={ii}
+              keyId={key}
               label={getKeyLabel(key)}
               size={getKeySize(key)}
               onKeyClick={() => {

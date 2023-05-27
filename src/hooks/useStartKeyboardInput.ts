@@ -7,6 +7,7 @@ function useStartKeyboardInput() {
   const handleKeyDownEvent = useCallback(
     (e: KeyboardEvent) => {
       handleKeydown(e.key);
+      e.preventDefault();
     },
     [handleKeydown]
   );
