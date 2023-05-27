@@ -40,7 +40,7 @@ function helperRemovePointerEvents(
 }
 
 function usePointerClick(
-  htmlRef: React.RefObject<HTMLElement>,
+  htmlEl: HTMLElement | null,
   onPointerClick?: () => void
 ) {
   const pointerDown = useRef(false);
@@ -70,8 +70,8 @@ function usePointerClick(
 
   // every render
   useEffect(() => {
-    if (htmlRef.current === null) return;
-    const element = htmlRef.current;
+    if (htmlEl === null) return;
+    const element = htmlEl;
     helperAddPointerEvents(
       element,
       handlePointerUp,
@@ -88,7 +88,13 @@ function usePointerClick(
         handlePointerHoverOff
       );
     };
-  });
+  }, [
+    htmlEl,
+    handlePointerDown,
+    handlePointerHoverOff,
+    handlePointerHoverOn,
+    handlePointerUp,
+  ]);
 
   return { pointerDownAtom, pointerHoverAtom };
 }
