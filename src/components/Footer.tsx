@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer className={styles.footer + ' ' + stylesText.focus}>
-        © 2022 Gengyuan Huang
+        © 2023 Gengyuan Huang
       </footer>
     </>
   );

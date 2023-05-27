@@ -1,4 +1,5 @@
 .footer {
   @include mixin-center-children;
   @include mixin-w-h-fill(100%, fit-content);
+  white-space: nowrap;
 }
