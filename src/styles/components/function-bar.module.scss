@@ -1,0 +1,36 @@
+$bar-height: 1.5rem;
+$bar-width: fit-content;
+$icon-size: calc(#{$bar-height} * 0.9);
+
+.function-bar {
+  @include mixin-center-children;
+  .function-bar-container {
+    @include mixin-w-h-fill;
+    min-width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, fit-content(100%));
+    justify-content: space-between;
+  }
+}
+
+.function-key {
+  @include mixin-disable-selection;
+  display: flex;
+  gap: 0.25rem;
+  height: $bar-height;
+  width: $bar-width;
+  cursor: pointer;
+
+  .icon-container {
+    @include mixin-center-children;
+    @include mixin-w-h-fill($bar-height);
+    .icon {
+      @include mixin-w-h-fill($icon-size);
+    }
+  }
+
+  .name {
+    @include mixin-center-children;
+    height: $bar-height;
+  }
+}

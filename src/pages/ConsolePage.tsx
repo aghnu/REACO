@@ -1,6 +1,7 @@
 import { Prompt, Display, Footer, VirtualKeyboard } from '@/components';
 import styles from '../styles/modules/wrapper.module.scss';
 import useStartKeyboardInput from '@hooks/useStartKeyboardInput';
+import FunctionBar from '@components/FunctionBar';
 
 const ConsolePage = () => {
   useStartKeyboardInput();
@@ -13,6 +14,7 @@ const ConsolePage = () => {
       </div>
       <div className={styles.bottom}>
         <VirtualKeyboard />
+        <FunctionBar />
         <Footer />
       </div>
     </div>
