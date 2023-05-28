@@ -71,7 +71,7 @@ function usePauseInputCursorBlinking() {
     setIsInputCursorBlinkingAtom(false);
     sideEffectTimeoutInputCursor = window.setTimeout(() => {
       setIsInputCursorBlinkingAtom(true);
-    }, 1000);
+    }, 250);
   };
 }
 
