@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import useHandleKeydown from '@hooks/useHandleKeydown';
+import { isKeyAllowed } from '@utils/helpers';
 
 // hook
 function useStartKeyboardInput() {
@@ -7,7 +8,9 @@ function useStartKeyboardInput() {
   const handleKeyDownEvent = useCallback(
     (e: KeyboardEvent) => {
       handleKeydown(e.key);
-      e.preventDefault();
+
+      // if key is used by app then prevent default behavior
+      if (isKeyAllowed(e.key)) e.preventDefault();
     },
     [handleKeydown]
   );
