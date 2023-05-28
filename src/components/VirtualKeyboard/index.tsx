@@ -1,4 +1,4 @@
-import KeyPad, { type KeySize } from '@components/VirtualKeyboard/KeyPad';
+import KeyPad, { type KeySize } from './KeyPad';
 import styles from '@styles/components/virtual-keyboard.module.scss';
 import useHandleKeydown from '@hooks/useHandleKeydown';
 

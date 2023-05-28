@@ -1,6 +1,6 @@
 import { useUserInput } from '@store/displayState';
 import styles from '@styles/components/prompt.module.scss';
-import TextRaw from '@components/TextRaw';
+import { TextRaw } from '@/components';
 
 const UserInput = () => {
   const userInput = useUserInput();

@@ -1,4 +1,4 @@
-import FunctionKey from '@components/FunctionBar/FunctionKey';
+import FunctionKey from './FunctionKey';
 import styles from '@styles/components/function-bar.module.scss';
 import useFunctionKeys from '@hooks/useFunctionKeys';
 
