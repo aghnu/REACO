@@ -3,5 +3,20 @@
   word-wrap: break-word;
 }
 
-.user-input {
+.cursor {
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  &::after {
+    content: '█';
+  }
+
+  &.blink::after {
+    animation: blink 1s steps(1) infinite;
+  }
 }
+
+// .user-input {
+// }

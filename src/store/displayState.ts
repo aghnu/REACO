@@ -20,6 +20,7 @@ const promptInfoAtom = atom<PromptInfo>({
   systemPath: '/',
 });
 const userInputAtom = atom<string>('');
+const isInputCursorBlinkingAtom = atom(true);
 const displayAppStateAtom = atom<DisplayAppState>({
   apps: [],
 });
@@ -39,18 +40,38 @@ function usePromptInfo() {
   return useAtomValue(promptInfoAtom);
 }
 
+function useIsInputCursorBlinking() {
+  return useAtomValue(isInputCursorBlinkingAtom);
+}
+
 // actions
 function useBackspaceUserInput() {
   const setUserInput = useSetAtom(userInputAtom);
+  const pauseInputCursorBlinking = usePauseInputCursorBlinking();
   return () => {
     setUserInput((prev) => prev.slice(0, -1));
+    pauseInputCursorBlinking();
   };
 }
 
 function useUpdateUserInput() {
   const setUserInput = useSetAtom(userInputAtom);
+  const pauseInputCursorBlinking = usePauseInputCursorBlinking();
   return (input: string) => {
     setUserInput((prev) => prev + input);
+    pauseInputCursorBlinking();
+  };
+}
+
+let sideEffectTimeoutInputCursor: number | undefined;
+function usePauseInputCursorBlinking() {
+  const setIsInputCursorBlinkingAtom = useSetAtom(isInputCursorBlinkingAtom);
+  return () => {
+    window.clearTimeout(sideEffectTimeoutInputCursor);
+    setIsInputCursorBlinkingAtom(false);
+    sideEffectTimeoutInputCursor = window.setTimeout(() => {
+      setIsInputCursorBlinkingAtom(true);
+    }, 1000);
   };
 }
 
@@ -59,6 +80,11 @@ export {
   userInputAtom,
   displayAppStateAtom,
   appStateAtomsAtom,
+  isInputCursorBlinkingAtom,
 };
-export { usePromptInfo, useUserInput };
-export { useBackspaceUserInput, useUpdateUserInput };
+export { usePromptInfo, useUserInput, useIsInputCursorBlinking };
+export {
+  useBackspaceUserInput,
+  useUpdateUserInput,
+  usePauseInputCursorBlinking,
+};
