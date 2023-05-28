@@ -5,7 +5,7 @@
   .row {
     @include mixin-center-children;
     width: 100%;
-    max-width: 35rem;
+    max-width: 36rem;
     min-width: 18rem;
 
     .key {
@@ -42,11 +42,19 @@
 
     .key .label {
       @include mixin-w-h-fill;
-      @include mixin-center-children;
+      @include mixin-w-h-min;
 
       border: 2px solid var(--color-text-plain);
-      border-radius: 0.35rem;
+      border-radius: 0.375rem;
       background-color: var(--color-background);
+      overflow: hidden;
+      padding: 0.15rem 0.3rem;
+
+      p {
+        @include mixin-w-h-fill(fit-content);
+        white-space: nowrap;
+        line-height: 1rem;
+      }
     }
   }
 }

@@ -22,6 +22,11 @@ $padding-container-main: 1rem;
   height: $height;
 }
 
+@mixin mixin-w-h-min($min-width: fit-content, $min-height: $min-width) {
+  min-width: $min-width;
+  min-height: $min-height;
+}
+
 @mixin mixin-disable-selection() {
   -webkit-user-select: none;
   -khtml-user-select: none;
