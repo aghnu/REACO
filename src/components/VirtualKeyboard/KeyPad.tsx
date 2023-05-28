@@ -2,6 +2,7 @@ import usePointerClick from '@hooks/usePointerClick';
 import styles from '@styles/components/virtual-keyboard.module.scss';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
+import { getClassName } from '@utilities/helpers';
 
 export type KeySize = 'small' | 'mid' | 'large';
 
@@ -56,11 +57,11 @@ const KeyPad = ({
 
   return (
     <div
-      className={[
+      className={getClassName([
         styles.key,
         getKeySizeClass(size),
-        (pointerDown || isPhysicalKeydown) && styles['key--down'],
-      ].join(' ')}
+        { [styles['key--down']]: pointerDown || isPhysicalKeydown },
+      ])}
       ref={setKeyEl}
     >
       <div className={styles.pad}>
