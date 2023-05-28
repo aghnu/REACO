@@ -18,6 +18,7 @@ function getKeySize(key: string): KeySize {
 
 function getKeyLabel(key: string): string {
   if (key === 'Backspace') return 'Back';
+  if (key === ' ') return 'Space';
   return key;
 }
 
