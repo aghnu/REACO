@@ -1,13 +1,6 @@
 import { useCallback } from 'react';
 import { useUpdateUserInput, useBackspaceUserInput } from '@store/displayState';
-
-// helpers
-function isKeyAllowed(key: string) {
-  // eslint-disable-next-line
-  const regex = /^([a-zA-Z0-9\/\s]|Backspace|Enter)$/g;
-  if (key.match(regex) != null) return true;
-  return false;
-}
+import { isKeyAllowed } from '@utils/helpers';
 
 function useHandleKeydown() {
   const funcKeyBackspaceInput = useBackspaceUserInput();

@@ -2,7 +2,7 @@ import usePointerClick from '@hooks/usePointerClick';
 import styles from '@styles/components/virtual-keyboard.module.scss';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import { getClassName } from '@utilities/helpers';
+import { getClassName } from '@utils/helpers';
 
 export type KeySize = 'small' | 'mid' | 'large';
 

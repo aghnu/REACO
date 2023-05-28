@@ -1,6 +1,6 @@
 import { useIsInputCursorBlinking } from '@store/displayState';
 import styles from '@styles/components/prompt.module.scss';
-import { getClassName } from '@utilities/helpers';
+import { getClassName } from '@utils/helpers';
 
 const BlinkingCursor = () => {
   const isBlinking = useIsInputCursorBlinking();

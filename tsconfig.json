@@ -11,7 +11,7 @@
       "@hooks/*": ["./src/hooks/*"],
       "@type/*": ["./src/type/*"],
       "@pages/*": ["./src/pages/*"],
-      "@utilities/*": ["./src/utilities/*"],
+      "@utils/*": ["./src/utils/*"],
       "@/*": ["./src/*"],
     },
 
