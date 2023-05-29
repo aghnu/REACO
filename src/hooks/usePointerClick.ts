@@ -1,64 +1,112 @@
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { atom, useSetAtom } from 'jotai';
+import useSetEventListener from './useSetEventListener';
 
 function helperAddPointerEvents(
   element: HTMLElement,
+  setEventListener: ReturnType<typeof useSetEventListener>['setEventListener'],
+  cleanEventListener: ReturnType<
+    typeof useSetEventListener
+  >['cleanEventListener'],
   handlerUp: () => void,
   handlerDown: () => void,
   handlerHoverOn: () => void,
   handlerHoverOff: () => void
 ) {
-  element.addEventListener('touchstart', handlerUp);
-  element.addEventListener('mouseup', handlerUp);
-  document.body.addEventListener('mouseup', handlerUp);
+  // state
+  let keyPressed = false;
+  let touchEvent = false;
+  let continueTypingCheckingTimeout: number;
+  let continueTypingInterval: number;
 
-  element.addEventListener('touchend', handlerDown);
-  element.addEventListener('touchcancel', handlerDown);
-  element.addEventListener('mousedown', handlerDown);
+  const handlerUpDecorated = () => {
+    window.clearTimeout(continueTypingCheckingTimeout);
+    window.clearInterval(continueTypingInterval);
+    if (!keyPressed) return;
+    keyPressed = false;
+    handlerUp();
+  };
+  const handlerDownDecorated = () => {
+    window.clearTimeout(continueTypingCheckingTimeout);
+    window.clearInterval(continueTypingInterval);
+    if (keyPressed) return;
+    keyPressed = true;
+    handlerDown();
 
-  element.addEventListener('mouseenter', handlerHoverOn);
-  element.addEventListener('mouseleave', handlerHoverOff);
-}
+    // continue typing
+    continueTypingCheckingTimeout = window.setTimeout(() => {
+      if (keyPressed) {
+        continueTypingInterval = window.setInterval(() => {
+          handlerUp();
+        }, 30);
+      }
+    }, 500);
+  };
+  const handlerUpDecoratedTouch = () => {
+    touchEvent = true;
+    handlerUpDecorated();
+  };
+  const handlerDownDecoratedTouch = () => {
+    touchEvent = true;
+    handlerDownDecorated();
+  };
+  const handlerUpDecoratedMouse = (e: Event) => {
+    if (touchEvent) return;
+    e.preventDefault();
+    handlerUpDecorated();
+  };
+  const handlerDownDecoratedMouse = (e: Event) => {
+    if (touchEvent) return;
+    e.preventDefault();
+    handlerDownDecorated();
+  };
+  const handlerUpDecoratedGlobal = () => {
+    if (touchEvent) {
+      touchEvent = false;
+      return;
+    }
+    handlerUpDecorated();
+  };
 
-function helperRemovePointerEvents(
-  element: HTMLElement,
-  handlerUp: () => void,
-  handlerDown: () => void,
-  handlerHoverOn: () => void,
-  handlerHoverOff: () => void
-) {
-  element.removeEventListener('touchstart', handlerUp);
-  element.removeEventListener('mouseup', handlerUp);
-  document.body.removeEventListener('mouseup', handlerUp);
+  // setup listners
+  // touch
+  setEventListener(element, 'touchstart', handlerDownDecoratedTouch);
+  setEventListener(element, 'touchend', handlerUpDecoratedTouch);
+  setEventListener(element, 'touchcancel', handlerUpDecoratedTouch);
 
-  element.removeEventListener('touchend', handlerDown);
-  element.removeEventListener('touchcancel', handlerDown);
-  element.removeEventListener('mousedown', handlerDown);
+  // mouse
+  setEventListener(element, 'mouseup', handlerUpDecoratedMouse);
+  setEventListener(element, 'mousedown', handlerDownDecoratedMouse);
 
-  element.removeEventListener('mouseenter', handlerHoverOn);
-  element.removeEventListener('mouseleave', handlerHoverOff);
+  // global up
+  setEventListener(document.body, 'mouseup', handlerUpDecoratedGlobal);
+
+  // mouse hover
+  setEventListener(element, 'mouseenter', handlerHoverOn);
+  setEventListener(element, 'mouseleave', handlerHoverOff);
+
+  return () => {
+    window.clearTimeout(continueTypingCheckingTimeout);
+    window.clearInterval(continueTypingInterval);
+    cleanEventListener();
+  };
 }
 
 function usePointerClick(
   htmlEl: HTMLElement | null,
   onPointerClick?: () => void
 ) {
-  const pointerDown = useRef(false);
-
+  const { setEventListener, cleanEventListener } = useSetEventListener();
   const pointerDownAtom = useMemo(() => atom(false), []);
   const pointerHoverAtom = useMemo(() => atom(false), []);
-
   const setPointerDownAtom = useSetAtom(pointerDownAtom);
   const setPointerHoverAtom = useSetAtom(pointerHoverAtom);
 
   const handlePointerDown = useCallback(() => {
-    pointerDown.current = true;
-    setPointerDownAtom(pointerDown.current);
+    setPointerDownAtom(true);
   }, [setPointerDownAtom]);
   const handlePointerUp = useCallback(() => {
-    if (!pointerDown.current) return;
-    pointerDown.current = false;
-    setPointerDownAtom(pointerDown.current);
+    setPointerDownAtom(false);
     if (onPointerClick !== undefined) onPointerClick();
   }, [onPointerClick, setPointerDownAtom]);
   const handlePointerHoverOn = useCallback(() => {
@@ -72,24 +120,22 @@ function usePointerClick(
   useEffect(() => {
     if (htmlEl === null) return;
     const element = htmlEl;
-    helperAddPointerEvents(
+    const clean = helperAddPointerEvents(
       element,
+      setEventListener,
+      cleanEventListener,
       handlePointerUp,
       handlePointerDown,
       handlePointerHoverOn,
       handlePointerHoverOff
     );
     return () => {
-      helperRemovePointerEvents(
-        element,
-        handlePointerUp,
-        handlePointerDown,
-        handlePointerHoverOn,
-        handlePointerHoverOff
-      );
+      clean();
     };
   }, [
     htmlEl,
+    setEventListener,
+    cleanEventListener,
     handlePointerDown,
     handlePointerHoverOff,
     handlePointerHoverOn,

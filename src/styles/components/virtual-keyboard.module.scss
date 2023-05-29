@@ -27,6 +27,7 @@
 
     .key {
       .pad {
+        @include mixin-disable-selection;
         position: absolute;
         padding: 0.2rem;
         height: 100%;
@@ -43,6 +44,7 @@
     .key .label {
       @include mixin-w-h-fill;
       @include mixin-w-h-min;
+      @include mixin-disable-selection;
 
       border: 2px solid var(--color-text-plain);
       border-radius: 0.375rem;
