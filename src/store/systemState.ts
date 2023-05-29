@@ -1,4 +1,4 @@
-import { atom, useSetAtom } from 'jotai';
+import { atom, useSetAtom, useAtomValue } from 'jotai';
 import { withImmer } from 'jotai-immer';
 
 interface systemState {
@@ -9,6 +9,16 @@ interface systemState {
 const systemStateAtom = atom<systemState>({
   virtualKeyboardEnabled: false,
 });
+
+// derived atoms
+const isVirtualKeyboardEnabledAtom = atom(
+  (get) => get(systemStateAtom).virtualKeyboardEnabled
+);
+
+// getter
+function useIsVirtualKeyboardEnabled() {
+  return useAtomValue(isVirtualKeyboardEnabledAtom);
+}
 
 // actions
 function useToggleVirtualKeyboard() {
@@ -29,5 +39,6 @@ function useControlVirtualKeyboard() {
   };
 }
 
-export { systemStateAtom };
+export { systemStateAtom, isVirtualKeyboardEnabledAtom };
+export { useIsVirtualKeyboardEnabled };
 export { useToggleVirtualKeyboard, useControlVirtualKeyboard };

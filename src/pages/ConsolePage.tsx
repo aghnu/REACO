@@ -7,9 +7,11 @@ import {
 } from '@/components';
 import styles from '../styles/modules/wrapper.module.scss';
 import useStartKeyboardInput from '@hooks/useStartKeyboardInput';
+import { useIsVirtualKeyboardEnabled } from '@store/systemState';
 
 const ConsolePage = () => {
   useStartKeyboardInput();
+  const isVirtualKeyboardEnabled = useIsVirtualKeyboardEnabled();
 
   return (
     <div className={styles['container-console']}>
@@ -18,7 +20,7 @@ const ConsolePage = () => {
         <Prompt />
       </div>
       <div className={styles.bottom}>
-        <VirtualKeyboard />
+        {isVirtualKeyboardEnabled && <VirtualKeyboard />}
         <FunctionBar />
         <Footer />
       </div>
