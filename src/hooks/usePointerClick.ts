@@ -8,6 +8,7 @@ function helperAddPointerEvents(
   cleanEventListener: ReturnType<
     typeof useSetEventListener
   >['cleanEventListener'],
+  onPointerClick: () => void,
   handlerUp: () => void,
   handlerDown: () => void,
   handlerHoverOn: () => void,
@@ -37,7 +38,7 @@ function helperAddPointerEvents(
     continueTypingCheckingTimeout = window.setTimeout(() => {
       if (keyPressed) {
         continueTypingInterval = window.setInterval(() => {
-          handlerUp();
+          onPointerClick();
         }, 30);
       }
     }, 500);
@@ -94,7 +95,7 @@ function helperAddPointerEvents(
 
 function usePointerClick(
   htmlEl: HTMLElement | null,
-  onPointerClick?: () => void
+  onPointerClick: () => void = () => {}
 ) {
   const { setEventListener, cleanEventListener } = useSetEventListener();
   const pointerDownAtom = useMemo(() => atom(false), []);
@@ -107,8 +108,7 @@ function usePointerClick(
   }, [setPointerDownAtom]);
   const handlePointerUp = useCallback(() => {
     setPointerDownAtom(false);
-    if (onPointerClick !== undefined) onPointerClick();
-  }, [onPointerClick, setPointerDownAtom]);
+  }, [setPointerDownAtom]);
   const handlePointerHoverOn = useCallback(() => {
     setPointerHoverAtom(true);
   }, [setPointerHoverAtom]);
@@ -124,6 +124,7 @@ function usePointerClick(
       element,
       setEventListener,
       cleanEventListener,
+      onPointerClick,
       handlePointerUp,
       handlePointerDown,
       handlePointerHoverOn,
@@ -136,6 +137,7 @@ function usePointerClick(
     htmlEl,
     setEventListener,
     cleanEventListener,
+    onPointerClick,
     handlePointerDown,
     handlePointerHoverOff,
     handlePointerHoverOn,
