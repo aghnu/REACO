@@ -14,6 +14,13 @@ abstract class BaseAtomStore {
     return unsub;
   }
 
+  protected storeRemoveSub(unsub: () => void) {
+    const index = this.storeUnsubFuncs.indexOf(unsub);
+    if (index === -1) return;
+    this.storeUnsubFuncs.splice(index, 1);
+    unsub();
+  }
+
   protected storeClearSubs() {
     while (this.storeUnsubFuncs.length > 0) {
       const unsub = this.storeUnsubFuncs.pop();
