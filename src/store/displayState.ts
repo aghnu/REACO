@@ -24,6 +24,7 @@ const isInputCursorBlinkingAtom = atom(true);
 const displayAppStateAtom = atom<DisplayAppState>({
   apps: [],
 });
+const userInputCmdRawAtom = atom<string | null>(null);
 
 // derived atoms
 const appStateAtom = focusAtom(displayAppStateAtom, (optics) =>
@@ -81,6 +82,7 @@ export {
   displayAppStateAtom,
   appStateAtomsAtom,
   isInputCursorBlinkingAtom,
+  userInputCmdRawAtom,
 };
 export { usePromptInfo, useUserInput, useIsInputCursorBlinking };
 export {

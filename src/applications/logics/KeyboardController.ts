@@ -1,5 +1,5 @@
 import BaseAtomStore from '@applications/base/BaseAtomStore';
-import { userInputAtom } from '@store/displayState';
+import { userInputAtom, userInputCmdRawAtom } from '@store/displayState';
 import { isKeyAllowed } from '@utils/keyboard';
 import {
   type EventListenerContextManager,
@@ -35,8 +35,14 @@ class KeyboardController extends BaseAtomStore {
     return this.storeGetAtom(userInputAtom);
   }
 
-  private inputSet(input: string): void {
+  private inputSet(input: string) {
     this.storeSetAtom(userInputAtom, input);
+  }
+
+  private inputConfirm() {
+    const input = this.inputGet();
+    this.storeSetAtom(userInputCmdRawAtom, input);
+    this.inputSet('');
   }
 
   public inputKey(key: string) {
@@ -47,7 +53,7 @@ class KeyboardController extends BaseAtomStore {
         this.inputSet(this.inputGet().slice(0, -1));
         break;
       case 'Enter':
-        this.inputSet(this.inputGet().slice(0, -1));
+        this.inputConfirm();
         break;
       default:
         this.inputSet(this.inputGet() + key);
