@@ -1,5 +1,9 @@
 import BaseAtomStore from '@applications/base/BaseAtomStore';
-import { userInputAtom, userInputCmdRawAtom } from '@store/displayState';
+import {
+  userInputAtom,
+  userInputCmdRawAtom,
+  isInputCursorBlinkingAtom,
+} from '@store/displayState';
 import { isKeyAllowed } from '@utils/keyboard';
 import {
   type EventListenerContextManager,
@@ -9,6 +13,7 @@ import {
 class KeyboardController extends BaseAtomStore {
   protected static instance: KeyboardController | undefined;
   protected eventListenerContextManager: EventListenerContextManager;
+  protected sideEffectTimeoutInputCursor: number | undefined;
 
   protected constructor() {
     super();
@@ -60,11 +65,20 @@ class KeyboardController extends BaseAtomStore {
     }
   }
 
+  public inputCursorPause() {
+    window.clearTimeout(this.sideEffectTimeoutInputCursor);
+    this.storeSetAtom(isInputCursorBlinkingAtom, false);
+    this.sideEffectTimeoutInputCursor = window.setTimeout(() => {
+      this.storeSetAtom(isInputCursorBlinkingAtom, true);
+    }, 250);
+  }
+
   private init() {
     this.eventListenerContextManager.set(document.body, 'keydown', (e) => {
       const key = (e as KeyboardEvent).key;
       if (!isKeyAllowed(key)) return;
       e.preventDefault();
+      this.inputCursorPause();
       this.inputKey(key);
     });
   }
