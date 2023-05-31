@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { atom, useSetAtom } from 'jotai';
-import useSetEventListener from './useSetEventListener';
+import {
+  buildEventListenerContextManager,
+  type EventListenerContextManager,
+} from '@utils/eventListenerWithContext';
 
 function helperAddPointerEvents(
   element: HTMLElement,
-  setEventListener: ReturnType<typeof useSetEventListener>['setEventListener'],
-  cleanEventListener: ReturnType<
-    typeof useSetEventListener
-  >['cleanEventListener'],
+  setEventListener: EventListenerContextManager['set'],
+  cleanEventListener: EventListenerContextManager['clear'],
   onPointerClick: () => void,
   handlerUp: () => void,
   handlerDown: () => void,
@@ -97,11 +98,11 @@ function usePointerClick(
   htmlEl: HTMLElement | null,
   onPointerClick: () => void = () => {}
 ) {
-  const { setEventListener, cleanEventListener } = useSetEventListener();
   const pointerDownAtom = useMemo(() => atom(false), []);
   const pointerHoverAtom = useMemo(() => atom(false), []);
   const setPointerDownAtom = useSetAtom(pointerDownAtom);
   const setPointerHoverAtom = useSetAtom(pointerHoverAtom);
+  const eventListnerContextManager = useRef(buildEventListenerContextManager());
 
   const handlePointerDown = useCallback(() => {
     setPointerDownAtom(true);
@@ -122,8 +123,8 @@ function usePointerClick(
     const element = htmlEl;
     const clean = helperAddPointerEvents(
       element,
-      setEventListener,
-      cleanEventListener,
+      eventListnerContextManager.current.set,
+      eventListnerContextManager.current.clear,
       onPointerClick,
       handlePointerUp,
       handlePointerDown,
@@ -135,8 +136,6 @@ function usePointerClick(
     };
   }, [
     htmlEl,
-    setEventListener,
-    cleanEventListener,
     onPointerClick,
     handlePointerDown,
     handlePointerHoverOff,
