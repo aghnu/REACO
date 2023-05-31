@@ -27,6 +27,7 @@ function helperAddPointerEvents(
     if (!keyPressed) return;
     keyPressed = false;
     handlerUp();
+    onPointerClick();
   };
   const handlerDownDecorated = () => {
     window.clearTimeout(continueTypingCheckingTimeout);
