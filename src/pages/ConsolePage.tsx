@@ -6,11 +6,9 @@ import {
   FunctionBar,
 } from '@/components';
 import styles from '../styles/modules/wrapper.module.scss';
-import useStartKeyboardInput from '@hooks/useStartKeyboardInput';
 import { useIsVirtualKeyboardEnabled } from '@store/systemState';
 
 const ConsolePage = () => {
-  useStartKeyboardInput();
   const isVirtualKeyboardEnabled = useIsVirtualKeyboardEnabled();
 
   return (

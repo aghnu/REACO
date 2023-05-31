@@ -1,6 +1,6 @@
 import KeyPad, { type KeySize } from './KeyPad';
 import styles from '@styles/components/virtual-keyboard.module.scss';
-import useHandleKeydown from '@hooks/useHandleKeydown';
+import KeyboardController from '@applications/logics/KeyboardController';
 
 const KEYS_DISPLAY = [
   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -23,7 +23,7 @@ function getKeyLabel(key: string): string {
 }
 
 const VirtualKeyboard = () => {
-  const handleKeyClick = useHandleKeydown();
+  const keyboardController = KeyboardController.getInstance();
 
   return (
     <div className={styles['virtual-keyboard']}>
@@ -36,7 +36,7 @@ const VirtualKeyboard = () => {
               label={getKeyLabel(key)}
               size={getKeySize(key)}
               onKeyClick={() => {
-                handleKeyClick(key);
+                keyboardController.inputKey(key);
               }}
             />
           ))}
