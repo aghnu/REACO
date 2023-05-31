@@ -12,6 +12,7 @@
       "@type/*": ["./src/type/*"],
       "@pages/*": ["./src/pages/*"],
       "@utils/*": ["./src/utils/*"],
+      "@applications/*": ["./src/applications/*"],
       "@/*": ["./src/*"],
     },
 
