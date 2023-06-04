@@ -1,8 +1,15 @@
+import { displayState } from '@/store';
+import { useAtomValue } from 'jotai';
+
 const Display = () => {
+  const displayJobs = useAtomValue(displayState.displayJobsAtom);
+
   return (
-    <>
-      <p>This is a test</p>
-    </>
+    <div>
+      {displayJobs.map((job) => (
+        <div key={job.id}>{job.element}</div>
+      ))}
+    </div>
   );
 };
 
