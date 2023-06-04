@@ -55,7 +55,7 @@
       p {
         @include mixin-w-h-fill(fit-content);
         white-space: nowrap;
-        line-height: 1rem;
+        line-height: $line-height;
       }
     }
   }
