@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { icon } from '@/utils/svgFactory';
-import { type IconFactoryFunc } from '@type/utilsTypes';
+import type { IconFactoryFunc } from '@type/UtilsTypes';
 
 interface Key {
   name: string;

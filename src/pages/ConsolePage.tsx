@@ -6,10 +6,13 @@ import {
   FunctionBar,
 } from '@/components';
 import styles from '../styles/modules/wrapper.module.scss';
-import { useIsVirtualKeyboardEnabled } from '@store/systemState';
+import { systemState } from '@/store';
+import { useAtomValue } from 'jotai';
 
 const ConsolePage = () => {
-  const isVirtualKeyboardEnabled = useIsVirtualKeyboardEnabled();
+  const isVirtualKeyboardEnabled = useAtomValue(
+    systemState.isVirtualKeyboardEnabledAtom
+  );
 
   return (
     <div className={styles['container-console']}>

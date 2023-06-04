@@ -1,9 +1,10 @@
-import { useUserInput } from '@store/displayState';
+import { systemState } from '@/store';
+import { useAtomValue } from 'jotai';
 import styles from '@styles/components/prompt.module.scss';
 import { TextRaw } from '@/components';
 
 const UserInput = () => {
-  const userInput = useUserInput();
+  const userInput = useAtomValue(systemState.userInputAtom);
 
   return (
     <>

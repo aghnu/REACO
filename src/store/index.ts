@@ -1,5 +1,8 @@
 import { createStore } from 'jotai';
+import * as systemState from './systemState';
+import * as displayState from './displayState';
 
-const store = createStore();
+const defaultStore = createStore();
 
-export default store;
+export default defaultStore;
+export { systemState, displayState };

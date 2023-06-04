@@ -1,5 +1,5 @@
 import BaseAtomStore from '@applications/base/BaseAtomStore';
-import { userInputCmdRawAtom } from '@store/displayState';
+import { systemState } from '@/store';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -29,11 +29,11 @@ class ApplicationController extends BaseAtomStore {
   }
 
   private init() {
-    this.storeSubToAtom(userInputCmdRawAtom, () => {
-      const cmd = this.storeGetAtom(userInputCmdRawAtom);
+    this.storeSubToAtom(systemState.userInputCmdRawAtom, () => {
+      const cmd = this.storeGetAtom(systemState.userInputCmdRawAtom);
       if (cmd === null) return;
       this.handlerInputCmdRaw(cmd);
-      this.storeSetAtom(userInputCmdRawAtom, null);
+      this.storeSetAtom(systemState.userInputCmdRawAtom, null);
     });
   }
 }

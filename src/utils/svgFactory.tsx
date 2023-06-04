@@ -1,4 +1,4 @@
-import { type IconFactory } from '@type/utilsTypes';
+import { type IconFactory } from '@type/UtilsTypes';
 
 export const icon: IconFactory = {
   info: (fill, size) => (

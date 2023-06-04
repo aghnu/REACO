@@ -2,11 +2,11 @@ import FunctionKey from './FunctionKey';
 import styles from '@styles/components/function-bar.module.scss';
 import useFunctionKeys from '@hooks/useFunctionKeys';
 import { useCallback } from 'react';
-import { useToggleVirtualKeyboard } from '@store/systemState';
+import { systemState } from '@/store';
 
 const FunctionBar = () => {
   const keys = useFunctionKeys();
-  const toggleVirtualKeyboard = useToggleVirtualKeyboard();
+  const toggleVirtualKeyboard = systemState.useToggleVirtualKeyboard();
   const handleKeyClick = useCallback(
     (name: string) => {
       if (name === 'keyboard') toggleVirtualKeyboard();

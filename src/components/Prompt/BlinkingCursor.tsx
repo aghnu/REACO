@@ -1,9 +1,10 @@
-import { useIsInputCursorBlinking } from '@store/displayState';
+import { systemState } from '@/store';
+import { useAtomValue } from 'jotai';
 import styles from '@styles/components/prompt.module.scss';
 import { getClassName } from '@utils/helpers';
 
 const BlinkingCursor = () => {
-  const isBlinking = useIsInputCursorBlinking();
+  const isBlinking = useAtomValue(systemState.isInputCursorBlinkingAtom);
 
   return (
     <>

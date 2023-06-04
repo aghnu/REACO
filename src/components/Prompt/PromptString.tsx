@@ -1,8 +1,9 @@
-import { usePromptInfo } from '@store/displayState';
+import { systemState } from '@/store';
+import { useAtomValue } from 'jotai';
 import styles from '@styles/modules/text.module.scss';
 
 const PromptString = () => {
-  const promptInfo = usePromptInfo();
+  const promptInfo = useAtomValue(systemState.promptInfoAtom);
 
   return (
     <>

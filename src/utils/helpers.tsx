@@ -1,4 +1,4 @@
-import { type DynamicClassName } from '@type/utilsTypes';
+import { type DynamicClassName } from '@type/UtilsTypes';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];

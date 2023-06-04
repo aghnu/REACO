@@ -1,4 +1,4 @@
-import type { IconFactoryFunc } from '@type/utilsTypes';
+import type { IconFactoryFunc } from '@type/UtilsTypes';
 import { useMemo } from 'react';
 import styles from '@styles/components/function-bar.module.scss';
 
