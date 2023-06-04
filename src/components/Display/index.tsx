@@ -1,5 +1,6 @@
 import { displayState } from '@/store';
 import { useAtomValue } from 'jotai';
+import DisplayBlock from './DisplayBlock';
 import styles from '@styles/components/display.module.scss';
 
 const Display = () => {
@@ -8,7 +9,7 @@ const Display = () => {
   return (
     <div className={styles.display}>
       {displayJobs.map((job) => (
-        <div key={job.id}>{job.element}</div>
+        <DisplayBlock key={job.id} elementAtom={job.elementAtom} />
       ))}
     </div>
   );

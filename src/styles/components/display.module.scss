@@ -1,6 +1,10 @@
 .display {
-  p {
-    line-height: $line-height;
-    height: $line-height;
+  .block {
+    min-height: $line-height;
+    height: fit-content;
+    p {
+      line-height: $line-height;
+      word-break: break-all;
+    }
   }
 }

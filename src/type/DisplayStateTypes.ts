@@ -1,6 +1,8 @@
+import { type PrimitiveAtom } from 'jotai';
+
 export interface DisplayJob {
   id: string;
-  element: JSX.Element;
+  elementAtom: PrimitiveAtom<JSX.Element>;
 }
 
 export interface DisplayState {
