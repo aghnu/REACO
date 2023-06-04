@@ -1,4 +1,6 @@
 import { type DynamicClassName } from '@type/UtilsTypes';
+import APPLICATION_INDEX from '@applications/index';
+import type { AppMeta, AppNames } from '@type/ApplicationTypes';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];
@@ -19,4 +21,12 @@ export function getClassName(dynamicClassNames: DynamicClassName) {
   });
 
   return classNameArray.join(' ');
+}
+
+export function getApplicationMeta(name: string): AppMeta | null {
+  const keys = Object.keys(APPLICATION_INDEX);
+  if (keys.includes(name)) {
+    return APPLICATION_INDEX[name as AppNames];
+  }
+  return null;
 }
