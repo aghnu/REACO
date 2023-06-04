@@ -2,6 +2,7 @@ import { type AppNames } from '@type/ApplicationTypes';
 import BaseAtomStore from './BaseAtomStore';
 import { applicationState } from '@store/index';
 import { produce } from 'immer';
+import DisplayController from '@applications/logics/DisplayController';
 abstract class BaseApplication extends BaseAtomStore {
   abstract name: AppNames;
   abstract id: string;
@@ -49,6 +50,9 @@ abstract class BaseApplication extends BaseAtomStore {
     });
     this.storeSetAtom(applicationState.applicationInstancesAtom, nextState);
   }
+
+  protected print = DisplayController.getInstance().print;
+  protected printUpdate = DisplayController.getInstance().printUpdate;
 }
 
 export default BaseApplication;

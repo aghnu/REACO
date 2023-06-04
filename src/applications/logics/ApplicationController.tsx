@@ -1,5 +1,5 @@
 import BaseAtomStore from '@base/BaseAtomStore';
-import { systemState } from '@/store';
+import { systemState, applicationState } from '@/store';
 import DisplayController from './DisplayController';
 import textStyle from '@styles/modules/text.module.scss';
 import { getApplicationMeta } from '@utils/helpers';
@@ -59,6 +59,16 @@ class ApplicationController extends BaseAtomStore {
       if (cmd === null) return;
       this.handlerInputCmdRaw(cmd);
       this.storeSetAtom(systemState.userInputCmdRawAtom, null);
+    });
+  }
+
+  public clearApplications() {
+    const applications = this.storeGetAtom(
+      applicationState.applicationInstancesAtom
+    );
+
+    applications.forEach((app) => {
+      app.instance.stop();
     });
   }
 }
