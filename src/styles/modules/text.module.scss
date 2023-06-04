@@ -9,3 +9,44 @@
 .desc {
   color: var(--color-text-desc);
 }
+
+.double {
+  line-height: calc(#{$line-height} * 1.8);
+  font-size: 1.8em;
+}
+
+.spread {
+  letter-spacing: 0.35em;
+}
+
+.nowrap {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow: hidden;
+}
+
+.text-split {
+  display: grid;
+  grid-template-columns: 40% auto 55%;
+  grid-template-rows: $line-height;
+
+  &__sep {
+    &::after {
+      content: ':';
+      text-align: center;
+    }
+
+    &--alt::after {
+      content: '-';
+    }
+  }
+
+  @include width-narrower() {
+    grid-template-columns: 100%;
+
+    &__sep::after,
+    &__sep--alt::after {
+      display: none;
+    }
+  }
+}

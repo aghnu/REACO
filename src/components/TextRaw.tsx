@@ -1,6 +1,14 @@
 import { useMemo } from 'react';
 
-const TextRaw = ({ text }: { text: string }) => {
+const TextRaw = ({
+  text,
+  className,
+  type = 'span',
+}: {
+  text: string;
+  type?: 'span' | 'p';
+  className?: string | undefined;
+}) => {
   const inputChunks = useMemo(() => {
     if (text === '') return [];
 
@@ -14,14 +22,27 @@ const TextRaw = ({ text }: { text: string }) => {
     return chunks;
   }, [text]);
 
+  const innerContent = useMemo(
+    () => (
+      <>
+        {inputChunks.map((chunk, index) =>
+          chunk === ' ' ? (
+            <span key={index}>&nbsp;</span>
+          ) : (
+            <span key={index}>{chunk}</span>
+          )
+        )}
+      </>
+    ),
+    [inputChunks]
+  );
+
   return (
     <>
-      {inputChunks.map((chunk, index) =>
-        chunk === ' ' ? (
-          <span key={index}>&nbsp;</span>
-        ) : (
-          <span key={index}>{chunk}</span>
-        )
+      {type === 'p' ? (
+        <p className={className}>{innerContent}</p>
+      ) : (
+        <span className={className}>{innerContent}</span>
       )}
     </>
   );

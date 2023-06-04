@@ -1,5 +1,4 @@
 import { type PrimitiveAtom, useAtomValue } from 'jotai';
-import styles from '@styles/components/display.module.scss';
 
 const DisplayBlock = ({
   elementAtom,
@@ -8,7 +7,7 @@ const DisplayBlock = ({
 }) => {
   const element = useAtomValue(elementAtom);
 
-  return <div className={styles.block}>{element}</div>;
+  return <>{element}</>;
 };
 
 export default DisplayBlock;

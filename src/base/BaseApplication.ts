@@ -3,17 +3,19 @@ import BaseAtomStore from './BaseAtomStore';
 import { applicationState } from '@store/index';
 import { produce } from 'immer';
 import DisplayController from '@applications/logics/DisplayController';
+import ApplicationController from '@applications/logics/ApplicationController';
+
 abstract class BaseApplication extends BaseAtomStore {
-  abstract name: AppNames;
-  abstract id: string;
+  public abstract name: AppNames;
+  public abstract id: string;
+  protected readonly applicationController =
+    ApplicationController.getInstance();
 
-  public start(): void {
-    this.addApplicationInstanceToState();
-  }
+  protected readonly displayController = DisplayController.getInstance();
 
-  public stop(): void {
-    this.removeApplicationInstanceFromState();
-  }
+  public abstract start(): void;
+
+  public stop(): void {}
 
   protected isForeground(): boolean {
     const topInstance = this.storeGetAtom(
@@ -27,17 +29,17 @@ abstract class BaseApplication extends BaseAtomStore {
     return !this.isForeground();
   }
 
-  private removeApplicationInstanceFromState() {
+  protected removeApplicationInstanceFromState() {
     const currentState = this.storeGetAtom(
       applicationState.applicationInstancesAtom
     );
     const nextState = produce(currentState, (draft) => {
-      draft = draft.filter((app) => app.id !== this.id);
+      return draft.filter((app) => app.id !== this.id);
     });
     this.storeSetAtom(applicationState.applicationInstancesAtom, nextState);
   }
 
-  private addApplicationInstanceToState() {
+  protected addApplicationInstanceToState() {
     const currentState = this.storeGetAtom(
       applicationState.applicationInstancesAtom
     );
@@ -50,9 +52,6 @@ abstract class BaseApplication extends BaseAtomStore {
     });
     this.storeSetAtom(applicationState.applicationInstancesAtom, nextState);
   }
-
-  protected print = DisplayController.getInstance().print;
-  protected printUpdate = DisplayController.getInstance().printUpdate;
 }
 
 export default BaseApplication;

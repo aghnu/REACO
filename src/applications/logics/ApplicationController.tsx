@@ -3,6 +3,9 @@ import { systemState, applicationState } from '@/store';
 import DisplayController from './DisplayController';
 import textStyle from '@styles/modules/text.module.scss';
 import { getApplicationMeta } from '@utils/helpers';
+import { type AppNames } from '@type/ApplicationTypes';
+import APPLICATION_INDEX from '@/applications';
+import TextRaw from '@components/TextRaw';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -29,7 +32,14 @@ class ApplicationController extends BaseAtomStore {
 
   private readonly print = DisplayController.getInstance().print;
 
-  private runApplication(args: string[]) {
+  public runApplication(app: AppNames) {
+    const applicationMeta = APPLICATION_INDEX[app];
+    const appInstance = new applicationMeta.App();
+    this.print(<p className={textStyle.focus}>{`[${app}]`}</p>);
+    appInstance.start();
+  }
+
+  public runApplicationFromArgs(args: string[]) {
     if (args.length === 0) return;
 
     const applicationMeta = getApplicationMeta(args[0]);
@@ -38,19 +48,18 @@ class ApplicationController extends BaseAtomStore {
       return;
     }
 
-    const app = new applicationMeta.App();
-    app.start();
+    this.runApplication(applicationMeta.name);
   }
 
-  private handlerInputCmdRaw(cmd: string) {
+  public handlerInputCmdRaw(cmd: string) {
     const args = cmd.split(' ').filter((a) => a !== '');
     if (args.length === 0) {
-      this.print(<p></p>);
+      this.print(<br />);
       return;
     }
 
-    this.print(<p>{'> ' + cmd}</p>);
-    this.runApplication(args);
+    this.print(<TextRaw type="p" text={'> ' + cmd} />);
+    this.runApplicationFromArgs(args);
   }
 
   private init() {

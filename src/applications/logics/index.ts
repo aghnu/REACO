@@ -6,6 +6,9 @@ function initApplication() {
   ApplicationController.start();
   DisplayController.start();
   KeyboardController.start();
+
+  // startup
+  ApplicationController.getInstance().runApplication('home');
 }
 
 export default initApplication;
