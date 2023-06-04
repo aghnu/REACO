@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
     "immer": "^10.0.2",
     "jotai": "^2.1.0",
+    "jotai-devtools": "^0.5.3",
     "jotai-immer": "^0.2.0",
     "jotai-optics": "^0.3.0",
     "optics-ts": "^2.4.0",
@@ -26,7 +28,7 @@
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
