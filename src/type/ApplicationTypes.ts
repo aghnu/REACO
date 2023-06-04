@@ -1,4 +1,4 @@
-import type BaseApplication from '@applications/base/BaseApplication';
+import type BaseApplication from '@base/BaseApplication';
 import type APPLICATION_INDEX from '@/applications';
 
 export type AppNames = keyof typeof APPLICATION_INDEX;

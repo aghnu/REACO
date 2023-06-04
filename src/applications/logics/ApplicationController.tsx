@@ -1,4 +1,4 @@
-import BaseAtomStore from '@applications/base/BaseAtomStore';
+import BaseAtomStore from '@base/BaseAtomStore';
 import { systemState } from '@/store';
 import DisplayController from './DisplayController';
 import textStyle from '@styles/modules/text.module.scss';

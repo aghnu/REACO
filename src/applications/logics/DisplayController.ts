@@ -1,4 +1,4 @@
-import BaseAtomStore from '@applications/base/BaseAtomStore';
+import BaseAtomStore from '@base/BaseAtomStore';
 import { displayState } from '@/store';
 import { produce } from 'immer';
 import { v4 as uuid } from 'uuid';

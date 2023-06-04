@@ -1,5 +1,5 @@
 import { type AppNames } from '@type/ApplicationTypes';
-import BaseApplication from './base/BaseApplication';
+import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 
 class AppKeyboard extends BaseApplication {

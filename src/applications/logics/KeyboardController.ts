@@ -1,4 +1,4 @@
-import BaseAtomStore from '@applications/base/BaseAtomStore';
+import BaseAtomStore from '@base/BaseAtomStore';
 import { systemState } from '@/store';
 import { isKeyAllowed } from '@utils/keyboard';
 import {
