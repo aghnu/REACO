@@ -1,6 +1,7 @@
 import { type DynamicClassName } from '@type/UtilsTypes';
 import APPLICATION_INDEX from '@applications/index';
 import type { AppMeta, AppNames } from '@type/ApplicationTypes';
+import { type PrimitiveAtom, type Atom } from 'jotai';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];
@@ -29,4 +30,17 @@ export function getApplicationMeta(name: string): AppMeta | null {
     return APPLICATION_INDEX[name as AppNames];
   }
   return null;
+}
+
+export function checkIsDevEnv() {
+  return process.env.NODE_ENV === 'development';
+}
+
+export function addLabelToAtom<
+  T extends Atom<unknown> | PrimitiveAtom<unknown>
+>(label: string, atom: T): T {
+  if (checkIsDevEnv()) {
+    atom.debugLabel = label;
+  }
+  return atom;
 }

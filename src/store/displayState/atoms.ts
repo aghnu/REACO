@@ -1,6 +1,7 @@
 import { type PrimitiveAtom, atom } from 'jotai';
 import { focusAtom } from 'jotai-optics';
 import type { DisplayState } from '@type/DisplayStateTypes';
+import { addLabelToAtom } from '@utils/helpers';
 
 // atoms
 const displayStateAtom = atom<DisplayState>({
@@ -8,8 +9,10 @@ const displayStateAtom = atom<DisplayState>({
 });
 
 // derived atoms
-const displayJobsAtom = focusAtom(displayStateAtom, (optic) =>
-  optic.prop('displayJobs')
-) as PrimitiveAtom<DisplayState['displayJobs']>;
-
+const displayJobsAtom = addLabelToAtom(
+  'displayJobsAtom',
+  focusAtom(displayStateAtom, (optic) =>
+    optic.prop('displayJobs')
+  ) as PrimitiveAtom<DisplayState['displayJobs']>
+);
 export { displayStateAtom, displayJobsAtom };
