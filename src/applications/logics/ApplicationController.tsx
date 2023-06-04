@@ -1,5 +1,8 @@
 import BaseAtomStore from '@applications/base/BaseAtomStore';
 import { systemState } from '@/store';
+import DisplayController from './DisplayController';
+import textStyle from '@styles/modules/text.module.scss';
+import { getApplicationMeta } from '@utils/helpers';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -24,8 +27,30 @@ class ApplicationController extends BaseAtomStore {
     ApplicationController.getInstance();
   }
 
+  private readonly print = DisplayController.getInstance().print;
+
+  private runApplication(args: string[]) {
+    if (args.length === 0) return;
+
+    const applicationMeta = getApplicationMeta(args[0]);
+    if (applicationMeta === null) {
+      this.print(<p className={textStyle.focus}>{'[Command Not Found]'}</p>);
+      return;
+    }
+
+    const app = new applicationMeta.App();
+    app.start();
+  }
+
   private handlerInputCmdRaw(cmd: string) {
-    console.log(cmd);
+    const args = cmd.split(' ').filter((a) => a !== '');
+    if (args.length === 0) {
+      this.print(<p></p>);
+      return;
+    }
+
+    this.print(<p>{'> ' + cmd}</p>);
+    this.runApplication(args);
   }
 
   private init() {
