@@ -1,0 +1,39 @@
+.text-split {
+  display: grid;
+  grid-template-columns: 40% auto 55%;
+  grid-template-rows: $line-height;
+
+  &__sep {
+    &::after {
+      content: ':';
+      text-align: center;
+    }
+
+    &--alt::after {
+      content: '-';
+    }
+  }
+
+  @include width-narrower() {
+    grid-template-columns: 100%;
+
+    &__sep::after,
+    &__sep--alt::after {
+      display: none;
+    }
+  }
+}
+
+.text-button {
+  @include mixin-clear-button-style;
+  @include mixin-enable-selection;
+}
+
+.text-icon {
+  @include mixin-center-children;
+  @include mixin-w-h-fill;
+
+  &__icon {
+    @include mixin-w-h-fill(calc(#{$line-height} * 1.15));
+  }
+}

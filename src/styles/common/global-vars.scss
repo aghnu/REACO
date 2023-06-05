@@ -1,34 +1,21 @@
-:root {
-  // vars
+@mixin css-vars-colors {
   --color-text-plain: #94a3c2;
   --color-text-focus: #f59879;
   --color-text-desc: #1ca0a9;
   --color-text-neon: #f7f054;
   --color-background: #000c18;
+}
 
-  // fonts
+@mixin global-root-color {
+  background-color: var(--color-background);
+  color: var(--color-text-plain);
+}
+
+@mixin global-root-font {
   font-family: 'Robot Mono', monospace;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  // others
-  background-color: var(--color-background);
-  color: var(--color-text-plain);
-
-  @include override_select_color(
-    var(--color-background),
-    var(--color-text-plain)
-  );
-}
-
-* {
-  box-sizing: border-box;
-}
-
-p {
-  line-height: $line-height;
-  word-break: break-all;
 }

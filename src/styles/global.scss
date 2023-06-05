@@ -1,93 +1,12 @@
-$padding-container-main: 1rem;
-$line-height: 1.15rem;
+@import './common/global-vars.scss';
+@import './common/global-layout-classes.scss';
 
-@mixin mixin-center-children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin mixin-align-top-left {
-  top: 0;
-  left: 0;
-}
-
-@mixin mixin-clear-p-style {
-  p {
-    margin: 0;
-  }
-}
-
-@mixin mixin-clear-pm() {
-  padding: 0;
-  margin: 0;
-}
-
-@mixin mixin-w-h-fill($width: 100%, $height: $width) {
-  width: $width;
-  height: $height;
-}
-
-@mixin mixin-w-h-min($min-width: fit-content, $min-height: $min-width) {
-  min-width: $min-width;
-  min-height: $min-height;
-}
-
-@mixin mixin-disable-selection() {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-@mixin mixin-enable-selection() {
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -o-user-select: text;
-  user-select: text;
-}
-
-@mixin mixin-clear-button-style() {
-  @include mixin-w-h-fill(fit-content);
-  @include mixin-clear-pm();
-  background-color: transparent;
-  border: none;
-
-  font: inherit;
-  line-height: inherit;
-}
-
-@mixin hide-scroll-bar() {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@mixin override_select_color($color, $background) {
-  &::-moz-selection {
-    color: $color;
-    background: $background;
-  }
-
-  ::selection {
-    color: $color;
-    background: $background;
-  }
-}
-
-@mixin width-narrow() {
-  @media only screen and (max-width: 500px) {
-    @content;
-  }
-}
-
-@mixin width-narrower() {
-  @media only screen and (max-width: 350px) {
-    @content;
-  }
+:root {
+  @include css-vars-colors;
+  @include global-root-color;
+  @include global-root-font;
+  @include override_select_color(
+    var(--color-background),
+    var(--color-text-plain)
+  );
 }

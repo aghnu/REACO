@@ -37,34 +37,3 @@
 .noselect {
   @include mixin-disable-selection;
 }
-
-.text-split {
-  display: grid;
-  grid-template-columns: 40% auto 55%;
-  grid-template-rows: $line-height;
-
-  &__sep {
-    &::after {
-      content: ':';
-      text-align: center;
-    }
-
-    &--alt::after {
-      content: '-';
-    }
-  }
-
-  @include width-narrower() {
-    grid-template-columns: 100%;
-
-    &__sep::after,
-    &__sep--alt::after {
-      display: none;
-    }
-  }
-}
-
-.text-button {
-  @include mixin-clear-button-style;
-  @include mixin-enable-selection;
-}
