@@ -1,11 +1,12 @@
 import TextLink from '@components/TextLink';
 import TextSplit from '@components/TextSplit';
 import TextButton from '@components/TextButton';
+import textStyle from '@styles/modules/text.module.scss';
 
 export const PROMPT_SEP = (
   <>
     <br />
-    <p>* * *</p>
+    <p className={textStyle.noselect}>* * *</p>
     <br />
   </>
 );

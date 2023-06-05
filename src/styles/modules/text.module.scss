@@ -34,6 +34,10 @@
   overflow: hidden;
 }
 
+.noselect {
+  @include mixin-disable-selection;
+}
+
 .text-split {
   display: grid;
   grid-template-columns: 40% auto 55%;
@@ -62,5 +66,5 @@
 
 .text-button {
   @include mixin-clear-button-style;
-  @include mixin-enable-select;
+  @include mixin-enable-selection;
 }

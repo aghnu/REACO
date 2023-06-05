@@ -41,7 +41,7 @@ $line-height: 1.15rem;
   user-select: none;
 }
 
-@mixin mixin-enable-select() {
+@mixin mixin-enable-selection() {
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
