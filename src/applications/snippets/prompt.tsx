@@ -14,21 +14,17 @@ export const PROMPT_SEP = (
 );
 
 export const PROMPT_RESUME = (
-  <>
-    <TextSplit
-      left={
-        <div className="global-d-flex global-gap-25">
-          <TextIcon
-            iconElement={icon.link('var(--color-text-focus)', '100%')}
-          />
-          <p className={textStyle.focus}>Resume</p>
-        </div>
-      }
-      right={
-        <TextLink link="https://aghnu.me/resume">resume_gengyuan.pdf</TextLink>
-      }
-    />
-  </>
+  <TextSplit
+    left={
+      <div className="global-d-flex global-gap-25">
+        <TextIcon iconElement={icon.link('var(--color-text-focus)', '100%')} />
+        <p className={textStyle.focus}>Resume</p>
+      </div>
+    }
+    right={
+      <TextLink link="https://aghnu.me/resume">resume_gengyuan.pdf</TextLink>
+    }
+  />
 );
 
 export const PROMPT_CMD_HELP = (

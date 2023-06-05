@@ -1,16 +1,24 @@
 import textComponentStyle from '@styles/components/text-components.module.scss';
+import { getClassName } from '@utils/helpers';
 
 const TextSplit = ({
   left,
   right,
+  type = 'normal',
 }: {
-  left: JSX.Element;
-  right: JSX.Element;
+  left: JSX.Element | JSX.Element[] | string;
+  right: JSX.Element | JSX.Element[] | string;
+  type?: 'alt' | 'normal';
 }) => {
   return (
     <div className={textComponentStyle['text-split']}>
       {left}
-      <span className={textComponentStyle['text-split__sep']} />
+      <span
+        className={getClassName([
+          textComponentStyle['text-split__sep'],
+          { [textComponentStyle['text-split__sep--alt']]: type === 'alt' },
+        ])}
+      />
       {right}
     </div>
   );
