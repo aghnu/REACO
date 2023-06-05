@@ -10,6 +10,10 @@ $icon-size: calc(#{$bar-height} * 0.9);
     display: grid;
     grid-template-columns: repeat(3, fit-content(100%));
     justify-content: space-between;
+
+    @include width-narrower() {
+      grid-template-columns: repeat(2, fit-content(100%));
+    }
   }
 }
 

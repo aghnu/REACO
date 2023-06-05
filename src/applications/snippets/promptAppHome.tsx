@@ -19,8 +19,9 @@ export const HOME_TITLE = (
 
 export const HOME_WELCOME = (
   <p>
-    Hello stranger! Welcome to my homepage. My name is Gengyuan Huang, a
-    software developer...
+    Hello stranger! Welcome to my homepage. My name is
+    <span className={textStyle.desc}> Gengyuan Huang</span>, a software
+    developer...
   </p>
 );
 
@@ -33,24 +34,28 @@ export const HOME_NAV_HELP = (
 
 export const HOME_WELCOME_COWSAY_FRAME_1 = (
   <>
-    {/* eslint-disable prettier/prettier */}
-    <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
-    <TextRaw className={textStyle.nowrap} type="p" text="         \  (oo)\_______" />
-    <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
-    <TextRaw className={textStyle.nowrap} type="p" text="                ||----w |" />
-    <TextRaw className={textStyle.nowrap} type="p" text="                ||     ||" />
-    {/* eslint-enable prettier/prettier */}
+    <span className={textStyle.desc}>
+      {/* eslint-disable prettier/prettier */}
+      <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
+      <TextRaw className={textStyle.nowrap} type="p" text="         \  (oo)\_______" />
+      <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
+      <TextRaw className={textStyle.nowrap} type="p" text="                ||----w |" />
+      <TextRaw className={textStyle.nowrap} type="p" text="                ||     ||" />
+      {/* eslint-enable prettier/prettier */}
+    </span>
   </>
 );
 
 export const HOME_WELCOME_COWSAY_FRAME_2 = (
   <>
-    {/* eslint-disable prettier/prettier */}
-    <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
-    <TextRaw className={textStyle.nowrap} type="p" text="         \  (--)\_______" />
-    <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
-    <TextRaw className={textStyle.nowrap} type="p" text="                ||----w |" />
-    <TextRaw className={textStyle.nowrap} type="p" text="                ||     ||" />
-    {/* eslint-enable prettier/prettier */}
+    <span className={textStyle.desc}>
+      {/* eslint-disable prettier/prettier */}
+      <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
+      <TextRaw className={textStyle.nowrap} type="p" text="         \  (--)\_______" />
+      <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
+      <TextRaw className={textStyle.nowrap} type="p" text="                ||----w |" />
+      <TextRaw className={textStyle.nowrap} type="p" text="                ||     ||" />
+      {/* eslint-enable prettier/prettier */}
+    </span>
   </>
 );
