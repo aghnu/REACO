@@ -9,6 +9,8 @@ import TextRaw from '@components/TextRaw';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
+  protected displayController: DisplayController =
+    DisplayController.getInstance();
 
   protected constructor() {
     super();
@@ -30,12 +32,12 @@ class ApplicationController extends BaseAtomStore {
     ApplicationController.getInstance();
   }
 
-  private readonly print = DisplayController.getInstance().print;
-
   public runApplication(app: AppNames) {
     const applicationMeta = APPLICATION_INDEX[app];
     const appInstance = new applicationMeta.App();
-    this.print(<p className={textStyle.focus}>{`[${app}]`}</p>);
+    this.displayController.print(
+      <p className={textStyle.focus}>{`[${app}]`}</p>
+    );
     appInstance.start();
   }
 
@@ -44,7 +46,9 @@ class ApplicationController extends BaseAtomStore {
 
     const applicationMeta = getApplicationMeta(args[0]);
     if (applicationMeta === null) {
-      this.print(<p className={textStyle.focus}>{'[Command Not Found]'}</p>);
+      this.displayController.print(
+        <p className={textStyle.focus}>{'[Command Not Found]'}</p>
+      );
       return;
     }
 
@@ -54,11 +58,11 @@ class ApplicationController extends BaseAtomStore {
   public handlerInputCmdRaw(cmd: string) {
     const args = cmd.split(' ').filter((a) => a !== '');
     if (args.length === 0) {
-      this.print(<br />);
+      this.displayController.print(<br />);
       return;
     }
 
-    this.print(<TextRaw type="p" text={'> ' + cmd} />);
+    this.displayController.print(<TextRaw type="p" text={'> ' + cmd} />);
     this.runApplicationFromArgs(args);
   }
 

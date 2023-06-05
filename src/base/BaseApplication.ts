@@ -8,10 +8,9 @@ import ApplicationController from '@applications/logics/ApplicationController';
 abstract class BaseApplication extends BaseAtomStore {
   public abstract name: AppNames;
   public abstract id: string;
+  protected readonly displayController = DisplayController.getInstance();
   protected readonly applicationController =
     ApplicationController.getInstance();
-
-  protected readonly displayController = DisplayController.getInstance();
 
   public abstract start(): void;
 

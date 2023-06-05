@@ -63,10 +63,10 @@ class KeyboardController extends BaseAtomStore {
 
   public inputCursorPause() {
     window.clearTimeout(this.sideEffectTimeoutInputCursor);
-    this.storeSetAtom(systemState.isInputCursorBlinkingAtom, false);
     this.sideEffectTimeoutInputCursor = window.setTimeout(() => {
       this.storeSetAtom(systemState.isInputCursorBlinkingAtom, true);
     }, 250);
+    this.storeSetAtom(systemState.isInputCursorBlinkingAtom, false);
   }
 
   private init() {

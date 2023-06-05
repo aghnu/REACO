@@ -13,3 +13,9 @@ export interface AppInstance {
 export interface ApplicationState {
   apps: AppInstance[];
 }
+
+export type PrintJobType = 'print' | 'update';
+export interface PrintJob {
+  type: PrintJobType;
+  callback: () => void;
+}
