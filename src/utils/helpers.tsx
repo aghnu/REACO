@@ -7,6 +7,9 @@ export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];
 
   dynamicClassNames.forEach((className) => {
+    if (className === undefined || className === null || className === '')
+      return;
+
     // string
     if (typeof className === 'string') {
       classNameArray.push(className);

@@ -14,6 +14,11 @@
   color: var(--color-text-neon);
 }
 
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .double {
   line-height: calc(#{$line-height} * 1.8);
   font-size: 1.8em;
@@ -53,4 +58,9 @@
       display: none;
     }
   }
+}
+
+.text-button {
+  @include mixin-clear-button-style;
+  @include mixin-enable-select;
 }

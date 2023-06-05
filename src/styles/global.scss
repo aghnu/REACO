@@ -18,6 +18,11 @@ $line-height: 1.15rem;
   }
 }
 
+@mixin mixin-clear-pm() {
+  padding: 0;
+  margin: 0;
+}
+
 @mixin mixin-w-h-fill($width: 100%, $height: $width) {
   width: $width;
   height: $height;
@@ -34,6 +39,24 @@ $line-height: 1.15rem;
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+@mixin mixin-enable-select() {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+}
+
+@mixin mixin-clear-button-style() {
+  @include mixin-w-h-fill(fit-content);
+  @include mixin-clear-pm();
+  background-color: transparent;
+  border: none;
+
+  font: inherit;
+  line-height: inherit;
 }
 
 @mixin hide-scroll-bar() {

@@ -1,10 +1,8 @@
-import {
-  Prompt,
-  Display,
-  Footer,
-  VirtualKeyboard,
-  FunctionBar,
-} from '@/components';
+import Prompt from '@components/Prompt';
+import Display from '@components/Display';
+import Footer from '@components/Footer';
+import VirtualKeyboard from '@components/VirtualKeyboard';
+import FunctionBar from '@components/FunctionBar';
 import styles from '../styles/modules/wrapper.module.scss';
 import { systemState } from '@/store';
 import { useAtomValue } from 'jotai';

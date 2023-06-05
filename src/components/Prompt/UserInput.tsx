@@ -1,7 +1,7 @@
 import { systemState } from '@/store';
 import { useAtomValue } from 'jotai';
 import styles from '@styles/components/prompt.module.scss';
-import { TextRaw } from '@/components';
+import TextRaw from '@components/TextRaw';
 import { useEffect } from 'react';
 
 const UserInput = ({
