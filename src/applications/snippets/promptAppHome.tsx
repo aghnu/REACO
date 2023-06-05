@@ -36,6 +36,8 @@ export const HOME_WELCOME_COWSAY_FRAME_1 = (
   <>
     <span className={textStyle.desc}>
       {/* eslint-disable prettier/prettier */}
+      <TextRaw className={textStyle.nowrap} type="p" text="  _________________________" />
+      <TextRaw className={textStyle.nowrap} type="p" text="       \" />
       <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
       <TextRaw className={textStyle.nowrap} type="p" text="         \  (oo)\_______" />
       <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
@@ -50,6 +52,8 @@ export const HOME_WELCOME_COWSAY_FRAME_2 = (
   <>
     <span className={textStyle.desc}>
       {/* eslint-disable prettier/prettier */}
+      <TextRaw className={textStyle.nowrap} type="p" text="  _________________________" />
+      <TextRaw className={textStyle.nowrap} type="p" text="       \" />
       <TextRaw className={textStyle.nowrap} type="p" text="        \   ^__^" />
       <TextRaw className={textStyle.nowrap} type="p" text="         \  (--)\_______" />
       <TextRaw className={textStyle.nowrap} type="p" text="            (__)\       )\/\" />
