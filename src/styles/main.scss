@@ -17,6 +17,11 @@
   // others
   background-color: var(--color-background);
   color: var(--color-text-plain);
+
+  @include override_select_color(
+    var(--color-background),
+    var(--color-text-plain)
+  );
 }
 
 * {
