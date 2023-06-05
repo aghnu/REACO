@@ -58,25 +58,31 @@ class DisplayController extends BaseAtomStore {
     this.startConsumePrintJob();
   }
 
-  public print(element: JSX.Element): string {
+  public print(element: JSX.Element, quened: boolean = true): string {
     const id = uuid();
-    this.addPrintJob('print', () => {
+    const job = () => {
       const currentState = this.storeGetAtom(displayState.displayJobsAtom);
       const nextState = produce(currentState, (draft) => {
         draft.push({ id, elementAtom: atom(element) });
       });
       this.storeSetAtom(displayState.displayJobsAtom, nextState);
-    });
+    };
+    quened ? this.addPrintJob('print', job) : job();
     return id;
   }
 
-  public printUpdate(id: string, element: JSX.Element): void {
-    this.addPrintJob('update', () => {
+  public printUpdate(
+    id: string,
+    element: JSX.Element,
+    quened: boolean = false
+  ): void {
+    const job = () => {
       const state = this.storeGetAtom(displayState.displayJobsAtom);
       const index = state.findIndex((job) => job.id === id);
       if (index === -1) return;
       this.storeSetAtom(state[index].elementAtom, element);
-    });
+    };
+    quened ? this.addPrintJob('update', job) : job();
   }
 
   public printRemove(id: string): void {
