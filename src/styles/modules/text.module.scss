@@ -1,17 +1,37 @@
 .plain {
   color: var(--color-text-plain);
+  &--reverse {
+    background-color: var(--color-text-plain);
+    color: var(--color-background);
+  }
 }
 
 .focus {
   color: var(--color-text-focus);
+  &--reverse {
+    background-color: var(--color-text-focus);
+    color: var(--color-background);
+  }
 }
 
 .desc {
   color: var(--color-text-desc);
+  &--reverse {
+    background-color: var(--color-text-desc);
+    color: var(--color-background);
+  }
 }
 
 .neon {
   color: var(--color-text-neon);
+  &--reverse {
+    background-color: var(--color-text-neon);
+    color: var(--color-background);
+  }
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .link {

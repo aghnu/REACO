@@ -4,23 +4,16 @@ import { getClassName } from '@utils/helpers';
 
 export const HOME_TITLE = (
   <>
-    <p
-      className={getClassName([
-        textStyle.double,
-        textStyle.desc,
-        textStyle.spread,
-      ])}
-    >
-      REACO
+    <p className={getClassName([textStyle.double, textStyle['desc--reverse']])}>
+      R E A C O
     </p>
-    <p className={textStyle.focus}>{"Gengyuan Huang's Homepage"}</p>
   </>
 );
 
 export const HOME_WELCOME = (
   <p>
     Hello stranger! Welcome to my homepage. My name is
-    <span className={textStyle.desc}> Gengyuan Huang</span>, a software
+    <span className={textStyle.focus}> Gengyuan Huang</span>, a software
     developer...
   </p>
 );
@@ -28,7 +21,8 @@ export const HOME_WELCOME = (
 export const HOME_NAV_HELP = (
   <p>
     To navigate the site, you can either type commands into the console or click
-    on the highlighted elements. Here are some useful commands:
+    on the <span className={textStyle.underline}>underlined</span> elements.
+    Here are some useful commands:
   </p>
 );
 

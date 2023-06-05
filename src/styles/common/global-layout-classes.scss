@@ -4,6 +4,7 @@
 }
 
 p {
+  @include mixin-w-h-fill(fit-content);
   line-height: $line-height;
   word-break: break-all;
 }

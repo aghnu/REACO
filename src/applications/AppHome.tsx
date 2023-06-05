@@ -18,8 +18,9 @@ class AppHome extends BaseApplication {
   protected animationInterval: number | undefined = undefined;
 
   private promptInit() {
-    this.displayController.print(HOME_TITLE);
     this.displayController.print(PROMPT_SEP);
+    this.displayController.print(HOME_TITLE);
+    this.displayController.print(<br />);
     this.displayController.print(HOME_WELCOME);
     const cowsayId = this.displayController.print(HOME_WELCOME_COWSAY_FRAME_1);
     this.animationInterval = window.setInterval(() => {
