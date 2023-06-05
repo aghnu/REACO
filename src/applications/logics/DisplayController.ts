@@ -45,7 +45,7 @@ class DisplayController extends BaseAtomStore {
         job.callback();
       }
       if (this.printJobsQuene.length > 0) this.startConsumePrintJob();
-    }, Math.floor(Math.random() * 10 + 10));
+    }, Math.floor(Math.random() * 15) + 15);
   }
 
   private stopConsumePrintJob() {

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { enableMapSet } from 'immer';
-import './main.scss';
+import '@styles/main.scss';
 
 enableMapSet();
 

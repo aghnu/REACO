@@ -10,7 +10,7 @@
     }
   }
   &::after {
-    content: '█';
+    content: '_';
   }
 
   &.blink::after {
