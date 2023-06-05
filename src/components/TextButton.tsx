@@ -1,4 +1,5 @@
 import textStyle from '@styles/modules/text.module.scss';
+import textComponentStyle from '@styles/components/text-components.module.scss';
 import { getClassName } from '@utils/helpers';
 import React from 'react';
 
@@ -14,7 +15,7 @@ const TextButton = ({
       className={getClassName([
         textStyle.link,
         textStyle.desc,
-        textStyle['text-button'],
+        textComponentStyle['text-button'],
       ])}
       onClick={(e) => {
         onClick(e);

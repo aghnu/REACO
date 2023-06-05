@@ -1,6 +1,8 @@
 import type { IconFactoryFunc } from '@type/UtilsTypes';
 import { useMemo } from 'react';
 import styles from '@styles/components/function-bar.module.scss';
+import TextIcon from '@components/TextIcon';
+import { getClassName } from '@utils/helpers';
 
 const FunctionKey = ({
   name,
@@ -20,14 +22,14 @@ const FunctionKey = ({
   return (
     <>
       <div
-        className={styles['function-key']}
+        className={getClassName([
+          'global-d-flex global-gap-25',
+          styles['function-key'],
+        ])}
         style={{ color: colorStyle }}
         onClick={onKeyClick}
       >
-        <div className={styles['icon-container']}>
-          <div className={styles.icon}>{iconElement}</div>
-        </div>
-
+        <TextIcon iconElement={iconElement} />
         <p className={styles.name}>{name}</p>
       </div>
     </>

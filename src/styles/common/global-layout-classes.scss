@@ -1,3 +1,4 @@
+// html
 * {
   box-sizing: border-box;
 }
@@ -5,4 +6,17 @@
 p {
   line-height: $line-height;
   word-break: break-all;
+}
+
+// global css classes
+.global {
+  &-d-flex {
+    display: flex;
+  }
+
+  @each $k, $v in ('25': 0.25rem, '50': 0.5rem, '100': 1rem) {
+    &-gap-#{$k} {
+      gap: $v;
+    }
+  }
 }

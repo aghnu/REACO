@@ -31,7 +31,7 @@
 
 .text-icon {
   @include mixin-center-children;
-  @include mixin-w-h-fill;
+  @include mixin-w-h-fill(fit-content, 100%);
 
   &__icon {
     @include mixin-w-h-fill(calc(#{$line-height} * 1.15));

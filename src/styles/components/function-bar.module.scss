@@ -16,8 +16,6 @@
 .function-key {
   @include mixin-disable-selection;
   @include mixin-w-h-fill(fit-content, 100%);
-  display: flex;
-  gap: 0.25rem;
   cursor: pointer;
 
   .name {

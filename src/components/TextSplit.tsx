@@ -1,4 +1,4 @@
-import textStyle from '@styles/modules/text.module.scss';
+import textComponentStyle from '@styles/components/text-components.module.scss';
 
 const TextSplit = ({
   left,
@@ -8,9 +8,9 @@ const TextSplit = ({
   right: JSX.Element;
 }) => {
   return (
-    <div className={textStyle['text-split']}>
+    <div className={textComponentStyle['text-split']}>
       {left}
-      <span className={textStyle['text-split__sep']} />
+      <span className={textComponentStyle['text-split__sep']} />
       {right}
     </div>
   );
