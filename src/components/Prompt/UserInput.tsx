@@ -2,9 +2,18 @@ import { systemState } from '@/store';
 import { useAtomValue } from 'jotai';
 import styles from '@styles/components/prompt.module.scss';
 import { TextRaw } from '@/components';
+import { useEffect } from 'react';
 
-const UserInput = () => {
+const UserInput = ({
+  onUserInputUpdate = () => {},
+}: {
+  onUserInputUpdate?: () => void;
+}) => {
   const userInput = useAtomValue(systemState.userInputAtom);
+
+  useEffect(() => {
+    onUserInputUpdate();
+  }, [userInput, onUserInputUpdate]);
 
   return (
     <>

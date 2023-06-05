@@ -2,9 +2,17 @@ import { displayState } from '@/store';
 import { useAtomValue } from 'jotai';
 import DisplayBlock from './DisplayBlock';
 import styles from '@styles/components/display.module.scss';
+import { useEffect } from 'react';
 
-const Display = () => {
+const Display = ({
+  onDisplayPrintUpdate = () => {},
+}: {
+  onDisplayPrintUpdate?: () => void;
+}) => {
   const displayJobs = useAtomValue(displayState.displayJobsAtom);
+  useEffect(() => {
+    onDisplayPrintUpdate();
+  }, [displayJobs, onDisplayPrintUpdate]);
 
   return (
     <div className={styles.display}>
