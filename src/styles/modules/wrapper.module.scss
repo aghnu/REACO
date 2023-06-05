@@ -14,11 +14,17 @@
   flex-direction: column;
   justify-content: space-between;
 
+  .top {
+    @include mixin-w-h-fill;
+    @include hide-scroll-bar;
+    overflow: scroll;
+  }
+
   .bottom {
+    @include mixin-w-h-fill(100%, fit-content);
     display: flex;
     flex-direction: column;
     gap: $padding-container-main;
+    padding-top: $padding-container-main;
   }
-
 }
-

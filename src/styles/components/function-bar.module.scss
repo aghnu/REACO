@@ -31,6 +31,7 @@ $icon-size: calc(#{$bar-height} * 0.9);
 
   .name {
     @include mixin-center-children;
+    word-break: keep-all;
     height: $bar-height;
   }
 }
