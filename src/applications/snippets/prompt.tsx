@@ -13,6 +13,56 @@ export const PROMPT_SEP = (
   </>
 );
 
+export const PROMPT_CONTACT_EMAIL = (
+  <TextSplit
+    left={
+      <div className="global-d-flex global-gap-25">
+        <TextIcon iconElement={icon.email('var(--color-text-focus)', '100%')} />
+        <p className={textStyle.focus}>Email</p>
+      </div>
+    }
+    right={
+      <TextLink link={'mailto:gengyuan@ualberta.ca'}>
+        gengyuan@ualberta.ca
+      </TextLink>
+    }
+  />
+);
+
+export const PROMPT_CONTACT_GITHUB = (
+  <TextSplit
+    left={
+      <div className="global-d-flex global-gap-25">
+        <TextIcon
+          iconElement={icon.github('var(--color-text-focus)', '100%')}
+        />
+        <p className={textStyle.focus}>GitHub</p>
+      </div>
+    }
+    right={
+      <TextLink link={'https://github.com/aghnu'}>github.com/aghnu</TextLink>
+    }
+  />
+);
+
+export const PROMPT_CONTACT_LINKEDIN = (
+  <TextSplit
+    left={
+      <div className="global-d-flex global-gap-25">
+        <TextIcon
+          iconElement={icon.linkedin('var(--color-text-focus)', '100%')}
+        />
+        <p className={textStyle.focus}>LinkedIn</p>
+      </div>
+    }
+    right={
+      <TextLink link={'https://www.linkedin.com/in/gengyuanh'}>
+        Gengyuan Huang
+      </TextLink>
+    }
+  />
+);
+
 export const PROMPT_RESUME = (
   <TextSplit
     left={

@@ -1,4 +1,5 @@
 import AppClear from './AppClear';
+import AppContact from './AppContact';
 import AppHome from './AppHome';
 import AppKeyboard from './AppKeyboard';
 import AppLocation from './AppLocation';
@@ -19,6 +20,10 @@ const APPLICATION_INDEX = {
   location: {
     name: 'location',
     App: AppLocation,
+  },
+  contact: {
+    name: 'contact',
+    App: AppContact,
   },
 } as const;
 

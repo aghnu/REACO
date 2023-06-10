@@ -31,8 +31,11 @@ class AppHome extends BaseApplication {
     this.displayController.print(PROMPT_RESUME);
     this.displayController.print(PROMPT_SEP);
     this.displayController.print(HOME_NAV_HELP);
+    this.displayController.print(<br />);
     this.displayController.print(PROMPT_CMD_HELP);
     this.displayController.print(PROMPT_SEP);
+    this.applicationController.runApplication('contact', false);
+    this.displayController.print(<br />);
   }
 
   private promptCleanup() {

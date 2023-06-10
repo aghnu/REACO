@@ -32,12 +32,13 @@ class ApplicationController extends BaseAtomStore {
     ApplicationController.getInstance();
   }
 
-  public runApplication(app: AppNames) {
+  public runApplication(app: AppNames, isShowLabel: boolean = true) {
     const applicationMeta = APPLICATION_INDEX[app];
     const appInstance = new applicationMeta.App();
-    this.displayController.print(
-      <p className={textStyle.focus}>{`[${app}]`}</p>
-    );
+    if (isShowLabel)
+      this.displayController.print(
+        <p className={textStyle.focus}>{`[${app}]`}</p>
+      );
     appInstance.start();
   }
 
