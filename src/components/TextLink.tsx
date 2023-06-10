@@ -11,7 +11,11 @@ const TextLink = ({
 }: React.PropsWithChildren<{ link: string; target?: string }>) => {
   return (
     <a
-      className={getClassName([textStyle.link, textStyle.desc])}
+      className={getClassName([
+        textStyle.link,
+        textStyle.desc,
+        'global-w-fit-content',
+      ])}
       href={link}
       target={target}
     >
