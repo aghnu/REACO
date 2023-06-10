@@ -2,6 +2,7 @@ export interface EventListenerContext {
   element: HTMLElement;
   type: string;
   listener: (ev: Event) => void;
+  remove: () => void;
 }
 
 export type EventListenerContextManager = ReturnType<
@@ -17,7 +18,14 @@ export function buildEventListenerContextManager() {
     listener: (ev: Event) => void
   ) {
     element.addEventListener(type, listener);
-    const ctx = { element, type, listener };
+    const ctx = {
+      element,
+      type,
+      listener,
+      remove: () => {
+        remove(ctx);
+      },
+    };
     contexts.push(ctx);
     return ctx;
   }

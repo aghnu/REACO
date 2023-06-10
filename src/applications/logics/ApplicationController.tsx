@@ -6,11 +6,15 @@ import { getApplicationMeta } from '@utils/helpers';
 import { type AppNames } from '@type/ApplicationTypes';
 import APPLICATION_INDEX from '@/applications';
 import TextRaw from '@components/TextRaw';
+import KeyboardController from './KeyboardController';
+import { type EventListenerContext } from '@utils/eventListenerWithContext';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
   protected displayController: DisplayController =
     DisplayController.getInstance();
+
+  protected enterKeyListnerContext: EventListenerContext | undefined;
 
   protected constructor() {
     super();
@@ -26,6 +30,8 @@ class ApplicationController extends BaseAtomStore {
   public destroy(): void {
     ApplicationController.instance = undefined;
     this.storeClearSubs();
+    if (this.enterKeyListnerContext !== undefined)
+      this.enterKeyListnerContext.remove();
   }
 
   public static start() {
@@ -68,12 +74,14 @@ class ApplicationController extends BaseAtomStore {
   }
 
   private init() {
-    this.storeSubToAtom(systemState.userInputCmdRawAtom, () => {
-      const cmd = this.storeGetAtom(systemState.userInputCmdRawAtom);
-      if (cmd === null) return;
-      this.handlerInputCmdRaw(cmd);
-      this.storeSetAtom(systemState.userInputCmdRawAtom, null);
-    });
+    this.enterKeyListnerContext = KeyboardController.getInstance().subscribeKey(
+      'Enter',
+      () => {
+        const cmd = this.storeGetAtom(systemState.userInputAtom);
+        this.handlerInputCmdRaw(cmd);
+        this.storeSetAtom(systemState.userInputAtom, '');
+      }
+    );
   }
 
   public clearApplications() {
