@@ -1,14 +1,5 @@
 import TextRaw from '@components/TextRaw';
 import textStyle from '@styles/modules/text.module.scss';
-import { getClassName } from '@utils/helpers';
-
-export const HOME_TITLE = (
-  <>
-    <p className={getClassName([textStyle.double, textStyle['desc--reverse']])}>
-      R E A C O
-    </p>
-  </>
-);
 
 export const HOME_WELCOME = (
   <p>

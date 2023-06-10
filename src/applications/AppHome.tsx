@@ -2,7 +2,6 @@ import { type AppNames } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 import {
-  HOME_TITLE,
   HOME_WELCOME,
   HOME_NAV_HELP,
   HOME_WELCOME_COWSAY_FRAME_1,
@@ -19,8 +18,6 @@ class AppHome extends BaseApplication {
 
   private promptInit() {
     this.displayController.print(PROMPT_SEP);
-    this.displayController.print(HOME_TITLE);
-    this.displayController.print(<br />);
     this.displayController.print(HOME_WELCOME);
     const cowsayId = this.displayController.print(HOME_WELCOME_COWSAY_FRAME_1);
     this.animationInterval = window.setInterval(() => {
@@ -31,11 +28,9 @@ class AppHome extends BaseApplication {
         ]
       );
     }, 500);
-    this.displayController.print(PROMPT_SEP);
     this.displayController.print(PROMPT_RESUME);
     this.displayController.print(PROMPT_SEP);
     this.displayController.print(HOME_NAV_HELP);
-    this.displayController.print(PROMPT_SEP);
     this.displayController.print(PROMPT_CMD_HELP);
     this.displayController.print(PROMPT_SEP);
   }
