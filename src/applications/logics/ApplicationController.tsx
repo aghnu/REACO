@@ -62,23 +62,27 @@ class ApplicationController extends BaseAtomStore {
     this.runApplication(applicationMeta.name);
   }
 
-  public handlerInputCmdRaw(cmd: string) {
-    const args = cmd.split(' ').filter((a) => a !== '');
+  public async runApplicationFromArgsAsync(args: string[]): Promise<void> {
+    this.runApplicationFromArgs(args);
+  }
+
+  public async handlerInputArgs(input: string, args: string[]) {
     if (args.length === 0) {
       this.displayController.print(<br />);
       return;
     }
 
-    this.displayController.print(<TextRaw type="p" text={'> ' + cmd} />);
-    this.runApplicationFromArgs(args);
+    this.displayController.print(<TextRaw type="p" text={'> ' + input} />);
+    await this.runApplicationFromArgsAsync(args);
   }
 
   private init() {
     this.enterKeyListnerContext = KeyboardController.getInstance().subscribeKey(
       'Enter',
       () => {
-        const cmd = this.storeGetAtom(systemState.userInputAtom);
-        this.handlerInputCmdRaw(cmd);
+        const input = this.storeGetAtom(systemState.userInputAtom);
+        const args = [...this.storeGetAtom(systemState.userCmdArgsAtom)];
+        void this.handlerInputArgs(input, args);
         this.storeSetAtom(systemState.userInputAtom, '');
       }
     );

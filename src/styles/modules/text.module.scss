@@ -22,6 +22,14 @@
   }
 }
 
+.warn {
+  color: var(--color-text-warn);
+  &--reverse {
+    background-color: var(--color-text-warn);
+    color: var(--color-background);
+  }
+}
+
 .neon {
   color: var(--color-text-neon);
   &--reverse {

@@ -11,9 +11,19 @@ const promptInfoAtom = atom<PromptInfo>({
   systemPath: '/',
 });
 
+// derived atom
+const userCmdArgsAtom = atom((get) => {
+  const userInput = get(userInputAtom);
+  const args = userInput.split(' ').filter((a) => a !== '');
+  return args;
+});
+const userCmdAtom = atom<string>((get) => get(userCmdArgsAtom)[0] ?? '');
+
 export {
   promptInfoAtom,
   userInputAtom,
   isInputCursorBlinkingAtom,
   isVirtualKeyboardEnabledAtom,
+  userCmdArgsAtom,
+  userCmdAtom,
 };

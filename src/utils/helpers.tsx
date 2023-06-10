@@ -35,6 +35,10 @@ export function getApplicationMeta(name: string): AppMeta | null {
   return null;
 }
 
+export function hasApplication(name: string): boolean {
+  return getApplicationMeta(name) !== null;
+}
+
 export function checkIsDevEnv() {
   return process.env.NODE_ENV === 'development';
 }
