@@ -30,6 +30,14 @@
   }
 }
 
+.calm {
+  color: var(--color-text-calm);
+  &--reverse {
+    background-color: var(--color-text-calm);
+    color: var(--color-background);
+  }
+}
+
 .neon {
   color: var(--color-text-neon);
   &--reverse {

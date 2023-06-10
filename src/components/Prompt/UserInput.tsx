@@ -32,7 +32,7 @@ const UserInput = ({
     <>
       <span className={styles.userInput}>
         <TextRaw
-          className={isUserCmdExist ? textStyles.desc : textStyles.warn}
+          className={isUserCmdExist ? textStyles.calm : textStyles.warn}
           text={userInputCmd}
         />
         <TextRaw text={userInputCmdRest} />
