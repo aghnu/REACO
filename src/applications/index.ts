@@ -1,3 +1,4 @@
+import { type AppName } from '@type/ApplicationTypes';
 import AppClear from './AppClear';
 import AppContact from './AppContact';
 import AppHome from './AppHome';
@@ -27,5 +28,9 @@ const APPLICATION_INDEX = {
   },
 } as const;
 
+// special excluding list
+const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard'];
+
 export default APPLICATION_INDEX;
-export { AppHome, AppKeyboard };
+export { APPLICATION_EXCLUDE_LIST_ROUTE };
+export { AppHome, AppKeyboard, AppClear, AppContact, AppLocation };

@@ -1,4 +1,6 @@
-import APPLICATION_INDEX from '@/applications';
+import APPLICATION_INDEX, {
+  APPLICATION_EXCLUDE_LIST_ROUTE,
+} from '@/applications';
 import { type AppName } from '@type/ApplicationTypes';
 import ApplicationController from './ApplicationController';
 
@@ -26,7 +28,8 @@ class RouteController {
   public appRouteUpdate(name: AppName) {
     const routeHash = window.location.hash.substring(1);
 
-    // special case for home routel
+    // special cases
+    if (APPLICATION_EXCLUDE_LIST_ROUTE.includes(name)) return;
     if (name === 'home') {
       window.history.replaceState(null, '', this.basePath);
       return;
@@ -40,7 +43,11 @@ class RouteController {
   public processCurrentPath() {
     const routeHash = window.location.hash.substring(1);
     const appNames = Object.keys(APPLICATION_INDEX);
-    if (routeHash === 'home' || !appNames.includes(routeHash)) {
+    if (
+      routeHash === 'home' ||
+      (APPLICATION_EXCLUDE_LIST_ROUTE as string[]).includes(routeHash) ||
+      !appNames.includes(routeHash)
+    ) {
       RouteController.getInstance().appRouteUpdate('home');
       ApplicationController.getInstance().runApplication('home', true, false);
     } else {
