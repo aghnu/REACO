@@ -23,23 +23,28 @@ class RouteController {
   }
 
   public appRouteUpdate(name: AppName) {
-    const path = window.location.pathname;
-    const pathTarget = APPLICATION_INDEX[name].route;
-    if (path === pathTarget) return;
+    const routeHash = window.location.hash.substring(1);
 
-    window.history.pushState(null, '', pathTarget);
+    // special case for home routel
+    if (name === 'home') {
+      window.history.replaceState(null, '', '/');
+      return;
+    }
+
+    // other route
+    if (name === routeHash) return;
+    window.history.pushState(null, '', '#' + name);
   }
 
   public processCurrentPath() {
-    const path = window.location.pathname;
-    const values = Object.values(APPLICATION_INDEX);
-    const searchIndex = values.findIndex((e) => e.route === path);
-    if (searchIndex === -1) {
-      this.appRouteUpdate('home');
+    const routeHash = window.location.hash.substring(1);
+    const appNames = Object.keys(APPLICATION_INDEX);
+    if (routeHash === 'home' || !appNames.includes(routeHash)) {
+      RouteController.getInstance().appRouteUpdate('home');
       ApplicationController.getInstance().runApplication('home', true, false);
     } else {
       ApplicationController.getInstance().runApplication(
-        values[searchIndex].name,
+        routeHash as AppName,
         true,
         false
       );

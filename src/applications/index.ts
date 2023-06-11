@@ -8,27 +8,22 @@ const APPLICATION_INDEX = {
   home: {
     name: 'home',
     App: AppHome,
-    route: '/',
   },
   keyboard: {
     name: 'keyboard',
     App: AppKeyboard,
-    route: '/keyboard',
   },
   clear: {
     name: 'clear',
     App: AppClear,
-    route: '/clear',
   },
   location: {
     name: 'location',
     App: AppLocation,
-    route: '/location',
   },
   contact: {
     name: 'contact',
     App: AppContact,
-    route: '/contact',
   },
 } as const;
 
