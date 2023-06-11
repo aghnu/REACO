@@ -3,11 +3,12 @@ import { systemState, applicationState } from '@/store';
 import DisplayController from './DisplayController';
 import textStyle from '@styles/modules/text.module.scss';
 import { getApplicationMeta } from '@utils/helpers';
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX from '@/applications';
 import TextRaw from '@components/TextRaw';
 import KeyboardController from './KeyboardController';
 import { type EventListenerContext } from '@utils/eventListenerWithContext';
+import RouteController from './RouteController';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -38,13 +39,18 @@ class ApplicationController extends BaseAtomStore {
     ApplicationController.getInstance();
   }
 
-  public runApplication(app: AppNames, isShowLabel: boolean = true) {
+  public runApplication(
+    app: AppName,
+    isShowLabel: boolean = true,
+    isChangeRoute: boolean = isShowLabel
+  ) {
     const applicationMeta = APPLICATION_INDEX[app];
     const appInstance = new applicationMeta.App();
     if (isShowLabel)
       this.displayController.print(
         <p className={textStyle.focus}>{`[${app}]`}</p>
       );
+    if (isChangeRoute) RouteController.getInstance().appRouteUpdate(app);
     appInstance.start();
   }
 
