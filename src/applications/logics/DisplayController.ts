@@ -38,13 +38,15 @@ class DisplayController extends BaseAtomStore {
 
   private startConsumePrintJob() {
     this.printJobsTimeout = window.setTimeout(() => {
-      const job = this.printJobsQuene.shift();
-      if (job !== undefined) {
-        job.type === 'print' &&
-          KeyboardController.getInstance().inputCursorPause();
-        job.callback();
-      }
-      if (this.printJobsQuene.length > 0) this.startConsumePrintJob();
+      window.requestAnimationFrame(() => {
+        const job = this.printJobsQuene.shift();
+        if (job !== undefined) {
+          job.type === 'print' &&
+            KeyboardController.getInstance().inputCursorPause();
+          job.callback();
+        }
+        if (this.printJobsQuene.length > 0) this.startConsumePrintJob();
+      });
     }, Math.floor(Math.random() * 15) + 5);
   }
 
