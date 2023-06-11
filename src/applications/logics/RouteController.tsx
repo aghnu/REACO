@@ -4,6 +4,7 @@ import ApplicationController from './ApplicationController';
 
 class RouteController {
   protected static instance: RouteController | undefined;
+  protected readonly basePath = window.location.pathname;
 
   protected constructor() {
     this.init();
@@ -27,13 +28,13 @@ class RouteController {
 
     // special case for home routel
     if (name === 'home') {
-      window.history.replaceState(null, '', '/');
+      window.history.replaceState(null, '', this.basePath);
       return;
     }
 
     // other route
     if (name === routeHash) return;
-    window.history.pushState(null, '', '#' + name);
+    window.history.pushState(null, '', this.basePath + '#' + name);
   }
 
   public processCurrentPath() {
