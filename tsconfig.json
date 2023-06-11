@@ -14,6 +14,7 @@
       "@utils/*": ["./src/utils/*"],
       "@applications/*": ["./src/applications/*"],
       "@base/*": ["./src/base/*"],
+      "@config/*": ["./src/config/*"],
       "@/*": ["./src/*"],
     },
 
