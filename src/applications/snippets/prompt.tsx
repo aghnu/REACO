@@ -17,7 +17,7 @@ export const PROMPT_CONTACT_EMAIL = (
   <TextSplit
     left={
       <div className="global-d-flex global-gap-25">
-        <TextIcon iconElement={icon.email('var(--color-text-focus)', '100%')} />
+        <TextIcon iconElement={icon.email('var(--color-focus)', '100%')} />
         <p className={textStyle.focus}>Email</p>
       </div>
     }
@@ -33,9 +33,7 @@ export const PROMPT_CONTACT_GITHUB = (
   <TextSplit
     left={
       <div className="global-d-flex global-gap-25">
-        <TextIcon
-          iconElement={icon.github('var(--color-text-focus)', '100%')}
-        />
+        <TextIcon iconElement={icon.github('var(--color-focus)', '100%')} />
         <p className={textStyle.focus}>GitHub</p>
       </div>
     }
@@ -49,9 +47,7 @@ export const PROMPT_CONTACT_LINKEDIN = (
   <TextSplit
     left={
       <div className="global-d-flex global-gap-25">
-        <TextIcon
-          iconElement={icon.linkedin('var(--color-text-focus)', '100%')}
-        />
+        <TextIcon iconElement={icon.linkedin('var(--color-focus)', '100%')} />
         <p className={textStyle.focus}>LinkedIn</p>
       </div>
     }
@@ -67,7 +63,7 @@ export const PROMPT_RESUME = (
   <TextSplit
     left={
       <div className="global-d-flex global-gap-25">
-        <TextIcon iconElement={icon.link('var(--color-text-focus)', '100%')} />
+        <TextIcon iconElement={icon.link('var(--color-focus)', '100%')} />
         <p className={textStyle.focus}>Resume</p>
       </div>
     }

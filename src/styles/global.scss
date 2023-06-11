@@ -2,11 +2,10 @@
 @import './common/global-layout-classes.scss';
 
 :root {
-  @include css-vars-colors;
   @include global-root-color;
   @include global-root-font;
   @include override_select_color(
     var(--color-background),
-    var(--color-text-plain)
+    var(--color-plain)
   );
 }

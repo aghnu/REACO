@@ -13,7 +13,7 @@ const FunctionBar = () => {
             <FunctionKey
               key={index}
               name={key.name}
-              colorStyle="var(--color-text-plain)"
+              colorStyle="var(--color-plain)"
               iconFunc={key.icon}
               onKeyClick={key.onClickHandler}
             />

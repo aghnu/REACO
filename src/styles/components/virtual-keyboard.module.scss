@@ -48,7 +48,7 @@
       @include mixin-w-h-min;
       @include mixin-disable-selection;
 
-      border: 2px solid var(--color-text-plain);
+      border: 2px solid var(--color-plain);
       border-radius: 0.375rem;
       background-color: var(--color-background);
       overflow: hidden;

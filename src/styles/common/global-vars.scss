@@ -1,20 +1,10 @@
-@mixin css-vars-colors {
-  --color-text-plain: #94a3c2;
-  --color-text-focus: #f59879;
-  --color-text-desc: #1ca0a9;
-  --color-text-neon: #f7f054;
-  --color-text-warn: #b70c0f;
-  --color-text-calm: #005fd7;
-  --color-background: #000c18;
-}
-
 @mixin global-root-color {
   background-color: var(--color-background);
-  color: var(--color-text-plain);
+  color: var(--color-plain);
 }
 
 @mixin global-root-font {
-  font-family: 'Robot Mono', monospace;
+  font-family: $font-family;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

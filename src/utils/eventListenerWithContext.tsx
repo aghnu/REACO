@@ -1,5 +1,7 @@
+type EventListnerElement = HTMLElement | typeof window | typeof window.document;
+
 export interface EventListenerContext {
-  element: HTMLElement;
+  element: EventListnerElement;
   type: string;
   listener: (ev: Event) => void;
   remove: () => void;
@@ -13,7 +15,7 @@ export function buildEventListenerContextManager() {
   const contexts: EventListenerContext[] = [];
 
   function set(
-    element: HTMLElement,
+    element: EventListnerElement,
     type: string,
     listener: (ev: Event) => void
   ) {

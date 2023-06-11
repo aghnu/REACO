@@ -22,6 +22,7 @@ class RouteController extends BaseAtomStore {
   }
 
   public destroy() {
+    RouteController.instance = undefined;
     window.removeEventListener('popstate', this.processCurrentPath);
   }
 
