@@ -7,7 +7,6 @@ import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX from '@/applications';
 import TextRaw from '@components/TextRaw';
 import KeyboardController from './KeyboardController';
-import { type EventListenerContext } from '@utils/eventListenerWithContext';
 import RouteController from './RouteController';
 
 class ApplicationController extends BaseAtomStore {
@@ -15,7 +14,7 @@ class ApplicationController extends BaseAtomStore {
   protected displayController: DisplayController =
     DisplayController.getInstance();
 
-  protected enterKeyListnerContext: EventListenerContext | undefined;
+  protected enterKeyListnerUnSubFunc: (() => void) | undefined;
 
   protected constructor() {
     super();
@@ -31,8 +30,8 @@ class ApplicationController extends BaseAtomStore {
   public destroy(): void {
     ApplicationController.instance = undefined;
     this.storeClearSubs();
-    if (this.enterKeyListnerContext !== undefined)
-      this.enterKeyListnerContext.remove();
+    if (this.enterKeyListnerUnSubFunc !== undefined)
+      this.enterKeyListnerUnSubFunc();
   }
 
   public static start() {
@@ -83,15 +82,13 @@ class ApplicationController extends BaseAtomStore {
   }
 
   private init() {
-    this.enterKeyListnerContext = KeyboardController.getInstance().subscribeKey(
-      'Enter',
-      () => {
+    this.enterKeyListnerUnSubFunc =
+      KeyboardController.getInstance().subscribeKey('Enter', () => {
         const input = this.storeGetAtom(systemState.userInputAtom);
         const args = [...this.storeGetAtom(systemState.userCmdArgsAtom)];
         void this.handlerInputArgs(input, args);
         this.storeSetAtom(systemState.userInputAtom, '');
-      }
-    );
+      });
   }
 
   public clearApplications() {

@@ -4,13 +4,13 @@ import { isKeyAllowed } from '@utils/keyboard';
 import {
   type EventListenerContextManager,
   buildEventListenerContextManager,
-  type EventListenerContext,
 } from '@utils/eventListenerWithContext';
 
 class KeyboardController extends BaseAtomStore {
   protected static instance: KeyboardController | undefined;
   protected eventListenerContextManager: EventListenerContextManager;
   protected sideEffectTimeoutInputCursor: number | undefined;
+  protected keyListners = new Map<string, Array<() => void>>();
 
   protected constructor() {
     super();
@@ -30,6 +30,7 @@ class KeyboardController extends BaseAtomStore {
   public destroy(): void {
     KeyboardController.instance = undefined;
     this.eventListenerContextManager.clear();
+    this.keyListners.clear();
     this.storeClearSubs();
   }
 
@@ -41,23 +42,28 @@ class KeyboardController extends BaseAtomStore {
     this.storeSetAtom(systemState.userInputAtom, input);
   }
 
-  public subscribeKey(
-    key: string,
-    callback: (e: KeyboardEvent) => void
-  ): EventListenerContext {
-    return this.eventListenerContextManager.set(
-      document.body,
-      'keydown',
-      (e) => {
-        const event = e as KeyboardEvent;
-        if (key === event.key) callback(event);
-      }
-    );
+  public subscribeKey(key: string, callback: () => void) {
+    if (!isKeyAllowed(key)) return;
+    const listners = this.keyListners.get(key);
+    if (listners === undefined) {
+      this.keyListners.set(key, [callback]);
+    } else {
+      listners.push(callback);
+    }
+
+    return () => {
+      const listners = this.keyListners.get(key);
+      if (listners === undefined) return;
+      const index = listners.indexOf(callback);
+      if (index === -1) return;
+      listners.splice(index, 1);
+    };
   }
 
   public inputKey(key: string) {
     if (!isKeyAllowed(key)) return;
 
+    // handle key
     switch (key) {
       case 'Backspace':
         this.inputSet(this.inputGet().slice(0, -1));
@@ -67,6 +73,13 @@ class KeyboardController extends BaseAtomStore {
       default:
         this.inputSet(this.inputGet() + key);
     }
+
+    // broadcast
+    const listners = this.keyListners.get(key);
+    if (listners === undefined) return;
+    listners.forEach((callback) => {
+      callback();
+    });
   }
 
   public inputCursorPause() {
