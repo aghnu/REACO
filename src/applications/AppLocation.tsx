@@ -1,4 +1,4 @@
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 import TextSplit from '@components/TextSplit';
@@ -9,7 +9,7 @@ import {
 } from '@utils/date';
 
 class AppLocation extends BaseApplication {
-  public name: AppNames = 'location';
+  public name: AppName = 'location';
   public id = uuid();
   protected animationInterval: number | undefined = undefined;
   private readonly location = 'Calgary, AB, Canada';

@@ -1,4 +1,4 @@
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 import {
@@ -8,7 +8,7 @@ import {
 } from './snippets';
 
 class AppContact extends BaseApplication {
-  public name: AppNames = 'contact';
+  public name: AppName = 'contact';
   public id = uuid();
 
   private promptInit() {

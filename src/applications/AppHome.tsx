@@ -1,4 +1,4 @@
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 import {
@@ -12,7 +12,7 @@ import {
 } from './snippets';
 
 class AppHome extends BaseApplication {
-  public name: AppNames = 'home';
+  public name: AppName = 'home';
   public id = uuid();
   protected animationInterval: number | undefined = undefined;
 

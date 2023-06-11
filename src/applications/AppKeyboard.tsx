@@ -1,10 +1,10 @@
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { v4 as uuid } from 'uuid';
 import { systemState } from '@store/index';
 
 class AppKeyboard extends BaseApplication {
-  public name: AppNames = 'keyboard';
+  public name: AppName = 'keyboard';
   public id = uuid();
 
   private toggleKeyboard() {

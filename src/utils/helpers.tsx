@@ -1,6 +1,6 @@
 import { type DynamicClassName } from '@type/UtilsTypes';
 import APPLICATION_INDEX from '@applications/index';
-import type { AppMeta, AppNames } from '@type/ApplicationTypes';
+import type { AppMeta, AppName } from '@type/ApplicationTypes';
 import { type PrimitiveAtom, type Atom } from 'jotai';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
@@ -30,7 +30,7 @@ export function getClassName(dynamicClassNames: DynamicClassName) {
 export function getApplicationMeta(name: string): AppMeta | null {
   const keys = Object.keys(APPLICATION_INDEX);
   if (keys.includes(name)) {
-    return APPLICATION_INDEX[name as AppNames];
+    return APPLICATION_INDEX[name as AppName];
   }
   return null;
 }

@@ -1,4 +1,4 @@
-import { type AppNames } from '@type/ApplicationTypes';
+import { type AppName } from '@type/ApplicationTypes';
 import BaseAtomStore from './BaseAtomStore';
 import { applicationState } from '@store/index';
 import { produce } from 'immer';
@@ -6,7 +6,7 @@ import DisplayController from '@applications/logics/DisplayController';
 import ApplicationController from '@applications/logics/ApplicationController';
 
 abstract class BaseApplication extends BaseAtomStore {
-  public abstract name: AppNames;
+  public abstract name: AppName;
   public abstract id: string;
   protected readonly displayController = DisplayController.getInstance();
   protected readonly applicationController =
