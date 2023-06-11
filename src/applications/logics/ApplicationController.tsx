@@ -8,7 +8,6 @@ import APPLICATION_INDEX from '@/applications';
 import TextRaw from '@components/TextRaw';
 import KeyboardController from './KeyboardController';
 import RouteController from './RouteController';
-import { produce } from 'immer';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -90,14 +89,6 @@ class ApplicationController extends BaseAtomStore {
         void this.handlerInputArgs(input, args);
         this.storeSetAtom(systemState.userInputAtom, '');
       });
-
-    this.storeSetAtom(
-      systemState.promptInfoAtom,
-      produce((draft) => {
-        draft.systemDomain = window.location.host;
-        draft.systemPath = window.location.pathname;
-      })
-    );
   }
 
   public clearApplications() {

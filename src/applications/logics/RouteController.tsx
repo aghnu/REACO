@@ -3,12 +3,16 @@ import APPLICATION_INDEX, {
 } from '@/applications';
 import { type AppName } from '@type/ApplicationTypes';
 import ApplicationController from './ApplicationController';
+import { produce } from 'immer';
+import { systemState } from '@store/index';
+import BaseAtomStore from '@base/BaseAtomStore';
 
-class RouteController {
+class RouteController extends BaseAtomStore {
   protected static instance: RouteController | undefined;
   protected readonly basePath = window.location.pathname;
 
   protected constructor() {
+    super();
     this.init();
   }
 
@@ -41,6 +45,7 @@ class RouteController {
   }
 
   public processCurrentPath() {
+    RouteController.getInstance().updatePromptInfo();
     const routeHash = window.location.hash.substring(1);
     const appNames = Object.keys(APPLICATION_INDEX);
     if (
@@ -59,8 +64,19 @@ class RouteController {
     }
   }
 
+  private updatePromptInfo() {
+    this.storeSetAtom(
+      systemState.promptInfoAtom,
+      produce((draft) => {
+        draft.systemDomain = window.location.host;
+        draft.systemPath = window.location.pathname;
+      })
+    );
+  }
+
   private init() {
     window.addEventListener('popstate', this.processCurrentPath);
+    this.updatePromptInfo();
   }
 }
 
