@@ -1,4 +1,7 @@
-import { defaultGlobalStyleColor } from '@config/globalStyle';
+import {
+  defaultGlobalStyleColorDark,
+  defaultGlobalStyleColorLight,
+} from '@config/globalStyle';
 import {
   type GlobalStyleColorName,
   type GlobalStyleColor,
@@ -14,7 +17,12 @@ import { globalStyleState } from '@store/index';
 
 class GlobalStyleController extends BaseAtomStore {
   protected static instance: GlobalStyleController | undefined;
-  protected globalStyleColor: GlobalStyleColor = defaultGlobalStyleColor;
+  protected globalStyleColorDark: GlobalStyleColor =
+    defaultGlobalStyleColorDark;
+
+  protected globalStyleColorLight: GlobalStyleColor =
+    defaultGlobalStyleColorLight;
+
   protected globalBreakpoints: Breakpoints = breakpoints;
   protected eventListenerContextManager: EventListenerContextManager =
     buildEventListenerContextManager();
@@ -31,23 +39,23 @@ class GlobalStyleController extends BaseAtomStore {
   }
 
   public static start() {
-    GlobalStyleController.getInstance();
+    if (this.instance === undefined) {
+      this.getInstance().handlerThemeMode();
+      this.getInstance().updateDesktopSize();
+      this.getInstance().handlerFontSizeToBreakpoints();
+    }
   }
 
-  public destroy() {
-    GlobalStyleController.instance = undefined;
-    this.eventListenerContextManager.clear();
-    this.storeClearSubs();
+  public static destroy() {
+    if (this.instance === undefined) return;
+    this.instance.eventListenerContextManager.clear();
+    this.instance.storeClearSubs();
+    this.instance = undefined;
   }
 
   private updateDesktopSize() {
     this.storeSetAtom(globalStyleState.desktopHeightAtom, window.innerHeight);
     this.storeSetAtom(globalStyleState.desktopWidthAtom, window.innerWidth);
-  }
-
-  public setGlobalStyleColor(styleColor: Partial<GlobalStyleColor>) {
-    this.globalStyleColor = { ...this.globalStyleColor, ...styleColor };
-    this.updateRootColorVariables(this.globalStyleColor);
   }
 
   private updateRootColorVariables(styleColor: GlobalStyleColor) {
@@ -72,13 +80,27 @@ class GlobalStyleController extends BaseAtomStore {
     }
   }
 
+  private handlerThemeMode() {
+    const mode = this.storeGetAtom(globalStyleState.displayThemeMode);
+    if (mode === 'dark') {
+      this.updateRootColorVariables(this.globalStyleColorDark);
+    } else {
+      this.updateRootColorVariables(this.globalStyleColorLight);
+    }
+  }
+
   private init() {
-    this.updateDesktopSize();
-    this.updateRootColorVariables(this.globalStyleColor);
-    this.handlerFontSizeToBreakpoints();
+    // desktop theme mode handling
+    this.storeSubToAtom(globalStyleState.displayThemeMode, () => {
+      this.handlerThemeMode();
+    });
+
+    // desktop size handling
     this.eventListenerContextManager.set(window, 'resize', () => {
       this.updateDesktopSize();
     });
+
+    // font size handling
     this.storeSubToAtom(globalStyleState.breakpointAtom, () => {
       this.handlerFontSizeToBreakpoints();
     });
