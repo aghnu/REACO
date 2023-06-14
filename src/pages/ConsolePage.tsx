@@ -1,6 +1,7 @@
 import Prompt from '@components/Prompt';
 import Display from '@components/Display';
 import Footer from '@components/Footer';
+import ActionBar from '@components/ActionBar';
 import VirtualKeyboard from '@components/VirtualKeyboard';
 import FunctionBar from '@components/FunctionBar';
 import styles from '../styles/modules/wrapper.module.scss';
@@ -21,6 +22,7 @@ const ConsolePage = () => {
 
   return (
     <div className={styles['container-console']}>
+      <ActionBar />
       <div className={styles.top} ref={setDisplayContainerEl}>
         <Display onDisplayPrintUpdate={handlerDisplayUpdate} />
         <Prompt onUserInputUpdate={handlerDisplayUpdate} />

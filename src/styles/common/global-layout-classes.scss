@@ -23,6 +23,10 @@ p {
     height: fit-content;
   }
 
+  &-clickable {
+    cursor: pointer;
+  }
+
   @each $k, $v in ('25': 0.25rem, '50': 0.5rem, '100': 1rem) {
     &-gap-#{$k} {
       gap: $v;

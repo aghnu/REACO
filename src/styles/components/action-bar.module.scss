@@ -1,0 +1,11 @@
+.action-bar {
+  display: flex;
+  justify-content: end;
+  height: fit-content;
+  padding-bottom: $padding-container-main;
+
+  .theme-selector {
+    @include mixin-center-children;
+    gap: $padding-container-main;
+  }
+}
