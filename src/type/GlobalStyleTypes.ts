@@ -8,4 +8,6 @@ export interface GlobalStyleColor {
   '--color-background': string;
 }
 
+export type DisplayThemeMode = 'dark' | 'light';
+
 export type GlobalStyleColorName = keyof GlobalStyleColor;
