@@ -14,9 +14,13 @@ import {
   buildEventListenerContextManager,
 } from '@utils/eventListenerWithContext';
 import { globalStyleState } from '@store/index';
+import { gsap } from 'gsap';
+
+type ThemeSwitchMode = 'init' | 'transition';
 
 class GlobalStyleController extends BaseAtomStore {
   protected static instance: GlobalStyleController | undefined;
+  protected gsapContext: gsap.Context | undefined;
   protected globalStyleColorDark: GlobalStyleColor =
     defaultGlobalStyleColorDark;
 
@@ -35,7 +39,7 @@ class GlobalStyleController extends BaseAtomStore {
   public static getInstance(): GlobalStyleController {
     if (this.instance === undefined) {
       this.instance = new GlobalStyleController();
-      this.instance.handlerThemeMode();
+      this.instance.handlerThemeMode('init');
       this.instance.updateDesktopSize();
       this.instance.handlerFontSizeToBreakpoints();
     }
@@ -43,10 +47,18 @@ class GlobalStyleController extends BaseAtomStore {
     return this.instance;
   }
 
+  private cleanGsapAnimation() {
+    if (this.gsapContext !== undefined) {
+      this.gsapContext.kill();
+      this.gsapContext = undefined;
+    }
+  }
+
   public static destroy() {
     if (this.instance === undefined) return;
     this.instance.eventListenerContextManager.clear();
     this.instance.storeClearSubs();
+    this.instance.cleanGsapAnimation();
     this.instance = undefined;
   }
 
@@ -55,9 +67,19 @@ class GlobalStyleController extends BaseAtomStore {
     this.storeSetAtom(globalStyleState.desktopWidthAtom, window.innerWidth);
   }
 
-  private updateRootColorVariables(styleColor: GlobalStyleColor) {
-    (Object.keys(styleColor) as GlobalStyleColorName[]).forEach((key) => {
-      document.documentElement.style.setProperty(key, styleColor[key]);
+  private updateRootColorVariables(
+    styleColor: GlobalStyleColor,
+    animationMode: ThemeSwitchMode
+  ) {
+    this.cleanGsapAnimation();
+    this.gsapContext = gsap.context(() => {
+      (Object.keys(styleColor) as GlobalStyleColorName[]).forEach((key) => {
+        gsap.to(':root', {
+          [key]: styleColor[key],
+          duration: animationMode === 'init' ? 0 : 0.3,
+          overwrite: 'auto',
+        });
+      });
     });
   }
 
@@ -77,12 +99,12 @@ class GlobalStyleController extends BaseAtomStore {
     }
   }
 
-  private handlerThemeMode() {
+  private handlerThemeMode(animationMode: ThemeSwitchMode = 'transition') {
     const mode = this.storeGetAtom(globalStyleState.displayThemeMode);
     if (mode === 'dark') {
-      this.updateRootColorVariables(this.globalStyleColorDark);
+      this.updateRootColorVariables(this.globalStyleColorDark, animationMode);
     } else {
-      this.updateRootColorVariables(this.globalStyleColorLight);
+      this.updateRootColorVariables(this.globalStyleColorLight, animationMode);
     }
   }
 
