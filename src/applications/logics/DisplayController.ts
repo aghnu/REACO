@@ -20,15 +20,12 @@ class DisplayController extends BaseAtomStore {
     return this.instance;
   }
 
-  public destroy(): void {
-    DisplayController.instance = undefined;
-    this.storeClearSubs();
-    this.printClear();
-    this.resetConsumePrintJob();
-  }
-
-  public static start() {
-    DisplayController.getInstance();
+  public static destroy(): void {
+    if (this.instance === undefined) return;
+    this.instance.storeClearSubs();
+    this.instance.printClear();
+    this.instance.resetConsumePrintJob();
+    this.instance = undefined;
   }
 
   private resetConsumePrintJob() {

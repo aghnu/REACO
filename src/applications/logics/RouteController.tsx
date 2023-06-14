@@ -17,17 +17,18 @@ class RouteController extends BaseAtomStore {
   }
 
   public static getInstance(): RouteController {
-    if (this.instance === undefined) this.instance = new RouteController();
+    if (this.instance === undefined) {
+      this.instance = new RouteController();
+      this.instance.processCurrentPath();
+    }
     return this.instance;
   }
 
-  public destroy() {
-    RouteController.instance = undefined;
-    window.removeEventListener('popstate', this.processCurrentPath);
-  }
-
-  public static start() {
-    RouteController.getInstance();
+  public static destroy() {
+    if (this.instance === undefined) return;
+    this.instance.storeClearSubs();
+    window.removeEventListener('popstate', this.instance.processCurrentPath);
+    this.instance = undefined;
   }
 
   public appRouteUpdate(name: AppName) {

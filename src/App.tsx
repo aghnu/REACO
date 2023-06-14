@@ -1,21 +1,20 @@
 import ConsolePage from '@pages/ConsolePage';
 import styles from '@styles/modules/wrapper.module.scss';
-import initApplicationLogic from '@applications/logics';
-import store from '@/store';
-import { Provider } from 'jotai';
+import { startApplication } from '@applications/logics';
 import DevDebug from '@components/DevDebug';
 import { checkIsDevEnv } from '@utils/helpers';
-
-initApplicationLogic();
+import { useEffect } from 'react';
 
 const App = () => {
+  useEffect(startApplication, []);
+
   return (
-    <Provider store={store}>
+    <>
       {checkIsDevEnv() && <DevDebug />}
       <div className={styles['container-page']}>
         <ConsolePage />
       </div>
-    </Provider>
+    </>
   );
 };
 

@@ -23,15 +23,12 @@ class KeyboardController extends BaseAtomStore {
     return this.instance;
   }
 
-  public static start() {
-    KeyboardController.getInstance();
-  }
-
-  public destroy(): void {
-    KeyboardController.instance = undefined;
-    this.eventListenerContextManager.clear();
-    this.keyListners.clear();
-    this.storeClearSubs();
+  public static destroy(): void {
+    if (this.instance === undefined) return;
+    this.instance.eventListenerContextManager.clear();
+    this.instance.keyListners.clear();
+    this.instance.storeClearSubs();
+    this.instance = undefined;
   }
 
   private inputGet(): string {

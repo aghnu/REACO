@@ -33,17 +33,14 @@ class GlobalStyleController extends BaseAtomStore {
   }
 
   public static getInstance(): GlobalStyleController {
-    if (this.instance === undefined)
-      this.instance = new GlobalStyleController();
-    return this.instance;
-  }
-
-  public static start() {
     if (this.instance === undefined) {
-      this.getInstance().handlerThemeMode();
-      this.getInstance().updateDesktopSize();
-      this.getInstance().handlerFontSizeToBreakpoints();
+      this.instance = new GlobalStyleController();
+      this.instance.handlerThemeMode();
+      this.instance.updateDesktopSize();
+      this.instance.handlerFontSizeToBreakpoints();
     }
+
+    return this.instance;
   }
 
   public static destroy() {

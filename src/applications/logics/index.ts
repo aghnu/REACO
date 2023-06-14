@@ -4,15 +4,18 @@ import DisplayController from './DisplayController';
 import RouteController from './RouteController';
 import GlobalStyleController from './GlobalStyleController';
 
-function initApplication() {
-  GlobalStyleController.start();
-  ApplicationController.start();
-  DisplayController.start();
-  KeyboardController.start();
-  RouteController.start();
+export function startApplication() {
+  GlobalStyleController.getInstance();
+  ApplicationController.getInstance();
+  DisplayController.getInstance();
+  KeyboardController.getInstance();
+  RouteController.getInstance();
 
-  // startup
-  RouteController.getInstance().processCurrentPath();
+  return () => {
+    GlobalStyleController.destroy();
+    ApplicationController.destroy();
+    DisplayController.destroy();
+    KeyboardController.destroy();
+    RouteController.destroy();
+  };
 }
-
-export default initApplication;

@@ -27,15 +27,12 @@ class ApplicationController extends BaseAtomStore {
     return this.instance;
   }
 
-  public destroy(): void {
-    ApplicationController.instance = undefined;
-    this.storeClearSubs();
-    if (this.enterKeyListnerUnSubFunc !== undefined)
-      this.enterKeyListnerUnSubFunc();
-  }
-
-  public static start() {
-    ApplicationController.getInstance();
+  public static destroy(): void {
+    if (this.instance === undefined) return;
+    this.instance.storeClearSubs();
+    if (this.instance.enterKeyListnerUnSubFunc !== undefined)
+      this.instance.enterKeyListnerUnSubFunc();
+    this.instance = undefined;
   }
 
   public runApplication(
