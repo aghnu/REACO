@@ -1,10 +1,14 @@
 import { atom } from 'jotai';
 import type { PromptInfo } from '@type/SystemStateTypes';
+import { atomWithLocalStorage } from '@utils/helpers';
 
 // atoms
 const userInputAtom = atom('');
 const isInputCursorBlinkingAtom = atom(true);
-const isVirtualKeyboardEnabledAtom = atom(false);
+const isVirtualKeyboardEnabledAtom = atomWithLocalStorage<boolean>(
+  'atom-state__is-virtual-keyboard-enabled',
+  false
+);
 const promptInfoAtom = atom<PromptInfo>({
   userName: 'guest',
   systemDomain: 'aghnu.me',
