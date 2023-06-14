@@ -1,7 +1,7 @@
 import { type DynamicClassName } from '@type/UtilsTypes';
 import APPLICATION_INDEX from '@applications/index';
 import type { AppMeta, AppName } from '@type/ApplicationTypes';
-import { type PrimitiveAtom, type Atom } from 'jotai';
+import { type PrimitiveAtom, type Atom, atom } from 'jotai';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];
@@ -50,4 +50,35 @@ export function addLabelToAtom<
     atom.debugLabel = label;
   }
   return atom;
+}
+
+/**
+ * this function differs from jotai builtin atomWithStorage
+ *  - it is not using async
+ *  - it reads value from local storage and use it as init value
+ *  - this prevent the brief state change due to initial value differs from storage value
+ *  - use this function if data is small
+ */
+export function atomWithLocalStorage<T = unknown>(
+  key: string,
+  initialValue: T
+): PrimitiveAtom<T> {
+  const getInitialValue = () => {
+    const item = localStorage.getItem(key);
+    if (item !== null) {
+      return JSON.parse(item);
+    }
+    return initialValue;
+  };
+  const baseAtom = atom(getInitialValue());
+  const derivedAtom = atom(
+    (get) => get(baseAtom),
+    (get, set, update) => {
+      const nextValue =
+        typeof update === 'function' ? update(get(baseAtom)) : update;
+      set(baseAtom, nextValue);
+      localStorage.setItem(key, JSON.stringify(nextValue));
+    }
+  );
+  return derivedAtom;
 }
