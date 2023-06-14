@@ -76,8 +76,9 @@ class GlobalStyleController extends BaseAtomStore {
       (Object.keys(styleColor) as GlobalStyleColorName[]).forEach((key) => {
         gsap.to(':root', {
           [key]: styleColor[key],
-          duration: animationMode === 'init' ? 0 : 0.3,
+          duration: animationMode === 'init' ? 0 : 0.65,
           overwrite: 'auto',
+          ease: 'expo.out',
         });
       });
     });
