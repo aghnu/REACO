@@ -4,6 +4,7 @@ import AppContact from './AppContact';
 import AppHome from './AppHome';
 import AppKeyboard from './AppKeyboard';
 import AppLocation from './AppLocation';
+import AppTheme from './AppTheme';
 
 const APPLICATION_INDEX = {
   home: {
@@ -26,11 +27,14 @@ const APPLICATION_INDEX = {
     name: 'contact',
     App: AppContact,
   },
+  theme: {
+    name: 'theme',
+    App: AppTheme,
+  },
 } as const;
 
 // special excluding list
-const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard'];
+const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard', 'theme'];
 
 export default APPLICATION_INDEX;
 export { APPLICATION_EXCLUDE_LIST_ROUTE };
-export { AppHome, AppKeyboard, AppClear, AppContact, AppLocation };

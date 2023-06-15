@@ -56,13 +56,13 @@ class RouteController extends BaseAtomStore {
       !appNames.includes(routeHash)
     ) {
       RouteController.getInstance().appRouteUpdate('home');
-      ApplicationController.getInstance().runApplication('home', true, false);
+      ApplicationController.getInstance().runApplication('home', {
+        isChangeRoute: false,
+      });
     } else {
-      ApplicationController.getInstance().runApplication(
-        routeHash as AppName,
-        true,
-        false
-      );
+      ApplicationController.getInstance().runApplication(routeHash as AppName, {
+        isChangeRoute: false,
+      });
     }
   }
 

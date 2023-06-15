@@ -4,6 +4,7 @@ import TextButton from '@components/TextButton';
 import TextIcon from '@components/TextIcon';
 import textStyle from '@styles/modules/text.module.scss';
 import { icon } from '@utils/svgFactory';
+import TextLabel from '@components/TextLabel';
 
 export const PROMPT_SEP = (
   <>
@@ -12,6 +13,14 @@ export const PROMPT_SEP = (
     <br />
   </>
 );
+
+export const PROMPT_PARAM_TOOMANY = <TextLabel text="Too Many Parameters" />;
+
+export const PROMPT_PARAM_NOTENOUGH = (
+  <TextLabel text="Not Enough Parameters" />
+);
+
+export const PROMPT_PARAM_INVALID = <TextLabel text="Invalid Parameters" />;
 
 export const PROMPT_CONTACT_EMAIL = (
   <TextSplit
