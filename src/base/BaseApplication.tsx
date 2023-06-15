@@ -31,13 +31,14 @@ abstract class BaseApplication extends BaseAtomStore {
   ): Promise<void> {
     this.addApplicationInstanceToState();
     this.args = args;
-    if (this.validate()) {
-      if (isShowLabel)
-        this.displayController.print(<TextLabel text={this.name} />);
-      this.run();
-    } else {
+    if (!this.validate()) {
       this.stop();
+      return;
     }
+    if (isShowLabel) {
+      this.displayController.print(<TextLabel text={this.name} />);
+    }
+    this.run();
   }
 
   public stop() {

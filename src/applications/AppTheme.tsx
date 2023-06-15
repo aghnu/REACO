@@ -31,7 +31,7 @@ class AppTheme extends BaseApplication {
         return false;
       },
     });
-    if (isValid === false) {
+    if (!isValid) {
       this.print(THEME_PARAM_PROMPT);
       this.print(<br />);
       this.printThemeList();
