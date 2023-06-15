@@ -3,10 +3,11 @@ import { icon } from '@utils/svgFactory';
 import TextIcon from '@components/TextIcon';
 import { useMemo } from 'react';
 import { globalStyleState } from '@store/index';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
+import ApplicationController from '@applications/logics/ApplicationController';
 
 const ThemeSelector = () => {
-  const [themeMode, setThemeMode] = useAtom(globalStyleState.displayThemeMode);
+  const themeMode = useAtomValue(globalStyleState.displayThemeMode);
 
   const iconMoon = useMemo(() => icon.moon('var(--color-focus)', '90%'), []);
   const iconSun = useMemo(() => icon.sun('var(--color-focus)', '90%'), []);
@@ -17,7 +18,10 @@ const ThemeSelector = () => {
         <span
           className="global-clickable"
           onClick={() => {
-            setThemeMode('light');
+            ApplicationController.getInstance().runApplicationFromArgs([
+              'theme',
+              'light',
+            ]);
           }}
         >
           <TextIcon iconElement={iconSun}></TextIcon>
@@ -26,7 +30,10 @@ const ThemeSelector = () => {
         <span
           className="global-clickable"
           onClick={() => {
-            setThemeMode('dark');
+            ApplicationController.getInstance().runApplicationFromArgs([
+              'theme',
+              'dark',
+            ]);
           }}
         >
           <TextIcon iconElement={iconMoon}></TextIcon>
