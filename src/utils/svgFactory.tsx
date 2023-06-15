@@ -317,4 +317,17 @@ export const icon: IconFactory = {
       />
     </svg>
   ),
+  star: (fill, size) => (
+    <svg
+      width={size}
+      viewBox="0 0 50 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M25 0C25 13.8071 36.1928 25 50 25C36.1928 25 25 36.1928 25 50C25 36.1928 13.8071 25 0 25C13.8071 25 25 13.8071 25 0Z"
+        fill={fill}
+      />
+    </svg>
+  ),
 };
