@@ -11,25 +11,21 @@ class AppContact extends BaseApplication {
   public name: AppName = 'contact';
   public id = uuid();
 
-  private promptInit() {
-    this.displayController.print(<p>To contact me:</p>);
-    this.displayController.print(<br />);
-    this.applicationController.runApplication('location', false);
-    this.displayController.print(<br />);
-    this.displayController.print(PROMPT_CONTACT_EMAIL);
-    this.displayController.print(PROMPT_CONTACT_GITHUB);
-    this.displayController.print(PROMPT_CONTACT_LINKEDIN);
+  protected validate(): boolean {
+    return this.validateArgs();
   }
 
-  public start() {
-    this.addApplicationInstanceToState();
-    this.promptInit();
+  protected run() {
+    this.print(<p>To contact me:</p>);
+    this.print(<br />);
+    this.runSubProcess('location');
+    this.print(<br />);
+    this.print(PROMPT_CONTACT_EMAIL);
+    this.print(PROMPT_CONTACT_GITHUB);
+    this.print(PROMPT_CONTACT_LINKEDIN);
   }
 
-  public stop() {
-    super.stop();
-    this.removeApplicationInstanceFromState();
-  }
+  public cleanup() {}
 }
 
 export default AppContact;

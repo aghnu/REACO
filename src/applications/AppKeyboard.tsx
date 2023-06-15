@@ -14,9 +14,16 @@ class AppKeyboard extends BaseApplication {
     );
   }
 
-  public start() {
-    this.toggleKeyboard();
+  protected validate(): boolean {
+    return this.validateArgs();
   }
+
+  protected run() {
+    this.toggleKeyboard();
+    this.stop();
+  }
+
+  protected cleanup() {}
 }
 
 export default AppKeyboard;

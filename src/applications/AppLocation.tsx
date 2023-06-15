@@ -29,33 +29,26 @@ class AppLocation extends BaseApplication {
     );
   }
 
-  private promptInit() {
-    this.displayController.print(
+  protected validate(): boolean {
+    return this.validateArgs();
+  }
+
+  protected run() {
+    this.print(
       <TextSplit
         left={<p className={textStyle.focus}>Location</p>}
         right={<p className={textStyle.desc}>{this.location}</p>}
         type="alt"
       />
     );
-    const timeElementId = this.displayController.print(this.getDateElement());
+    const timeElementId = this.print(this.getDateElement());
     this.animationInterval = window.setInterval(() => {
-      this.displayController.printUpdate(timeElementId, this.getDateElement());
+      this.printUpdate(timeElementId, this.getDateElement());
     }, 1000);
   }
 
-  private promptCleanup() {
+  protected cleanup() {
     window.clearInterval(this.animationInterval);
-  }
-
-  public start() {
-    this.addApplicationInstanceToState();
-    this.promptInit();
-  }
-
-  public stop() {
-    super.stop();
-    this.removeApplicationInstanceFromState();
-    this.promptCleanup();
   }
 }
 
