@@ -1,13 +1,14 @@
 import BaseAtomStore from '@base/BaseAtomStore';
 import { systemState, applicationState } from '@/store';
 import DisplayController from './DisplayController';
-import textStyle from '@styles/modules/text.module.scss';
 import { getApplicationMeta } from '@utils/helpers';
 import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX from '@/applications';
 import TextRaw from '@components/TextRaw';
 import KeyboardController from './KeyboardController';
 import RouteController from './RouteController';
+import type BaseApplication from '@base/BaseApplication';
+import TextLabel from '@components/TextLabel';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -30,6 +31,7 @@ class ApplicationController extends BaseAtomStore {
   public static destroy(): void {
     if (this.instance === undefined) return;
     this.instance.storeClearSubs();
+    this.instance.clearApplications();
     if (this.instance.enterKeyListnerUnSubFunc !== undefined)
       this.instance.enterKeyListnerUnSubFunc();
     this.instance = undefined;
@@ -37,17 +39,21 @@ class ApplicationController extends BaseAtomStore {
 
   public runApplication(
     app: AppName,
-    isShowLabel: boolean = true,
-    isChangeRoute: boolean = isShowLabel
-  ) {
+    {
+      args = [app],
+      isShowLabel = true,
+      isChangeRoute = isShowLabel,
+    }: {
+      args?: string[];
+      isShowLabel?: boolean;
+      isChangeRoute?: boolean;
+    } = {}
+  ): BaseApplication {
     const applicationMeta = APPLICATION_INDEX[app];
     const appInstance = new applicationMeta.App();
-    if (isShowLabel)
-      this.displayController.print(
-        <p className={textStyle.focus}>{`[${app}]`}</p>
-      );
     if (isChangeRoute) RouteController.getInstance().appRouteUpdate(app);
-    appInstance.start();
+    void appInstance.start(args, { isShowLabel });
+    return appInstance as BaseApplication;
   }
 
   public runApplicationFromArgs(args: string[]) {
@@ -55,13 +61,11 @@ class ApplicationController extends BaseAtomStore {
 
     const applicationMeta = getApplicationMeta(args[0]);
     if (applicationMeta === null) {
-      this.displayController.print(
-        <p className={textStyle.focus}>{'[Command Not Found]'}</p>
-      );
+      this.displayController.print(<TextLabel text="Command Not Found" />);
       return;
     }
 
-    this.runApplication(applicationMeta.name);
+    this.runApplication(applicationMeta.name, { args });
   }
 
   public async runApplicationFromArgsAsync(args: string[]): Promise<void> {
