@@ -9,7 +9,7 @@ const desktopWidthAtom = atom(0);
 const desktopHeightAtom = atom(0);
 const displayThemeMode = atomWithLocalStorage<DisplayThemeMode>(
   'atom-state__display-theme-mode',
-  'dark'
+  'light'
 );
 
 // derived atoms
