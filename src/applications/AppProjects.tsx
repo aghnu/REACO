@@ -13,13 +13,13 @@ class AppProjects extends BaseApplication {
   protected run(): void {
     this.print(<p>Past Projects: </p>);
     this.print(<br />);
-    past.forEach((d) => {
+    past.reverse().forEach((d) => {
       this.print(<TextProject data={d} />);
       this.print(<br />);
     });
     this.print(<p>Recent Projects: </p>);
     this.print(<br />);
-    recent.forEach((d) => {
+    recent.reverse().forEach((d) => {
       this.print(<TextProject data={d} />);
       this.print(<br />);
     });

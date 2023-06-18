@@ -28,6 +28,26 @@
             ]
         },
         {
+            "title": "DEVUE",
+            "tags": "#Vue #TypeScript #Pinia #Vite",
+            "desc": "A creatively designed, interactive frontend website featuring custom-built logics that replicate a graphical desktop environment, providing fully resizable windows within the website itself.",
+            "links": [
+                {"title": "Website", "link": "https://www.aghnu.me/DEVUE"},
+                {"title": "Repository", "link": "https://github.com/aghnu/DEVUE"}
+                
+            ]
+        },
+        {
+            "title": "REACO",
+            "tags": "#React #TypeScript #Jotai #Vite",
+            "desc": "A creatively designed frontend website featuring a custom-built controller system, separate from the React DOM, which offers a Unix-like console experience to the frontend.",
+            "links": [
+                {"title": "Website", "link": "https://www.aghnu.me/REACO"},
+                {"title": "Repository", "link": "https://github.com/aghnu/REACO"}
+                
+            ]
+        },
+        {
             "title": "Aghnu's ASCII Art Generator",
             "tags": "#frontend #ui/ux-design #computer-vision #opencvjs #open-source #javascript",
             "desc": "An ASCII Art Generator written in JavaScript, using opencv.js. Code is running on client side. It supports gif and static images convertion. The output is displayed as HTML elements and animated by JavaScript.",
@@ -37,12 +57,12 @@
             ]
         },
         {
-            "title": "Aghnu's Console",
+            "title": "Aghnu's Console (legacy)",
             "tags": "#frontend #web-app #sass #liquid #ui/ux-design #Azure",
-            "desc": "A personal project that serves as my personal website. It is meant to explore new website design that differs from common patterns",
+            "desc": "A personal project that serves as my personal website. It is meant to explore new website design that differs from common patterns.",
             "links": [
-                {"title": "Repository", "link": "https://github.com/aghnu/aghnu.github.io"},
-                {"title": "Website", "link": "https://www.aghnu.me/"}
+                {"title": "Repository", "link": "https://github.com/aghnu/aghnus_console"},
+                {"title": "Website", "link": "https://www.aghnu.me/legacy/"}
             ]
         },
         {
