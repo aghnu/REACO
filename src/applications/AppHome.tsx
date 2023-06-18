@@ -7,7 +7,6 @@ import {
   HOME_WELCOME_COWSAY_FRAME_2,
   PROMPT_SEP,
   PROMPT_RESUME,
-  PROMPT_CMD_HELP,
 } from './snippets';
 
 class AppHome extends BaseApplication {
@@ -33,7 +32,7 @@ class AppHome extends BaseApplication {
     this.print(PROMPT_SEP);
     this.print(HOME_NAV_HELP);
     this.print(<br />);
-    this.print(PROMPT_CMD_HELP);
+    this.runSubProcess('help', ['help']);
     this.print(PROMPT_SEP);
     this.runSubProcess('contact');
     this.print(PROMPT_SEP);

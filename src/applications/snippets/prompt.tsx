@@ -1,6 +1,5 @@
 import TextLink from '@components/TextLink';
 import TextSplit from '@components/TextSplit';
-import TextButton from '@components/TextButton';
 import TextIcon from '@components/TextIcon';
 import textStyle from '@styles/modules/text.module.scss';
 import { icon } from '@utils/svgFactory';
@@ -12,12 +11,6 @@ export const PROMPT_SEP = (
     <p className={textStyle.noselect}>* * *</p>
     <br />
   </>
-);
-
-export const PROMPT_PARAM_TOOMANY = <TextLabel text="Too Many Parameters" />;
-
-export const PROMPT_PARAM_NOTENOUGH = (
-  <TextLabel text="Not Enough Parameters" />
 );
 
 export const PROMPT_PARAM_INVALID = <TextLabel text="Invalid Parameters" />;
@@ -80,13 +73,4 @@ export const PROMPT_RESUME = (
       <TextLink link="https://aghnu.me/resume">resume_gengyuan.pdf</TextLink>
     }
   />
-);
-
-export const PROMPT_CMD_HELP = (
-  <>
-    <TextSplit
-      left={<TextButton>Help</TextButton>}
-      right={<p>list all the commands that aghnu.me currently supports</p>}
-    />
-  </>
 );

@@ -4,11 +4,7 @@ import { applicationState } from '@store/index';
 import { produce } from 'immer';
 import DisplayController from '@applications/logics/DisplayController';
 import ApplicationController from '@applications/logics/ApplicationController';
-import {
-  PROMPT_PARAM_INVALID,
-  PROMPT_PARAM_TOOMANY,
-  PROMPT_PARAM_NOTENOUGH,
-} from '@applications/snippets';
+import { PROMPT_PARAM_INVALID } from '@applications/snippets';
 import TextLabel from '@components/TextLabel';
 import { v4 as uuid } from 'uuid';
 
@@ -80,26 +76,21 @@ abstract class BaseApplication extends BaseAtomStore {
 
   protected validateArgs({
     expectedArgsLength = 1,
-    validationFunction = () => true,
+    validationFunction = undefined,
   }: {
-    expectedArgsLength?: number;
+    expectedArgsLength?: number | number[];
     validationFunction?: () => boolean;
   } = {}): boolean {
-    if (this.args.length === 0) {
+    const argsLengthArray = Array.isArray(expectedArgsLength)
+      ? expectedArgsLength
+      : [expectedArgsLength];
+
+    if (this.args.length === 0 || !argsLengthArray.includes(this.args.length)) {
       this.displayController.print(PROMPT_PARAM_INVALID);
       return false;
     }
 
-    if (this.args.length < expectedArgsLength) {
-      this.displayController.print(PROMPT_PARAM_NOTENOUGH);
-      return false;
-    }
-    if (this.args.length > expectedArgsLength) {
-      this.displayController.print(PROMPT_PARAM_TOOMANY);
-      return false;
-    }
-
-    return validationFunction();
+    return validationFunction !== undefined ? validationFunction() : true;
   }
 
   protected isBackground(): boolean {

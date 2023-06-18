@@ -5,31 +5,67 @@ import AppHome from './AppHome';
 import AppKeyboard from './AppKeyboard';
 import AppLocation from './AppLocation';
 import AppTheme from './AppTheme';
+import AppHelp from './AppHelp';
+import AppSkills from './AppSkills';
+import AppSitemap from './AppSitemap';
+import AppProjects from './AppProjects';
+import AppPortfolio from './AppPortfolio';
 
 const APPLICATION_INDEX = {
-  home: {
-    name: 'home',
-    App: AppHome,
+  projects: {
+    name: 'projects',
+    App: AppProjects,
+    desc: 'list all the projects that I worked on',
   },
-  keyboard: {
-    name: 'keyboard',
-    App: AppKeyboard,
+  portfolio: {
+    name: 'portfolio',
+    App: AppPortfolio,
+    desc: 'print my portfolios',
   },
-  clear: {
-    name: 'clear',
-    App: AppClear,
-  },
-  location: {
-    name: 'location',
-    App: AppLocation,
+  sitemap: {
+    name: 'sitemap',
+    App: AppSitemap,
+    desc: 'display site map',
   },
   contact: {
     name: 'contact',
     App: AppContact,
+    desc: 'list my contact information',
+  },
+  home: {
+    name: 'home',
+    App: AppHome,
+    desc: 'display web home page',
+  },
+  keyboard: {
+    name: 'keyboard',
+    App: AppKeyboard,
+    desc: 'open/close the virtual keyboard',
+  },
+  clear: {
+    name: 'clear',
+    App: AppClear,
+    desc: 'clear the terminal screen',
+  },
+  location: {
+    name: 'location',
+    App: AppLocation,
+    desc: 'print my current timezone',
   },
   theme: {
     name: 'theme',
     App: AppTheme,
+    desc: 'change console theme',
+  },
+  help: {
+    name: 'help',
+    App: AppHelp,
+    desc: 'list all the supported commands',
+  },
+  skills: {
+    name: 'skills',
+    App: AppSkills,
+    desc: 'list my technical skills',
   },
 } as const;
 
