@@ -19,3 +19,13 @@ export interface PrintJob {
   type: PrintJobType;
   callback: () => void;
 }
+
+export interface DataPortfolio {
+  title: string;
+  sum: string;
+  desc: string;
+  links: Array<{
+    title: string;
+    link: string;
+  }>;
+}

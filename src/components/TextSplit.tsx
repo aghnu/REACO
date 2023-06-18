@@ -6,8 +6,8 @@ const TextSplit = ({
   right,
   type = 'normal',
 }: {
-  left: JSX.Element | JSX.Element[] | string;
-  right: JSX.Element | JSX.Element[] | string;
+  left: JSX.Element;
+  right: JSX.Element;
   type?: 'alt' | 'normal';
 }) => {
   return (

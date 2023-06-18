@@ -1,0 +1,58 @@
+.text-portfolio {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  justify-content: space-between;
+  row-gap: $line-height;
+
+  .title {
+    &::before {
+      content: "○ ";
+    }
+  }
+
+  .title,
+  .sum,
+  .desc {
+    word-break: normal;
+  }
+
+  .link-container {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: $line-height;
+
+    .link {
+      word-break: normal;
+      &::before {
+        content: ">\00a0";
+        display: inline-block;
+      }
+    }
+  }
+
+  @include width-narrow() {
+    grid-template-columns: 100%;
+    row-gap: 0;
+
+    .title,
+    .sum,
+    .desc {
+      padding-bottom: $line-height;
+    }
+
+    .sum {
+      padding-left: 1rem;
+    }
+
+    .desc {
+      grid-row: 3 / 4;
+      padding-left: 1rem;
+    }
+
+    .link-container {
+      grid-row: 4 / 5;
+      gap: 0;
+    }
+  }
+}

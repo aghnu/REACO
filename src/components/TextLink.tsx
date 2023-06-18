@@ -8,13 +8,18 @@ const TextLink = ({
   children,
   link,
   target = '_blank',
-}: React.PropsWithChildren<{ link: string; target?: string }>) => {
+  className = undefined,
+}: React.PropsWithChildren<{
+  link: string;
+  target?: string;
+  className?: string;
+}>) => {
   return (
     <a
       className={getClassName([
         textStyle.link,
-        textStyle.desc,
         'global-w-fit-content',
+        className,
       ])}
       href={link}
       target={target}

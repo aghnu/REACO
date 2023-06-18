@@ -24,7 +24,7 @@ export const PROMPT_CONTACT_EMAIL = (
       </div>
     }
     right={
-      <TextLink link={'mailto:gengyuan@ualberta.ca'}>
+      <TextLink className={textStyle.desc} link={'mailto:gengyuan@ualberta.ca'}>
         gengyuan@ualberta.ca
       </TextLink>
     }
@@ -40,7 +40,9 @@ export const PROMPT_CONTACT_GITHUB = (
       </div>
     }
     right={
-      <TextLink link={'https://github.com/aghnu'}>github.com/aghnu</TextLink>
+      <TextLink className={textStyle.desc} link={'https://github.com/aghnu'}>
+        github.com/aghnu
+      </TextLink>
     }
   />
 );
@@ -54,7 +56,10 @@ export const PROMPT_CONTACT_LINKEDIN = (
       </div>
     }
     right={
-      <TextLink link={'https://www.linkedin.com/in/gengyuanh'}>
+      <TextLink
+        className={textStyle.desc}
+        link={'https://www.linkedin.com/in/gengyuanh'}
+      >
         Gengyuan Huang
       </TextLink>
     }
@@ -70,7 +75,9 @@ export const PROMPT_RESUME = (
       </div>
     }
     right={
-      <TextLink link="https://aghnu.me/resume">resume_gengyuan.pdf</TextLink>
+      <TextLink className={textStyle.desc} link="https://aghnu.me/resume">
+        resume_gengyuan.pdf
+      </TextLink>
     }
   />
 );
