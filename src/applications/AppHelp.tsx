@@ -41,7 +41,7 @@ class AppHelp extends BaseApplication {
               {name}
             </TextButton>
           }
-          right={<>{APPLICATION_INDEX[name].desc}</>}
+          right={<p>{APPLICATION_INDEX[name].desc}</p>}
         />
         <br />
       </>
@@ -86,9 +86,7 @@ class AppHelp extends BaseApplication {
     this.stop();
   }
 
-  protected cleanup(): void {
-    //
-  }
+  protected cleanup(): void {}
 }
 
 export default AppHelp;

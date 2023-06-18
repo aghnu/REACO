@@ -33,6 +33,8 @@ class AppHome extends BaseApplication {
     this.print(HOME_NAV_HELP);
     this.print(<br />);
     this.runSubProcess('help', ['help']);
+    this.runSubProcess('help', ['portfolio']);
+    this.runSubProcess('help', ['skills']);
     this.print(PROMPT_SEP);
     this.runSubProcess('contact');
     this.print(PROMPT_SEP);
