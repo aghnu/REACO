@@ -10,6 +10,7 @@ import AppSkills from './AppSkills';
 import AppSitemap from './AppSitemap';
 import AppProjects from './AppProjects';
 import AppPortfolio from './AppPortfolio';
+import AppAbout from './AppAbout';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -66,6 +67,11 @@ const APPLICATION_INDEX = {
     name: 'skills',
     App: AppSkills,
     desc: 'list my technical skills',
+  },
+  about: {
+    name: 'about',
+    App: AppAbout,
+    desc: 'display information about this website',
   },
 } as const;
 

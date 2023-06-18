@@ -2,11 +2,16 @@ import { useMemo } from 'react';
 import { icon } from '@/utils/svgFactory';
 import type { IconFactoryFunc } from '@type/UtilsTypes';
 import ApplicationController from '@applications/logics/ApplicationController';
+import { type AppName } from '@type/ApplicationTypes';
 
 interface Key {
-  name: string;
+  name: AppName;
   icon: IconFactoryFunc;
   onClickHandler: () => void;
+}
+
+function handleKeyClick(name: AppName) {
+  ApplicationController.getInstance().runApplication(name);
 }
 
 function useFunctionKeys() {
@@ -16,37 +21,43 @@ function useFunctionKeys() {
         name: 'keyboard',
         icon: icon.keyboard,
         onClickHandler: () => {
-          ApplicationController.getInstance().runApplication('keyboard');
+          handleKeyClick('keyboard');
         },
       },
       {
         name: 'clear',
         icon: icon.clean,
         onClickHandler: () => {
-          ApplicationController.getInstance().runApplication('clear');
+          handleKeyClick('clear');
         },
       },
       {
         name: 'help',
         icon: icon.help,
-        onClickHandler: () => {},
+        onClickHandler: () => {
+          handleKeyClick('help');
+        },
       },
       {
         name: 'home',
         icon: icon.home,
         onClickHandler: () => {
-          ApplicationController.getInstance().runApplication('home');
+          handleKeyClick('home');
         },
       },
       {
         name: 'about',
         icon: icon.info,
-        onClickHandler: () => {},
+        onClickHandler: () => {
+          handleKeyClick('about');
+        },
       },
       {
         name: 'projects',
         icon: icon.projects,
-        onClickHandler: () => {},
+        onClickHandler: () => {
+          handleKeyClick('projects');
+        },
       },
     ];
   }, []);
