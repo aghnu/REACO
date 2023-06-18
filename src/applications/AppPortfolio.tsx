@@ -1,5 +1,5 @@
 import BaseApplication from '@base/BaseApplication';
-import { type AppName, type DataPortfolio } from '@type/ApplicationTypes';
+import { type AppName, type DataProject } from '@type/ApplicationTypes';
 import { projects } from '@data/portfolio.json';
 import TextPortfolio from '@components/TextPortfolio';
 
@@ -11,7 +11,7 @@ class AppPortfolio extends BaseApplication {
   }
 
   protected run(): void {
-    const datas: DataPortfolio[] = projects;
+    const datas: DataProject[] = projects;
     datas.forEach((d) => {
       this.print(<TextPortfolio data={d} />);
       this.print(<br />);

@@ -1,7 +1,7 @@
 .text-split {
   display: grid;
   grid-template-columns: 40% auto 55%;
-  grid-template-rows: $line-height;
+  grid-template-rows: fit-content;
 
   &__sep {
     &::after {

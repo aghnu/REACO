@@ -20,9 +20,9 @@ export interface PrintJob {
   callback: () => void;
 }
 
-export interface DataPortfolio {
+export interface DataProject {
   title: string;
-  sum: string;
+  tags: string;
   desc: string;
   links: Array<{
     title: string;

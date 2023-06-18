@@ -1,17 +1,17 @@
-import { type DataPortfolio } from '@type/ApplicationTypes';
+import { type DataProject } from '@type/ApplicationTypes';
 import TextLink from './TextLink';
 import { getClassName } from '@utils/helpers';
 import styles from '@styles/components/text-portfolio.module.scss';
 import textStyles from '@styles/modules/text.module.scss';
 
-const TextPortfolio = ({ data }: { data: DataPortfolio }) => {
+const TextPortfolio = ({ data }: { data: DataProject }) => {
   return (
     <div className={styles['text-portfolio']}>
       <p className={getClassName([styles.title, textStyles.desc])}>
         {data.title}
       </p>
-      <p className={getClassName([styles.sum, textStyles.focus])}>
-        [{data.sum}]
+      <p className={getClassName([styles.tags, textStyles.focus])}>
+        [{data.tags}]
       </p>
       <div className={styles['link-container']}>
         {data.links.map((l, index) => (
