@@ -6,7 +6,7 @@
 
   .title {
     &::before {
-      content: "○ ";
+      content: "○\00a0";
     }
   }
 

@@ -1,0 +1,28 @@
+.text-skills {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  justify-content: space-between;
+
+  .skills-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .item-container {
+      min-width: 100%;
+      .item {
+        display: flex;
+        word-wrap: anywhere;
+
+        &::before {
+          display: block;
+          color: var(--color-desc);
+          content: "○\00a0";
+        }
+      }
+    }
+  }
+
+  @include width-narrow() {
+    grid-template-columns: 100%;
+  }
+}

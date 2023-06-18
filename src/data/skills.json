@@ -1,0 +1,25 @@
+{
+    "recent": ["JavaScript", "ReactJS", "Webpack", "Sass", "Python", "Django", "Liquid", "Azure"],
+    "skills": [
+        {
+            "name": "Languages",
+            "skills": ["TypeScript", "JavaScript", "C/C++", "Python", "Sass", "Liquid", "SQL", "Java", "PHP", "CUDA C++", "Bash"]
+        },
+        {
+            "name": "Technologies",
+            "skills": ["VueJS", "ReactJS", "Django", "Flask", "Node.js", "Express.js", "PixiJS",  "ChartJS", "Webpack", "Vite", "OpenCV", "scikit-image", "Jekyll", "Apache", "RESTful"]
+        },
+        {
+            "name": "Cloud Computing",
+            "skills": ["Azure Functions", "Azure Storage", "Azure DNS", "Azure CDN", "Azure Static Web Apps", "Google Cloud Compute Engine", "Tencent Cloud OCR", "Tencent Cloud TMT", "Firebase Cloud Firestore"]
+        },
+        {
+            "name": "Development Tools",
+            "skills": ["Linux", "VS Code", "Git", "Android Studio", "Unity", "GitHub Actions"]
+        },
+        {
+            "name": "Domain Knowledges",
+            "skills": ["Web Development", "Product Management", "Software Engineering", "Operating System Concepts", "Computer Vision", "UI/UX Design"]
+        }
+    ]
+}

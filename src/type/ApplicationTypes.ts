@@ -29,3 +29,8 @@ export interface DataProject {
     link: string;
   }>;
 }
+
+export interface DataSkill {
+  name: string;
+  skills: string[];
+}
