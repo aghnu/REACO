@@ -1,6 +1,5 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import { v4 as uuid } from 'uuid';
 import {
   HOME_WELCOME,
   HOME_NAV_HELP,
@@ -13,7 +12,6 @@ import {
 
 class AppHome extends BaseApplication {
   public name: AppName = 'home';
-  public id = uuid();
   protected animationInterval: number | undefined = undefined;
 
   protected validate(): boolean {

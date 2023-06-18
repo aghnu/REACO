@@ -10,10 +10,11 @@ import {
   PROMPT_PARAM_NOTENOUGH,
 } from '@applications/snippets';
 import TextLabel from '@components/TextLabel';
+import { v4 as uuid } from 'uuid';
 
 abstract class BaseApplication extends BaseAtomStore {
   public abstract name: AppName;
-  public abstract id: string;
+  protected id: string = uuid();
 
   protected args: string[] = [];
   private readonly subProcesses: BaseApplication[] = [];

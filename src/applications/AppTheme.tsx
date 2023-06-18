@@ -1,6 +1,5 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import { v4 as uuid } from 'uuid';
 import { THEME_PARAM_PROMPT } from './snippets/promptAppTheme';
 import { type DisplayThemeMode } from '@type/GlobalStyleTypes';
 import { PROMPT_PARAM_INVALID } from './snippets';
@@ -8,7 +7,6 @@ import { globalStyleState } from '@store/index';
 
 class AppTheme extends BaseApplication {
   public name: AppName = 'theme';
-  public id = uuid();
   protected themeModes: DisplayThemeMode[] = ['dark', 'light'];
 
   private printThemeList() {

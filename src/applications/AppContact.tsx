@@ -1,6 +1,5 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import { v4 as uuid } from 'uuid';
 import {
   PROMPT_CONTACT_EMAIL,
   PROMPT_CONTACT_GITHUB,
@@ -9,7 +8,6 @@ import {
 
 class AppContact extends BaseApplication {
   public name: AppName = 'contact';
-  public id = uuid();
 
   protected validate(): boolean {
     return this.validateArgs();

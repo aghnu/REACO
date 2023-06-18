@@ -1,6 +1,5 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import { v4 as uuid } from 'uuid';
 import TextSplit from '@components/TextSplit';
 import textStyle from '@styles/modules/text.module.scss';
 import {
@@ -10,7 +9,6 @@ import {
 
 class AppLocation extends BaseApplication {
   public name: AppName = 'location';
-  public id = uuid();
   protected animationInterval: number | undefined = undefined;
   private readonly location = 'Calgary, AB, Canada';
   private readonly timezoneOffsetUTC = 6;
