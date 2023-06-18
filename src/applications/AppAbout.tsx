@@ -15,6 +15,7 @@ class AppAbout extends BaseApplication {
       <p className={textStyles.desc}>{"Gengyuan Huang's Homepage"}</p>
     );
     this.print(<br />);
+    this.runSubProcess('sitemap');
   }
 
   protected cleanup(): void {}
