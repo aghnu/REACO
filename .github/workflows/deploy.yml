@@ -27,7 +27,7 @@ jobs:
         run: yarn run build
 
       - name: Deploy to Aghnu.me
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: aghnu/github-action-push-to-another-repository-reaco@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
@@ -39,5 +39,5 @@ jobs:
           commit-message: 'AUTO UPLOAD REACO: ${{ github.event.head_commit.message }}'
 
           target-branch: main
-          target-directory: 'app/REACO/'
-          source-directory: 'dist/'
+          target-directory: 'app/assets'
+          source-directory: 'dist/assets'
