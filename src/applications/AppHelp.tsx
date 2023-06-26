@@ -2,7 +2,6 @@ import BaseApplication from '@base/BaseApplication';
 import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX from '.';
 import { PROMPT_PARAM_INVALID } from './snippets';
-import textStyle from '@styles/modules/text.module.scss';
 import TextSplit from '@components/TextSplit';
 import { HELP_DESC } from './snippets/promptAppHelp';
 import TextButton from '@components/TextButton';
@@ -16,10 +15,10 @@ class AppHelp extends BaseApplication {
       <>
         <p>Usage:</p>
         <p>
-          &nbsp;&nbsp;-&nbsp;<span className={textStyle.calm}>help</span>
+          &nbsp;&nbsp;-&nbsp;<span className="gl-color-text-calm">help</span>
         </p>
         <p>
-          &nbsp;&nbsp;-&nbsp;<span className={textStyle.calm}>help</span>
+          &nbsp;&nbsp;-&nbsp;<span className="gl-color-text-calm">help</span>
           &nbsp;<span>[command name]</span>
         </p>
       </>

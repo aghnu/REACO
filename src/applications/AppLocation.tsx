@@ -1,7 +1,6 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import TextSplit from '@components/TextSplit';
-import textStyle from '@styles/modules/text.module.scss';
 import {
   getCurrentDateInfoWithTimeOffset,
   getDateParsedString,
@@ -20,8 +19,8 @@ class AppLocation extends BaseApplication {
 
     return (
       <TextSplit
-        left={<p className={textStyle.focus}>Time</p>}
-        right={<p className={textStyle.desc}>{dateParsedString}</p>}
+        left={<p className={'gl-color-text-docus'}>Time</p>}
+        right={<p className={'gl-color-text-desc'}>{dateParsedString}</p>}
         type="alt"
       />
     );
@@ -34,8 +33,8 @@ class AppLocation extends BaseApplication {
   protected run() {
     this.print(
       <TextSplit
-        left={<p className={textStyle.focus}>Location</p>}
-        right={<p className={textStyle.desc}>{this.location}</p>}
+        left={<p className="gl-color-text-focus">Location</p>}
+        right={<p className="gl-color-text-desc">{this.location}</p>}
         type="alt"
       />
     );

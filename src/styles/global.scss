@@ -1,11 +1,19 @@
 @import './common/global-vars.scss';
 @import './common/global-layout-classes.scss';
 
+@import './common/global-style-color.scss';
+@import './common/global-style-other.scss';
+
 :root {
   @include global-root-color;
   @include global-root-font;
-  @include override_select_color(
-    var(--color-background),
-    var(--color-plain)
-  );
+  @include override_select_color(var(--color-background), var(--color-plain));
+}
+
+// global css classes
+.gl {
+  @include global-style-other;
+  &-color {
+    @include global-style-color;
+  }
 }

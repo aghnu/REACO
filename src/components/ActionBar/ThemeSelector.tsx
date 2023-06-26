@@ -16,7 +16,7 @@ const ThemeSelector = () => {
     <div className={styles['theme-selector']}>
       {themeMode === 'dark' ? (
         <span
-          className="global-clickable"
+          className="gl-clickable"
           onClick={() => {
             ApplicationController.getInstance().runApplicationFromArgs([
               'theme',
@@ -28,7 +28,7 @@ const ThemeSelector = () => {
         </span>
       ) : (
         <span
-          className="global-clickable"
+          className="gl-clickable"
           onClick={() => {
             ApplicationController.getInstance().runApplicationFromArgs([
               'theme',

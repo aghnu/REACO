@@ -1,5 +1,4 @@
 import BaseApplication from '@base/BaseApplication';
-import textStyles from '@styles/modules/text.module.scss';
 import { type AppName } from '@type/ApplicationTypes';
 
 class AppAbout extends BaseApplication {
@@ -10,9 +9,9 @@ class AppAbout extends BaseApplication {
   }
 
   protected run(): void {
-    this.print(<p className={textStyles.double}>R E A C O</p>);
+    this.print(<p className="gl-double">R E A C O</p>);
     this.print(
-      <p className={textStyles.desc}>{"Gengyuan Huang's Homepage"}</p>
+      <p className="gl-color-text-desc">{"Gengyuan Huang's Homepage"}</p>
     );
     this.print(<br />);
     this.runSubProcess('sitemap');

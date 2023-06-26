@@ -3,7 +3,6 @@ import TextLink from '@components/TextLink';
 import { origin, paths } from '@data/sitemap.json';
 import { type AppName } from '@type/ApplicationTypes';
 import { getClassName } from '@utils/helpers';
-import textStyle from '@styles/modules/text.module.scss';
 
 class AppSitemap extends BaseApplication {
   public name: AppName = 'sitemap';
@@ -17,7 +16,7 @@ class AppSitemap extends BaseApplication {
       const link = origin + p.path;
       this.print(
         <TextLink
-          className={getClassName(['global-d-block', textStyle.desc])}
+          className={getClassName(['gl-d-block', 'gl-color-text-desc'])}
           link={link}
         >
           {link}

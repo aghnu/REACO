@@ -23,18 +23,3 @@
     }
   }
 }
-
-.text-button {
-  @include mixin-clear-button-style;
-  @include mixin-enable-selection;
-}
-
-.text-icon {
-  @include mixin-center-children;
-  @include mixin-w-h-fill(fit-content, 100%);
-
-  &__icon {
-    @include mixin-center-children;
-    @include mixin-w-h-fill(calc(#{$line-height} * 1.15));
-  }
-}

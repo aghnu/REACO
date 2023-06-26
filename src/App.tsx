@@ -1,5 +1,4 @@
 import ConsolePage from '@pages/ConsolePage';
-import styles from '@styles/modules/wrapper.module.scss';
 import { startApplication } from '@applications/logics';
 import DevDebug from '@components/DevDebug';
 import { checkIsDevEnv } from '@utils/helpers';
@@ -11,9 +10,7 @@ const App = () => {
   return (
     <>
       {checkIsDevEnv() && <DevDebug />}
-      <div className={styles['container-page']}>
-        <ConsolePage />
-      </div>
+      <ConsolePage />
     </>
   );
 };

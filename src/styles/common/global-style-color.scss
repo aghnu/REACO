@@ -1,0 +1,51 @@
+@mixin global-style-color {
+  &-text {
+    &-plain {
+      color: var(--color-plain);
+      &--reverse {
+        background-color: var(--color-plain);
+        color: var(--color-background);
+      }
+    }
+
+    &-focus {
+      color: var(--color-focus);
+      &--reverse {
+        background-color: var(--color-focus);
+        color: var(--color-background);
+      }
+    }
+
+    &-desc {
+      color: var(--color-desc);
+      &--reverse {
+        background-color: var(--color-desc);
+        color: var(--color-background);
+      }
+    }
+
+    &-warn {
+      color: var(--color-warn);
+      &--reverse {
+        background-color: var(--color-warn);
+        color: var(--color-background);
+      }
+    }
+
+    &-calm {
+      color: var(--color-calm);
+      &--reverse {
+        background-color: var(--color-calm);
+        color: var(--color-background);
+      }
+    }
+
+    &-neon {
+      color: var(--color-neon);
+      &--reverse {
+        background-color: var(--color-neon);
+        color: var(--color-background);
+      }
+    }
+  }
+}

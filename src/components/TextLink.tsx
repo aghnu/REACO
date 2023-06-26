@@ -1,4 +1,3 @@
-import textStyle from '@styles/modules/text.module.scss';
 import { getClassName } from '@utils/helpers';
 import React from 'react';
 
@@ -16,11 +15,7 @@ const TextLink = ({
 }>) => {
   return (
     <a
-      className={getClassName([
-        textStyle.link,
-        'global-w-fit-content',
-        className,
-      ])}
+      className={getClassName(['gl-link', 'gl-w-fit-content', className])}
       href={link}
       target={target}
     >

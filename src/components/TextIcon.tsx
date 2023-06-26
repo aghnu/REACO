@@ -1,9 +1,9 @@
-import textComponentStyle from '@styles/modules/text-components.module.scss';
+import styles from '@styles/components/text-icon.module.scss';
 
 const TextIcon = ({ iconElement }: { iconElement: JSX.Element }) => {
   return (
-    <div className={textComponentStyle['text-icon']}>
-      <div className={textComponentStyle['text-icon__icon']}>{iconElement}</div>
+    <div className={styles['text-icon']}>
+      <div className={styles['text-icon__icon']}>{iconElement}</div>
     </div>
   );
 };

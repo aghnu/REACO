@@ -23,7 +23,7 @@ const FunctionKey = ({
     <>
       <div
         className={getClassName([
-          'global-d-flex global-gap-25',
+          'gl-d-flex gl-gap-25',
           styles['function-key'],
         ])}
         style={{ color: colorStyle }}

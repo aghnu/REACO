@@ -2,7 +2,6 @@ import { systemState } from '@/store';
 import { useAtomValue } from 'jotai';
 import styles from '@styles/components/prompt.module.scss';
 import TextRaw from '@components/TextRaw';
-import textStyles from '@styles/modules/text.module.scss';
 import { useEffect, useMemo } from 'react';
 import { hasApplication } from '@utils/helpers';
 
@@ -32,7 +31,9 @@ const UserInput = ({
     <>
       <span className={styles.userInput}>
         <TextRaw
-          className={isUserCmdExist ? textStyles.calm : textStyles.warn}
+          className={
+            isUserCmdExist ? 'gl-color-text-calm' : 'gl-color-text-warn'
+          }
           text={userInputCmd}
         />
         <TextRaw text={userInputCmdRest} />

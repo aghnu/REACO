@@ -1,0 +1,62 @@
+@mixin global-style-other {
+  &-d-flex {
+    display: flex;
+  }
+
+  &-d-block {
+    display: block;
+  }
+
+  &-flex-col {
+    flex-direction: column;
+  }
+
+  &-w-fit-content {
+    width: fit-content;
+  }
+
+  &-h-fit-content {
+    height: fit-content;
+  }
+
+  &-clickable {
+    cursor: pointer;
+  }
+
+  &-word-break-normal {
+    word-break: normal;
+  }
+
+  &-underline {
+    text-decoration: underline;
+  }
+
+  &-link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &-double {
+    font-size: 1.8em;
+  }
+
+  &-spread {
+    letter-spacing: 0.35em;
+  }
+
+  &-nowrap {
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+  }
+
+  &-noselect {
+    @include mixin-disable-selection;
+  }
+
+  @each $k, $v in ('25': 0.25rem, '50': 0.5rem, '100': 1rem) {
+    &-gap-#{$k} {
+      gap: $v;
+    }
+  }
+}
