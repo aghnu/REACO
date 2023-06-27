@@ -5,7 +5,7 @@ import { PROMPT_PARAM_INVALID } from './snippets';
 import TextSplit from '@components/TextSplit';
 import { HELP_DESC } from './snippets/promptAppHelp';
 import TextButton from '@components/TextButton';
-import ApplicationController from './logics/ApplicationController';
+import ApplicationController from './controllers/ApplicationController';
 
 class AppHelp extends BaseApplication {
   public name: AppName = 'help';

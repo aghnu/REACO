@@ -1,6 +1,6 @@
 import KeyPad, { type KeySize } from './KeyPad';
 import styles from '@styles/components/virtual-keyboard.module.scss';
-import KeyboardController from '@applications/logics/KeyboardController';
+import KeyboardController from '@applications/controllers/KeyboardController';
 
 const KEYS_DISPLAY = [
   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],

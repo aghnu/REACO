@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { icon } from '@/utils/svgFactory';
 import type { IconFactoryFunc } from '@type/UtilsTypes';
-import ApplicationController from '@applications/logics/ApplicationController';
+import ApplicationController from '@applications/controllers/ApplicationController';
 import { type AppName } from '@type/ApplicationTypes';
 
 interface Key {

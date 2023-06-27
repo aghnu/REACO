@@ -1,7 +1,7 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import ApplicationController from './logics/ApplicationController';
-import DisplayController from './logics/DisplayController';
+import ApplicationController from './controllers/ApplicationController';
+import DisplayController from './controllers/DisplayController';
 
 class AppClear extends BaseApplication {
   public name: AppName = 'home';

@@ -4,7 +4,7 @@ import TextIcon from '@components/TextIcon';
 import { useMemo } from 'react';
 import { globalStyleState } from '@store/index';
 import { useAtomValue } from 'jotai';
-import ApplicationController from '@applications/logics/ApplicationController';
+import ApplicationController from '@applications/controllers/ApplicationController';
 
 const ThemeSelector = () => {
   const themeMode = useAtomValue(globalStyleState.displayThemeMode);

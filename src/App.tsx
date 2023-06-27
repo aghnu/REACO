@@ -1,5 +1,5 @@
 import ConsolePage from '@pages/ConsolePage';
-import { startApplication } from '@applications/logics';
+import { startApplication } from '@applications/controllers';
 import DevDebug from '@components/DevDebug';
 import { checkIsDevEnv } from '@utils/helpers';
 import { useEffect } from 'react';
