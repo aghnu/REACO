@@ -2,22 +2,22 @@ import type { KeySize, KeyVariant, KeySets } from '@type/KeyboardTypes';
 
 export const KEYS_DISPLAY_LETTER = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '/'],
   ['Upper', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'],
   ['?123', ',', ' ', 'Enter'],
 ] as const;
 
 export const KEYS_DISPLAY_LETTER_CAP = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '/'],
   ['Lower', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
   ['?123', ',', ' ', 'Enter'],
 ] as const;
 
 export const KEYS_DISPLAY_SYMBOL = [
   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-  ['@', '#', '$', '_', '&', '-', '+', '(', ')'],
-  ['*', '"', "'", ':', ';', '!', '?', '/', 'Backspace'],
+  ['@', '#', '$', '_', '&', '-', '+', '(', ')', '.'],
+  ['*', '"', "'", ':', ';', '!', '?', '\\', 'Backspace'],
   ['ABC', ',', ' ', 'Enter'],
 ] as const;
 
