@@ -3,13 +3,17 @@ import styles from '@styles/components/virtual-keyboard.module.scss';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { getClassName } from '@utils/helpers';
-
-export type KeySize = 'small' | 'mid' | 'large';
+import type { KeySize, KeyVariant } from '@type/KeyboardTypes';
 
 function getKeySizeClass(size: KeySize) {
   if (size === 'mid') return styles['key--mid'];
   if (size === 'large') return styles['key--large'];
   return styles['key--small'];
+}
+
+function getKeyVariantClass(variant: KeyVariant) {
+  if (variant === 'func') return styles['label--func'];
+  return styles['label--norm'];
 }
 
 function isKeyEventMatchId(e: KeyboardEvent, keyId: string) {
@@ -20,11 +24,13 @@ const KeyPad = ({
   label,
   keyId,
   size = 'small',
+  variant = 'norm',
   onKeyClick = () => {},
 }: {
   label: string;
   keyId: string;
   size?: KeySize;
+  variant?: KeyVariant;
   onKeyClick?: () => void;
 }) => {
   const [keyEl, setKeyEl] = useState<HTMLDivElement | null>(null);
@@ -65,7 +71,9 @@ const KeyPad = ({
       ref={setKeyEl}
     >
       <div className={styles.pad}>
-        <div className={styles.label}>
+        <div
+          className={getClassName([styles.label, getKeyVariantClass(variant)])}
+        >
           <p>{label}</p>
         </div>
       </div>
