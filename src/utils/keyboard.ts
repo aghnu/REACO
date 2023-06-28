@@ -3,14 +3,14 @@ import type { KeySize, KeyVariant, KeySets } from '@type/KeyboardTypes';
 export const KEYS_DISPLAY_LETTER = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
   ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-  ['UPPER', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'],
+  ['Upper', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'],
   ['?123', ',', ' ', 'Enter'],
 ] as const;
 
 export const KEYS_DISPLAY_LETTER_CAP = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-  ['LOWER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
+  ['Lower', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
   ['?123', ',', ' ', 'Enter'],
 ] as const;
 
@@ -48,8 +48,8 @@ export function getKeySize(key: string): KeySize {
     'ABC',
     ',',
     '*',
-    'UPPER',
-    'LOWER',
+    'Upper',
+    'Lower',
   ];
 
   if (keyLarge.includes(key)) return 'large';
@@ -58,7 +58,7 @@ export function getKeySize(key: string): KeySize {
 }
 
 export function getKeyVariant(key: string): KeyVariant {
-  const keyFunc = [' ', 'Backspace', 'Enter', '?123', 'ABC', 'UPPER', 'LOWER'];
+  const keyFunc = [' ', 'Backspace', 'Enter', '?123', 'ABC', 'Upper', 'Lower'];
 
   if (keyFunc.includes(key)) return 'func';
   return 'norm';
@@ -85,12 +85,12 @@ export function getKeyHandler(
       setKeySet(KEYS_DISPLAY_SYMBOL);
     };
 
-  if (key === 'UPPER')
+  if (key === 'Upper')
     return () => {
       setKeySet(KEYS_DISPLAY_LETTER_CAP);
     };
 
-  if (key === 'LOWER')
+  if (key === 'Lower')
     return () => {
       setKeySet(KEYS_DISPLAY_LETTER);
     };
@@ -99,7 +99,7 @@ export function getKeyHandler(
 }
 
 export function getIsAllowHold(key: string) {
-  const keyNotAllowHold = ['?123', 'ABC', 'UPPER', 'LOWER'];
+  const keyNotAllowHold = ['?123', 'ABC', 'Upper', 'Lower'];
   if (keyNotAllowHold.includes(key)) return false;
   return true;
 }

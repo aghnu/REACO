@@ -6,11 +6,11 @@
     @include mixin-center-children;
     width: 100%;
     max-width: 40rem;
-    min-width: 30rem;
-    height: 2.85rem;
+    min-width: 28rem;
+    height: 2.65rem;
 
     &:last-of-type {
-      height: 3.15rem;
+      height: 3.25rem;
     }
 
     .key {
@@ -34,7 +34,7 @@
       .pad {
         @include mixin-disable-selection;
         position: absolute;
-        padding: 0.185rem;
+        padding: 0.17rem;
         height: 100%;
         width: 100%;
         bottom: 0;
@@ -49,14 +49,14 @@
     .key {
       .label {
         @include mixin-w-h-fill;
-        @include mixin-w-h-min;
         @include mixin-disable-selection;
 
-        border: 2px solid;
-        border-radius: 0.4rem;
+        border: 0.125rem solid;
+        border-radius: 0.5rem;
         background-color: var(--color-background);
         overflow: hidden;
-        padding: 0.15rem 0.3rem;
+        padding-top: 0.3rem;
+        padding-left: 0.4rem;
 
         p {
           @include mixin-w-h-fill(fit-content);
