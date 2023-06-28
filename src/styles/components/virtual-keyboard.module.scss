@@ -5,12 +5,12 @@
   .row {
     @include mixin-center-children;
     width: 100%;
-    max-width: 40rem;
-    min-width: 28rem;
-    height: 2.65rem;
+    max-width: 42rem;
+    min-width: 27.5rem;
+    height: 2.75rem;
 
     &:last-of-type {
-      height: 3.25rem;
+      height: 3rem;
     }
 
     .key {
