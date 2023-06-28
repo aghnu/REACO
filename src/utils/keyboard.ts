@@ -58,16 +58,7 @@ export function getKeySize(key: string): KeySize {
 }
 
 export function getKeyVariant(key: string): KeyVariant {
-  const keyFunc = [
-    ' ',
-    'Backspace',
-    'Enter',
-    '?123',
-    'ABC',
-    ',',
-    'UPPER',
-    'LOWER',
-  ];
+  const keyFunc = [' ', 'Backspace', 'Enter', '?123', 'ABC', 'UPPER', 'LOWER'];
 
   if (keyFunc.includes(key)) return 'func';
   return 'norm';
@@ -105,4 +96,10 @@ export function getKeyHandler(
     };
 
   return defaultHandler;
+}
+
+export function getIsAllowHold(key: string) {
+  const keyNotAllowHold = ['?123', 'ABC', 'UPPER', 'LOWER'];
+  if (keyNotAllowHold.includes(key)) return false;
+  return true;
 }

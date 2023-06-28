@@ -25,16 +25,18 @@ const KeyPad = ({
   keyId,
   size = 'small',
   variant = 'norm',
+  isAllowHold = true,
   onKeyClick = () => {},
 }: {
   label: string;
   keyId: string;
   size?: KeySize;
   variant?: KeyVariant;
+  isAllowHold?: boolean;
   onKeyClick?: () => void;
 }) => {
   const [keyEl, setKeyEl] = useState<HTMLDivElement | null>(null);
-  const { pointerDownAtom } = usePointerClick(keyEl, onKeyClick);
+  const { pointerDownAtom } = usePointerClick(keyEl, onKeyClick, isAllowHold);
   const pointerDown = useAtomValue(pointerDownAtom);
   const [isPhysicalKeydown, setIsPhysicalKeydown] = useState(false);
 

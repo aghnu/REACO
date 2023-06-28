@@ -13,7 +13,8 @@ function helperAddPointerEvents(
   handlerUp: () => void,
   handlerDown: () => void,
   handlerHoverOn: () => void,
-  handlerHoverOff: () => void
+  handlerHoverOff: () => void,
+  isAllowHold: boolean = true
 ) {
   // state
   let keyPressed = false;
@@ -37,13 +38,15 @@ function helperAddPointerEvents(
     handlerDown();
 
     // continue typing
-    continueTypingCheckingTimeout = window.setTimeout(() => {
-      if (keyPressed) {
-        continueTypingInterval = window.setInterval(() => {
-          onPointerClick();
-        }, 30);
-      }
-    }, 500);
+    if (isAllowHold) {
+      continueTypingCheckingTimeout = window.setTimeout(() => {
+        if (keyPressed) {
+          continueTypingInterval = window.setInterval(() => {
+            onPointerClick();
+          }, 30);
+        }
+      }, 500);
+    }
   };
   const handlerUpDecoratedTouch = () => {
     touchEvent = true;
@@ -97,7 +100,8 @@ function helperAddPointerEvents(
 
 function usePointerClick(
   htmlEl: HTMLElement | null,
-  onPointerClick: () => void = () => {}
+  onPointerClick: () => void = () => {},
+  isAllowHold: boolean = true
 ) {
   const pointerDownAtom = useMemo(() => atom(false), []);
   const pointerHoverAtom = useMemo(() => atom(false), []);
@@ -130,7 +134,8 @@ function usePointerClick(
       handlePointerUp,
       handlePointerDown,
       handlePointerHoverOn,
-      handlePointerHoverOff
+      handlePointerHoverOff,
+      isAllowHold
     );
     return () => {
       clean();
@@ -142,6 +147,7 @@ function usePointerClick(
     handlePointerHoverOff,
     handlePointerHoverOn,
     handlePointerUp,
+    isAllowHold,
   ]);
 
   return { pointerDownAtom, pointerHoverAtom };

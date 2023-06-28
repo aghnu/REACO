@@ -6,6 +6,7 @@ import {
   getKeySize,
   getKeyVariant,
   getKeyHandler,
+  getIsAllowHold,
   KEYS_DISPLAY_LETTER,
 } from '@utils/keyboard';
 import { type KeySets } from '@type/KeyboardTypes';
@@ -26,6 +27,7 @@ const VirtualKeyboard = () => {
               label={getKeyLabel(key)}
               size={getKeySize(key)}
               variant={getKeyVariant(key)}
+              isAllowHold={getIsAllowHold(key)}
               onKeyClick={getKeyHandler(
                 key,
                 (keySet) => {
