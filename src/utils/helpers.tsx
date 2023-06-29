@@ -27,6 +27,16 @@ export function getClassName(dynamicClassNames: DynamicClassName) {
   return classNameArray.join(' ');
 }
 
+export function waitFrames(callback: () => void, numFrames: number = 1) {
+  if (numFrames <= 0) {
+    callback();
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    waitFrames(callback, numFrames - 1);
+  });
+}
+
 export function getApplicationMeta(name: string): AppMeta | null {
   const keys = Object.keys(APPLICATION_INDEX);
   if (keys.includes(name)) {

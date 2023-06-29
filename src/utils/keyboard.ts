@@ -70,6 +70,16 @@ export function getKeyLabel(key: string): string {
   return key;
 }
 
+let lockTempFuncLock: boolean = false;
+function lockTempFunc(callback: () => void) {
+  if (lockTempFuncLock) return;
+  lockTempFuncLock = true;
+  callback();
+  window.setTimeout(() => {
+    lockTempFuncLock = false;
+  }, 100);
+}
+
 export function getKeyHandler(
   key: string,
   setKeySet: (keySets: KeySets) => void,
@@ -77,22 +87,30 @@ export function getKeyHandler(
 ): () => void {
   if (key === 'ABC')
     return () => {
-      setKeySet(KEYS_DISPLAY_LETTER);
+      lockTempFunc(() => {
+        setKeySet(KEYS_DISPLAY_LETTER);
+      });
     };
 
   if (key === '?123')
     return () => {
-      setKeySet(KEYS_DISPLAY_SYMBOL);
+      lockTempFunc(() => {
+        setKeySet(KEYS_DISPLAY_SYMBOL);
+      });
     };
 
   if (key === 'Upper')
     return () => {
-      setKeySet(KEYS_DISPLAY_LETTER_CAP);
+      lockTempFunc(() => {
+        setKeySet(KEYS_DISPLAY_LETTER_CAP);
+      });
     };
 
   if (key === 'Lower')
     return () => {
-      setKeySet(KEYS_DISPLAY_LETTER);
+      lockTempFunc(() => {
+        setKeySet(KEYS_DISPLAY_LETTER);
+      });
     };
 
   return defaultHandler;

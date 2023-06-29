@@ -130,7 +130,7 @@ function usePointerClick(
       element,
       eventListnerContextManager.current.set,
       eventListnerContextManager.current.clear,
-      () => window.requestAnimationFrame(onPointerClick),
+      onPointerClick,
       handlePointerUp,
       handlePointerDown,
       handlePointerHoverOn,
