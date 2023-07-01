@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 
 abstract class BaseApplication extends BaseAtomStore {
   public abstract name: AppName;
+  public static alias: string[] = [];
   protected id: string = uuid();
 
   protected args: string[] = [];

@@ -38,9 +38,14 @@ export function waitFrames(callback: () => void, numFrames: number = 1) {
 }
 
 export function getApplicationMeta(name: string): AppMeta | null {
-  const keys = Object.keys(APPLICATION_INDEX);
-  if (keys.includes(name)) {
-    return APPLICATION_INDEX[name as AppName];
+  const keys = Object.keys(APPLICATION_INDEX) as AppName[];
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] === name) {
+      return APPLICATION_INDEX[name];
+    }
+    if (APPLICATION_INDEX[keys[i]].App.alias.includes(name)) {
+      return APPLICATION_INDEX[keys[i]];
+    }
   }
   return null;
 }
