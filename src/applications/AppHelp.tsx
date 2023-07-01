@@ -9,6 +9,7 @@ import ApplicationController from './controllers/ApplicationController';
 
 class AppHelp extends BaseApplication {
   public name: AppName = 'help';
+  public static alias = ['man'];
 
   private printUsage() {
     this.print(

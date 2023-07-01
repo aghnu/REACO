@@ -5,6 +5,7 @@ import TextSkill from '@components/TextSkill';
 
 class AppSkills extends BaseApplication {
   public name: AppName = 'skills';
+  public static alias = ['skill'];
 
   protected validate(): boolean {
     return this.validateArgs();
