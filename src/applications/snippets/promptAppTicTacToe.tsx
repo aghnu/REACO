@@ -9,7 +9,7 @@ const TEXT_INTRO_3 =
 export const PROMPT_INTRO_1 = (
   <>
     <br />
-    <p className="gl-word-break-normal">{TEXT_WELCOME}</p>
+    <p>{TEXT_WELCOME}</p>
     <br />
   </>
 );
@@ -17,16 +17,16 @@ export const PROMPT_INTRO_1 = (
 export const PROMPT_INTRO_2 = (
   <>
     <br />
-    <p className="gl-word-break-normal">{TEXT_INTRO_1}</p>
+    <p>{TEXT_INTRO_1}</p>
     <br />
-    <p className="gl-word-break-normal">{TEXT_INTRO_2}</p>
+    <p>{TEXT_INTRO_2}</p>
     <br />
   </>
 );
 export const PROMPT_INTRO_3 = (
   <>
     <br />
-    <p className="gl-word-break-normal">{TEXT_INTRO_3}</p>
+    <p>{TEXT_INTRO_3}</p>
     <br />
   </>
 );

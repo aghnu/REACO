@@ -62,23 +62,33 @@ class AppTicTacToe extends BaseApplication {
     const getPrintMove = (move: Move) => {
       switch (move) {
         case '.':
-          return <span>&nbsp;.</span>;
+          return (
+            <span className="gl-color-text-desc gl-nowrap">&nbsp;&nbsp;.</span>
+          );
         case 'x':
-          return <span className="gl-color-text-desc">&nbsp;x</span>;
+          return (
+            <span className="gl-color-text-neon gl-nowrap">&nbsp;&nbsp;x</span>
+          );
         case 'o':
-          return <span className="gl-color-text-focus">&nbsp;o</span>;
+          return (
+            <span className="gl-color-text-neon gl-nowrap">&nbsp;&nbsp;o</span>
+          );
       }
     };
     const rows = ['a', 'b', 'c'].map((row, index) => (
-      <p key={index}>
-        <span className="gl-color-text-calm">&nbsp;{row}</span>
+      <p className="gl-double gl-nowrap" key={index}>
+        <span className="gl-color-text-warn">&nbsp;&nbsp;{row}</span>
         {getPrintMove(board[index][0])}
         {getPrintMove(board[index][1])}
         {getPrintMove(board[index][2])}
       </p>
     ));
     this.print(
-      <TextRaw className="gl-color-text-warn" text="   1 2 3" type="p" />
+      <TextRaw
+        className="gl-color-text-calm gl-double gl-nowrap"
+        text="     1  2  3"
+        type="p"
+      />
     );
     this.print(<>{rows}</>);
   }

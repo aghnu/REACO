@@ -9,7 +9,7 @@ class AppAbout extends BaseApplication {
   }
 
   protected run(): void {
-    this.print(<p className="gl-double">R E A C O</p>);
+    this.print(<p className="gl-double-double">R E A C O</p>);
     this.print(
       <p className="gl-color-text-desc">{"Gengyuan Huang's Homepage"}</p>
     );
