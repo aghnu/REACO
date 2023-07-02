@@ -11,12 +11,12 @@
       min-width: 100%;
       .item {
         display: flex;
-        word-wrap: anywhere;
+        width: fit-content;
 
         &::before {
           display: block;
           color: var(--color-desc);
-          content: "○\00a0";
+          content: '○\00a0';
         }
       }
     }
