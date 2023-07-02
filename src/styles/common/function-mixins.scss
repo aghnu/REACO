@@ -77,6 +77,51 @@
   }
 }
 
+@mixin change_appearance($value) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  -ms-appearance: $value;
+  -o-appearance: $value;
+  appearance: $value;
+}
+
+@mixin override_default_input() {
+  @include change_appearance(none);
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-family: $font-family;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:active {
+    border: none;
+    outline: none;
+  }
+}
+
+@mixin placeholder() {
+  &::placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
 @mixin width-narrow() {
   @media only screen and (max-width: $bp-narrow) {
     @content;

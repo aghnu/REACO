@@ -1,17 +1,44 @@
+$width-max: 43rem;
+$width-min: 20rem;
+
 .virtual-keyboard {
   @include mixin-center-children;
   flex-direction: column;
 
+  .direct-input-container {
+    @include mixin-center-children;
+    @include mixin-w-h-fill(100%, fit-content);
+
+    max-width: $width-max;
+    min-width: $width-min;
+
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    gap: 0.5rem;
+
+    .icon {
+      opacity: 0.75;
+    }
+
+    input {
+      @include override_default_input();
+      @include mixin-w-h-fill();
+
+      font-size: 0.875em;
+      opacity: 0.75;
+
+      @include placeholder {
+        color: var(--color-plain);
+        opacity: 1;
+      }
+    }
+  }
+
   .row {
     @include mixin-center-children;
-    width: 100%;
-    max-width: 42rem;
-    min-width: 26rem;
-    height: 2.75rem;
+    @include mixin-w-h-fill(100%, 2.7rem);
 
-    &:last-of-type {
-      height: 3rem;
-    }
+    max-width: $width-max;
+    min-width: $width-min;
 
     .key {
       @include mixin-disable-selection;
