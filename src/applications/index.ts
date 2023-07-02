@@ -11,6 +11,7 @@ import AppSitemap from './AppSitemap';
 import AppProjects from './AppProjects';
 import AppPortfolio from './AppPortfolio';
 import AppAbout from './AppAbout';
+import AppTicTacToe from './AppTicTacToe';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -73,10 +74,16 @@ const APPLICATION_INDEX = {
     App: AppAbout,
     desc: 'display information about this website',
   },
+  tictactoe: {
+    name: 'tictactoe',
+    App: AppTicTacToe,
+    desc: 'play tic tac toe against REACO',
+  },
 } as const;
 
 // special excluding list
 const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard', 'theme'];
+const APPLICATION_EXCLUDE_LOCK: AppName[] = ['keyboard', 'theme'];
 
 export default APPLICATION_INDEX;
-export { APPLICATION_EXCLUDE_LIST_ROUTE };
+export { APPLICATION_EXCLUDE_LIST_ROUTE, APPLICATION_EXCLUDE_LOCK };
