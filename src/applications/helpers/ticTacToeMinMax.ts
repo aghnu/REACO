@@ -48,7 +48,7 @@ class TicTacToeMinMax {
     if (board[0][2] === board[1][1] && board[0][2] === board[2][0]) {
       if (board[0][2] === winner) {
         return 1;
-      } else if (board[0][0] === opponent) {
+      } else if (board[0][2] === opponent) {
         return -1;
       }
     }
