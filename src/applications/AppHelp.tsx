@@ -38,10 +38,14 @@ class AppHelp extends BaseApplication {
                 ]);
               }}
             >
-              {name}
+              <p className="gl-word-break-normal">{name}</p>
             </TextButton>
           }
-          right={<p>{APPLICATION_INDEX[name].desc}</p>}
+          right={
+            <p className="gl-word-break-normal">
+              {APPLICATION_INDEX[name].desc}
+            </p>
+          }
         />
         <br />
       </>
