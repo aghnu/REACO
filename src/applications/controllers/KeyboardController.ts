@@ -12,6 +12,7 @@ class KeyboardController extends BaseAtomStore {
   protected eventListenerContextManager: EventListenerContextManager;
   protected sideEffectTimeoutInputCursor: number | undefined;
   protected keyListners = new Map<string, Array<() => void>>();
+  protected isBlur: boolean = false;
 
   protected constructor() {
     super();
@@ -58,6 +59,10 @@ class KeyboardController extends BaseAtomStore {
     }
   }
 
+  public setInput(input: string) {
+    this.inputSet(input);
+  }
+
   public subscribeKey(key: string, callback: () => void) {
     if (!isKeyAllowed(key)) return;
     const listners = this.keyListners.get(key);
@@ -91,11 +96,23 @@ class KeyboardController extends BaseAtomStore {
     }
 
     // broadcast
+    this.broadcastKey(key);
+  }
+
+  public broadcastKey(key: string) {
     const listners = this.keyListners.get(key);
     if (listners === undefined) return;
     listners.forEach((callback) => {
       callback();
     });
+  }
+
+  public blur() {
+    this.isBlur = true;
+  }
+
+  public focus() {
+    this.isBlur = false;
   }
 
   public inputCursorPause() {
@@ -109,6 +126,7 @@ class KeyboardController extends BaseAtomStore {
   private init() {
     this.eventListenerContextManager.set(document.body, 'keydown', (e) => {
       const key = (e as KeyboardEvent).key;
+      if (this.isBlur) return;
       if (!isKeyAllowed(key)) return;
       e.preventDefault();
       this.inputCursorPause();
