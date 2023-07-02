@@ -5,6 +5,7 @@ import {
   type EventListenerContextManager,
   buildEventListenerContextManager,
 } from '@utils/eventListenerWithContext';
+import { produce } from 'immer';
 
 class KeyboardController extends BaseAtomStore {
   protected static instance: KeyboardController | undefined;
@@ -32,11 +33,29 @@ class KeyboardController extends BaseAtomStore {
   }
 
   private inputGet(): string {
-    return this.storeGetAtom(systemState.userInputAtom);
+    const promptAppTop = this.storeGetAtom(systemState.promptAppTopAtom);
+    if (promptAppTop === null)
+      return this.storeGetAtom(systemState.userInputAtom);
+    return promptAppTop.input;
   }
 
   private inputSet(input: string) {
-    this.storeSetAtom(systemState.userInputAtom, input);
+    const promptAppTop = this.storeGetAtom(systemState.promptAppTopAtom);
+    if (promptAppTop === null) {
+      this.storeSetAtom(systemState.userInputAtom, input);
+    } else {
+      this.storeSetAtom(
+        systemState.promptAppAtom,
+        produce(this.storeGetAtom(systemState.promptAppAtom), (draft) => {
+          const index = draft.findIndex(
+            (prompt) => prompt.id === promptAppTop.id
+          );
+          if (index === -1) return;
+          const prompt = draft[index];
+          prompt.input = input;
+        })
+      );
+    }
   }
 
   public subscribeKey(key: string, callback: () => void) {

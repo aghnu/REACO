@@ -14,6 +14,7 @@ abstract class BaseApplication extends BaseAtomStore {
   protected id: string = uuid();
 
   protected args: string[] = [];
+  private appPromptId: undefined | string = undefined;
   private readonly subProcesses: BaseApplication[] = [];
   private readonly displayController = DisplayController.getInstance();
   private readonly applicationController = ApplicationController.getInstance();
@@ -43,6 +44,8 @@ abstract class BaseApplication extends BaseAtomStore {
     this.cleanupSubProcesses();
     this.removeApplicationInstanceFromState();
     this.cleanup();
+    this.stopAppPrompt();
+    this.unlock();
   }
 
   // magics
@@ -58,12 +61,11 @@ abstract class BaseApplication extends BaseAtomStore {
 
   protected runSubProcess(app: AppName, params: string[] = []) {
     const args = [app, ...params];
-    this.subProcesses.push(
-      this.applicationController.runApplication(app, {
-        args,
-        isShowLabel: false,
-      })
-    );
+    const appInstance = this.applicationController.runApplication(app, {
+      args,
+      isShowLabel: false,
+    });
+    if (appInstance !== null) this.subProcesses.push(appInstance);
   }
 
   // other methods
@@ -126,6 +128,44 @@ abstract class BaseApplication extends BaseAtomStore {
     this.subProcesses.forEach((sub) => {
       sub.stop();
     });
+  }
+
+  protected initAppPrompt(inputListner: (input: string) => void) {
+    if (this.appPromptId !== undefined) return;
+    this.appPromptId = this.applicationController.initAppPrompt(inputListner, {
+      promptStr: '>>>',
+    });
+  }
+
+  protected updateAppPrompt({
+    promptStr = undefined,
+    input = undefined,
+    inputListener = undefined,
+  }: {
+    promptStr?: string | undefined;
+    input?: string | undefined;
+    inputListener?: undefined | ((input: string) => void);
+  } = {}) {
+    if (this.appPromptId === undefined) return;
+    this.applicationController.updateAppPrompt(this.appPromptId, {
+      promptStr,
+      input,
+      inputListener,
+    });
+  }
+
+  protected stopAppPrompt() {
+    if (this.appPromptId === undefined) return;
+    this.applicationController.clearAppPrompt(this.appPromptId);
+    this.appPromptId = undefined;
+  }
+
+  protected lock() {
+    return this.applicationController.lock(this.id);
+  }
+
+  protected unlock() {
+    return this.applicationController.unlock(this.id);
   }
 }
 
