@@ -50,6 +50,19 @@ export function getApplicationMeta(name: string): AppMeta | null {
   return null;
 }
 
+export function getAppName(name: string): AppName | null {
+  const keys = Object.keys(APPLICATION_INDEX) as AppName[];
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] === name) {
+      return keys[i];
+    }
+    if (APPLICATION_INDEX[keys[i]].App.alias.includes(name)) {
+      return keys[i];
+    }
+  }
+  return null;
+}
+
 export function hasApplication(name: string): boolean {
   return getApplicationMeta(name) !== null;
 }

@@ -7,6 +7,7 @@ import ApplicationController from '@applications/controllers/ApplicationControll
 import { PROMPT_PARAM_INVALID } from '@applications/snippets';
 import TextLabel from '@components/TextLabel';
 import { v4 as uuid } from 'uuid';
+import APPLICATION_INDEX from '@applications/index';
 
 abstract class BaseApplication extends BaseAtomStore {
   public abstract name: AppName;
@@ -35,7 +36,9 @@ abstract class BaseApplication extends BaseAtomStore {
       return;
     }
     if (isShowLabel) {
-      this.displayController.print(<TextLabel text={this.name} />);
+      this.displayController.print(
+        <TextLabel text={APPLICATION_INDEX[this.name].name} />
+      );
     }
     this.run();
   }

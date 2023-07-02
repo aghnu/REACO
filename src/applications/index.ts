@@ -15,67 +15,67 @@ import AppTicTacToe from './AppTicTacToe';
 
 const APPLICATION_INDEX = {
   projects: {
-    name: 'projects',
+    name: 'Projects',
     App: AppProjects,
     desc: 'list all the projects that I worked on',
   },
   portfolio: {
-    name: 'portfolio',
+    name: 'Portfolio',
     App: AppPortfolio,
     desc: 'print my portfolios',
   },
   sitemap: {
-    name: 'sitemap',
+    name: 'Sitemap',
     App: AppSitemap,
     desc: 'display site map',
   },
   contact: {
-    name: 'contact',
+    name: 'Contact',
     App: AppContact,
     desc: 'list my contact information',
   },
   home: {
-    name: 'home',
+    name: 'Home',
     App: AppHome,
     desc: 'display web home page',
   },
   keyboard: {
-    name: 'keyboard',
+    name: 'Keyboard',
     App: AppKeyboard,
     desc: 'open/close the virtual keyboard',
   },
   clear: {
-    name: 'clear',
+    name: 'Clear',
     App: AppClear,
     desc: 'clear the terminal screen',
   },
   location: {
-    name: 'location',
+    name: 'Location',
     App: AppLocation,
     desc: 'print my current timezone',
   },
   theme: {
-    name: 'theme',
+    name: 'Theme',
     App: AppTheme,
     desc: 'change console theme',
   },
   help: {
-    name: 'help',
+    name: 'Help',
     App: AppHelp,
     desc: 'list all the supported commands',
   },
   skills: {
-    name: 'skills',
+    name: 'Skills',
     App: AppSkills,
     desc: 'list my technical skills',
   },
   about: {
-    name: 'about',
+    name: 'About',
     App: AppAbout,
     desc: 'display information about this website',
   },
   tictactoe: {
-    name: 'tictactoe',
+    name: 'Tic Tac Toe',
     App: AppTicTacToe,
     desc: 'play tic tac toe against REACO',
   },

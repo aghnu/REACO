@@ -1,7 +1,7 @@
 import BaseAtomStore from '@base/BaseAtomStore';
 import { systemState, applicationState } from '@/store';
 import DisplayController from './DisplayController';
-import { getApplicationMeta } from '@utils/helpers';
+import { getAppName } from '@utils/helpers';
 import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX, { APPLICATION_EXCLUDE_LOCK } from '@/applications';
 import TextRaw from '@components/TextRaw';
@@ -81,13 +81,13 @@ class ApplicationController extends BaseAtomStore {
   public runApplicationFromArgs(args: string[]) {
     if (args.length === 0) return;
 
-    const applicationMeta = getApplicationMeta(args[0]);
-    if (applicationMeta === null) {
+    const appName = getAppName(args[0]);
+    if (appName === null) {
       this.displayController.print(<TextLabel text="Command Not Found" />);
       return;
     }
 
-    this.runApplication(applicationMeta.name, { args });
+    this.runApplication(appName, { args });
   }
 
   public async runApplicationFromArgsAsync(args: string[]): Promise<void> {
