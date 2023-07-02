@@ -70,6 +70,17 @@ export function getKeyLabel(key: string): string {
   return key;
 }
 
+export function getShortLabel(key: string): string {
+  if (key === 'Backspace') return 'Ba';
+  if (key === 'Upper') return 'Up';
+  if (key === 'Lower') return 'Lo';
+  if (key === 'Enter') return 'En';
+  if (key === '?123') return '!?';
+  if (key === 'ABC') return 'Aa';
+
+  return getKeyLabel(key);
+}
+
 let lockTempFuncLock: boolean = false;
 function lockTempFunc(callback: () => void) {
   if (lockTempFuncLock) return;

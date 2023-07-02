@@ -1,9 +1,17 @@
 import usePointerClick from '@hooks/usePointerClick';
 import styles from '@styles/components/virtual-keyboard.module.scss';
 import { useAtomValue } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getClassName } from '@utils/helpers';
 import type { KeySize, KeyVariant } from '@type/KeyboardTypes';
+import {
+  getKeyLabel,
+  getKeySize,
+  getKeyVariant,
+  getIsAllowHold,
+  getShortLabel,
+} from '@utils/keyboard';
+import { globalStyleState } from '@store/index';
 
 function getKeySizeClass(size: KeySize) {
   if (size === 'mid') return styles['key--mid'];
@@ -21,22 +29,27 @@ function isKeyEventMatchId(e: KeyboardEvent, keyId: string) {
 }
 
 const KeyPad = ({
-  label,
   keyId,
-  size = 'small',
-  variant = 'norm',
-  isAllowHold = true,
   onKeyClick = () => {},
 }: {
-  label: string;
   keyId: string;
-  size?: KeySize;
-  variant?: KeyVariant;
-  isAllowHold?: boolean;
   onKeyClick?: () => void;
 }) => {
+  const breakpoint = useAtomValue(globalStyleState.breakpointAtom);
+  const label = useMemo(
+    () =>
+      breakpoint === '--bp-narrower'
+        ? getShortLabel(keyId)
+        : getKeyLabel(keyId),
+    [keyId, breakpoint]
+  );
+  const size = useMemo(() => getKeySize(keyId), [keyId]);
+  const variant = useMemo(() => getKeyVariant(keyId), [keyId]);
+
   const [keyEl, setKeyEl] = useState<HTMLDivElement | null>(null);
+  const isAllowHold = useMemo(() => getIsAllowHold(keyId), [keyId]);
   const { pointerDownAtom } = usePointerClick(keyEl, onKeyClick, isAllowHold);
+
   const pointerDown = useAtomValue(pointerDownAtom);
   const [isPhysicalKeydown, setIsPhysicalKeydown] = useState(false);
 
