@@ -133,3 +133,9 @@
     @content;
   }
 }
+
+@mixin width-wide() {
+  @media only screen and (max-width: $bp-wide) {
+    @content;
+  }
+}
