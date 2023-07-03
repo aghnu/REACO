@@ -6,7 +6,6 @@ export interface GlobalStyleColor {
   '--color-warn': string;
   '--color-calm': string;
   '--color-background': string;
-  '--color-background-fade': string;
 }
 
 export type DisplayThemeMode = 'dark' | 'light';

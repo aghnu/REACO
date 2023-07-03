@@ -1,9 +1,5 @@
 .virtual-keyboard {
   @include mixin-center-children;
-  background-color: var(--color-background-fade);
-  padding: 0.5em 0.5em 0.75em 0.5em;
-  border-radius: 0.5em;
-  overflow: hidden;
   font-size: 0.9rem;
 
   .desktop {
@@ -66,7 +62,7 @@
     @include mixin-center-children;
     @include mixin-w-h-fill(100%, fit-content);
 
-    padding: 0 0.5em 0.5em 0.5em;
+    padding: 0 0.4em 0.75em 0.4em;
     gap: 0.5em;
 
     opacity: 0.75;
@@ -99,7 +95,7 @@
       .pad {
         @include mixin-disable-selection;
         position: absolute;
-        padding: 0.17em;
+        padding: 0.175em;
         height: 100%;
         width: 100%;
         bottom: 0;
@@ -118,7 +114,7 @@
 
         border: 0.125em solid;
         border-radius: 0.5em;
-        background-color: var(--color-background-fade);
+        background-color: var(--color-background);
         overflow: hidden;
         padding-top: 0.3em;
         padding-left: 0.4em;

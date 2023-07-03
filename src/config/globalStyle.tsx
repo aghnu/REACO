@@ -8,7 +8,6 @@ export const defaultGlobalStyleColorDark: GlobalStyleColor = {
   '--color-warn': '#b70c0f',
   '--color-calm': '#005fd7',
   '--color-background': '#02131e',
-  '--color-background-fade': '#091923',
 };
 
 export const defaultGlobalStyleColorLight: GlobalStyleColor = {
@@ -19,5 +18,4 @@ export const defaultGlobalStyleColorLight: GlobalStyleColor = {
   '--color-warn': '#b70c0f',
   '--color-calm': '#005fd7',
   '--color-background': '#ffeeee',
-  '--color-background-fade': '#fbe9e9',
 };
