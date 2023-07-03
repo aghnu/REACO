@@ -8,14 +8,6 @@ export const HOME_WELCOME = (
   </p>
 );
 
-export const HOME_NAV_HELP = (
-  <p>
-    To navigate the site, you can either type commands into the console or click
-    on the <span className="gl-underline">underlined</span> elements. Here are
-    some useful commands:
-  </p>
-);
-
 export const HOME_WELCOME_COWSAY_FRAME_1 = (
   <>
     <span className="gl-color-text-desc">

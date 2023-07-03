@@ -2,9 +2,9 @@ import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import {
   HOME_WELCOME,
-  HOME_NAV_HELP,
   HOME_WELCOME_COWSAY_FRAME_1,
   HOME_WELCOME_COWSAY_FRAME_2,
+  HELP_DESC,
   PROMPT_SEP,
   PROMPT_RESUME,
 } from './snippets';
@@ -31,7 +31,7 @@ class AppHome extends BaseApplication {
     }, 500);
     this.print(PROMPT_RESUME);
     this.print(PROMPT_SEP);
-    this.print(HOME_NAV_HELP);
+    this.print(HELP_DESC);
     this.print(<br />);
     this.runSubProcess('help', ['help']);
     this.runSubProcess('help', ['portfolio']);
