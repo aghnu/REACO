@@ -133,7 +133,9 @@
         &--func {
           border-color: var(--color-desc);
           color: var(--color-desc);
-          font-size: 0.875em;
+          p {
+            font-size: 0.875em;
+          }
         }
       }
     }
