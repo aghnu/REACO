@@ -1,37 +1,40 @@
-import KeyPad from './KeyPad';
 import styles from '@styles/components/virtual-keyboard.module.scss';
-import KeyboardController from '@applications/controllers/KeyboardController';
-import { getKeyHandler, KEYS_DISPLAY_LETTER } from '@utils/keyboard';
-import { type KeySets } from '@type/KeyboardTypes';
-import { useState } from 'react';
-import SystemInput from './SystemInput';
+import { KEYS_DISPLAY_LETTER } from '@utils/keyboard';
+import { type KeySetsSet } from '@type/KeyboardTypes';
+import { useCallback, useMemo, useState } from 'react';
+import { globalStyleState } from '@store/index';
+import { useAtomValue } from 'jotai';
+import KeyboardDesktop from './KeyboardDesktop';
+import KeyboardMobile from './KeyboardMobile';
 
 const VirtualKeyboard = () => {
-  const keyboardController = KeyboardController.getInstance();
-  const [keySet, setKeySet] = useState<KeySets>(KEYS_DISPLAY_LETTER);
+  const [keySetsSet, setKeySetsSet] = useState<KeySetsSet>(KEYS_DISPLAY_LETTER);
+  const breakpoint = useAtomValue(globalStyleState.breakpointAtom);
+  const isMobileWidth = useMemo(
+    () =>
+      breakpoint === '--bp-narrower' ||
+      breakpoint === '--bp-narrow' ||
+      breakpoint === '--bp-wide',
+    [breakpoint]
+  );
+
+  const handleChangeKeySet = useCallback((k: KeySetsSet) => {
+    setKeySetsSet(k);
+  }, []);
 
   return (
     <div className={styles['virtual-keyboard']}>
-      <SystemInput />
-      {keySet.map((row, i) => (
-        <div className={styles.row} key={i}>
-          {row.map((key, ii) => (
-            <KeyPad
-              key={ii}
-              keyId={key}
-              onKeyClick={getKeyHandler(
-                key,
-                (keySet) => {
-                  setKeySet(keySet);
-                },
-                () => {
-                  keyboardController.inputKey(key);
-                }
-              )}
-            />
-          ))}
-        </div>
-      ))}
+      {isMobileWidth ? (
+        <KeyboardMobile
+          keySetsMobile={keySetsSet.mobile}
+          onChangeKeySet={handleChangeKeySet}
+        />
+      ) : (
+        <KeyboardDesktop
+          keySetsDesktop={keySetsSet.desktop}
+          onChangeKeySet={handleChangeKeySet}
+        />
+      )}
     </div>
   );
 };
