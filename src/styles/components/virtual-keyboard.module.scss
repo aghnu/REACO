@@ -1,5 +1,10 @@
 .virtual-keyboard {
   @include mixin-center-children;
+  background-color: var(--color-background-fade);
+  padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
   .desktop {
     @include mixin-w-h-fill(100%, fit-content);
 
@@ -63,16 +68,13 @@
     padding: 0 0.5rem 0.5rem 0.5rem;
     gap: 0.5rem;
 
-    .icon {
-      opacity: 0.75;
-    }
+    opacity: 0.75;
 
     input {
       @include override_default_input();
       @include mixin-w-h-fill();
 
       font-size: 0.875em;
-      opacity: 0.75;
 
       @include placeholder {
         color: var(--color-plain);
@@ -115,7 +117,7 @@
 
         border: 0.125rem solid;
         border-radius: 0.5rem;
-        background-color: var(--color-background);
+        background-color: var(--color-background-fade);
         overflow: hidden;
         padding-top: 0.3rem;
         padding-left: 0.4rem;
