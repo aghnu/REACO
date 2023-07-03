@@ -43,7 +43,6 @@ $keyboard-gap: 0.35em;
 
   .mobile {
     @include mixin-w-h-fill(100%, fit-content);
-    min-width: 20em;
 
     .rows-container {
       display: flex;

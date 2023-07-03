@@ -9,7 +9,10 @@
 
 .container-console {
   @include mixin-w-h-fill(calc(100% - #{$padding-container-main} * 2));
-  max-width: 62.5rem;
+
+  min-width: $width-container-min;
+  max-width: $width-container-max;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
