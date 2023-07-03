@@ -95,6 +95,7 @@ class GlobalStyleController extends BaseAtomStore {
       case '--bp-narrow':
         this.updateRootFontSize(13);
         break;
+      case '--bp-wide':
       case null:
         this.updateRootFontSize(16);
     }
