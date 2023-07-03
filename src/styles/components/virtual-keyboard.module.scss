@@ -1,6 +1,12 @@
+$keyboard-gap: 0.35em;
+
 .virtual-keyboard {
   @include mixin-center-children;
   font-size: 0.9rem;
+  background-color: var(--color-background-fade);
+  border-radius: 0.5em;
+
+  padding: 0 $padding-content $padding-content $padding-content;
 
   .desktop {
     @include mixin-w-h-fill(100%, fit-content);
@@ -58,20 +64,24 @@
     }
   }
 
+  .rows-container {
+    gap: $keyboard-gap;
+  }
+
   .direct-input-container {
     @include mixin-center-children;
-    @include mixin-w-h-fill(100%, fit-content);
+    @include mixin-w-h-fill(100%, 2.65rem);
 
-    padding: 0 0.4em 0.75em 0.4em;
+    padding: 0 0.4em;
     gap: 0.5em;
-
-    opacity: 0.75;
 
     input {
       @include override_default_input();
       @include mixin-w-h-fill();
+      @include global-root-font();
 
-      font-size: 0.875em;
+      font-size: 0.9em;
+      font-weight: 400;
 
       @include placeholder {
         color: var(--color-plain);
@@ -83,6 +93,7 @@
   .row {
     @include mixin-center-children;
     @include mixin-w-h-fill(100%, 2.7em);
+    gap: $keyboard-gap;
 
     .key {
       @include mixin-disable-selection;
@@ -95,7 +106,6 @@
       .pad {
         @include mixin-disable-selection;
         position: absolute;
-        padding: 0.175em;
         height: 100%;
         width: 100%;
         bottom: 0;
@@ -114,7 +124,7 @@
 
         border: 0.125em solid;
         border-radius: 0.5em;
-        background-color: var(--color-background);
+        background-color: var(--color-background--fade);
         overflow: hidden;
         padding-top: 0.3em;
         padding-left: 0.4em;

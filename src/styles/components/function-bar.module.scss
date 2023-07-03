@@ -1,5 +1,6 @@
 .function-bar {
   @include mixin-center-children;
+  padding: 0 $padding-content;
   .function-bar-container {
     @include mixin-w-h-fill;
     min-width: fit-content;
