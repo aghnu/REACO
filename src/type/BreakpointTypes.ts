@@ -4,4 +4,4 @@ export interface Breakpoints {
   '--bp-wide': number;
 }
 
-export type BreakpointName = keyof Breakpoints;
+export type BreakpointName = keyof Breakpoints | '--bp-infinity' | '--bp-init';

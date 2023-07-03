@@ -23,19 +23,23 @@ const VirtualKeyboard = () => {
   }, []);
 
   return (
-    <div className={styles['virtual-keyboard']}>
-      {isMobileWidth ? (
-        <KeyboardMobile
-          keySetsMobile={keySetsSet.mobile}
-          onChangeKeySet={handleChangeKeySet}
-        />
-      ) : (
-        <KeyboardDesktop
-          keySetsDesktop={keySetsSet.desktop}
-          onChangeKeySet={handleChangeKeySet}
-        />
+    <>
+      {breakpoint !== '--bp-init' && (
+        <div className={styles['virtual-keyboard']}>
+          {isMobileWidth ? (
+            <KeyboardMobile
+              keySetsMobile={keySetsSet.mobile}
+              onChangeKeySet={handleChangeKeySet}
+            />
+          ) : (
+            <KeyboardDesktop
+              keySetsDesktop={keySetsSet.desktop}
+              onChangeKeySet={handleChangeKeySet}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
