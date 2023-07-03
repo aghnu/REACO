@@ -46,18 +46,17 @@ export const KEYS_DISPLAY_SYMBOL = {
   ] as const,
 };
 /* eslint-enable prettier/prettier */
+export const KEYS_ALLOWED_ADDITIONAL = [
+  ['%', '^', '=', '|', '`', '~'],
+  ['{', '}', '[', ']', '<', '>'],
+];
 
 const KEYS_ALL = (() => {
   return [
-    ...KEYS_DISPLAY_LETTER.mobile.reduce<string[]>((acum, keys) => {
-      return [...acum, ...keys];
-    }, []),
-    ...KEYS_DISPLAY_SYMBOL.mobile.reduce<string[]>((acum, keys) => {
-      return [...acum, ...keys];
-    }, []),
-    ...KEYS_DISPLAY_LETTER_CAP.mobile.reduce<string[]>((acum, keys) => {
-      return [...acum, ...keys];
-    }, []),
+    ...KEYS_DISPLAY_LETTER.mobile.flat(),
+    ...KEYS_DISPLAY_SYMBOL.mobile.flat(),
+    ...KEYS_DISPLAY_LETTER_CAP.mobile.flat(),
+    ...KEYS_ALLOWED_ADDITIONAL.flat(),
   ];
 })();
 
