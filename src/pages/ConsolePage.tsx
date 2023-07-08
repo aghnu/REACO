@@ -26,7 +26,10 @@ const ConsolePage = () => {
         <ActionBar />
         <div className={styles.top} ref={setDisplayContainerEl}>
           <Display onDisplayPrintUpdate={handlerDisplayUpdate} />
-          <Prompt onUserInputUpdate={handlerDisplayUpdate} />
+          <Prompt
+            onUserInputUpdate={handlerDisplayUpdate}
+            onSuggestionChange={handlerDisplayUpdate}
+          />
         </div>
         <div className={styles.bottom}>
           {isVirtualKeyboardEnabled && <VirtualKeyboard />}

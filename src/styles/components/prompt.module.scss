@@ -20,5 +20,12 @@
   }
 }
 
-// .user-input {
-// }
+.suggestion-container {
+  @include mixin-center-children;
+  padding: 0 $padding-content;
+  height: $line-height;
+
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 0.5rem;
+}
