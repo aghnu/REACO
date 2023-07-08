@@ -18,9 +18,9 @@ class AppContact extends BaseApplication {
     this.print(<br />);
     this.runSubProcess('location');
     this.print(<br />);
-    this.print(PROMPT_CONTACT_EMAIL);
     this.print(PROMPT_CONTACT_GITHUB);
     this.print(PROMPT_CONTACT_LINKEDIN);
+    this.print(PROMPT_CONTACT_EMAIL);
   }
 
   public cleanup() {}

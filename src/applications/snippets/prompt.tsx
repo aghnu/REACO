@@ -25,9 +25,9 @@ export const PROMPT_CONTACT_EMAIL = (
     right={
       <TextLink
         className="gl-color-text-desc"
-        link={'mailto:gengyuan@ualberta.ca'}
+        link={'mailto:gengyuanhuang@outlook.com'}
       >
-        gengyuan@ualberta.ca
+        gengyuanhuang@outlook.com
       </TextLink>
     }
   />
