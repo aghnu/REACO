@@ -4,29 +4,21 @@ import styles from '@styles/components/prompt.module.scss';
 import TextRaw from '@components/TextRaw';
 import { useEffect, useMemo } from 'react';
 import { hasApplication } from '@utils/helpers';
+import useUserInputCmdSplit from '@hooks/useUserInputCmdSplit';
 
 const UserInput = ({
   onUserInputUpdate = () => {},
 }: {
   onUserInputUpdate?: () => void;
 }) => {
-  const userInput = useAtomValue(systemState.userInputAtom);
-  const userCmd = useAtomValue(systemState.userCmdAtom);
   const appPrompt = useAtomValue(systemState.promptAppTopAtom);
 
+  const [userInputCmd, userInputCmdRest, userCmd] = useUserInputCmdSplit();
   const isUserCmdExist = useMemo(() => hasApplication(userCmd), [userCmd]);
-  const [userInputCmd, userInputCmdRest] = useMemo(() => {
-    if (userCmd === '') return ['', userInput];
-    const searchIndex = userInput.indexOf(userCmd);
-    if (searchIndex === -1) return ['', userInput];
-
-    const cutIndex = searchIndex + userCmd.length;
-    return [userInput.slice(0, cutIndex), userInput.slice(cutIndex)];
-  }, [userInput, userCmd]);
 
   useEffect(() => {
     onUserInputUpdate();
-  }, [userInput, onUserInputUpdate]);
+  }, [userInputCmd, userInputCmdRest, onUserInputUpdate]);
 
   useEffect(() => {
     if (appPrompt === null) return;
