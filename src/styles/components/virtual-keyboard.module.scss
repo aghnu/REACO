@@ -69,10 +69,9 @@ $keyboard-gap: 0.35em;
 
   .direct-input-container {
     @include mixin-center-children;
-    @include mixin-w-h-fill(100%, 2.65rem);
+    @include mixin-w-h-fill(100%, 3rem);
 
-    padding: 0 0.4em;
-    gap: 0.5em;
+    gap: 0.25em;
 
     input {
       @include override_default_input();

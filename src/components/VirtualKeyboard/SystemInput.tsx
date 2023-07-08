@@ -22,7 +22,7 @@ const SystemInput = () => {
   }, [keyboardController]);
 
   const iconElement = useMemo(
-    () => icon.keyboard('var(--color-plain)', '100%'),
+    () => icon.input('var(--color-plain)', '100%'),
     []
   );
 
