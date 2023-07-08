@@ -11,7 +11,6 @@ import APPLICATION_INDEX from '@applications/index';
 
 abstract class BaseApplication extends BaseAtomStore {
   public abstract name: AppName;
-  public static alias: string[] = [];
   protected id: string = uuid();
 
   protected args: string[] = [];

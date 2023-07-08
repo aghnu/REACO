@@ -11,7 +11,6 @@ import {
 
 class AppHome extends BaseApplication {
   public name: AppName = 'home';
-  public static alias = ['/'];
   protected animationInterval: number | undefined = undefined;
 
   protected validate(): boolean {

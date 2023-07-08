@@ -4,7 +4,6 @@ import { systemState } from '@store/index';
 
 class AppKeyboard extends BaseApplication {
   public name: AppName = 'keyboard';
-  public static alias = ['key'];
 
   private toggleKeyboard() {
     this.storeSetAtom(

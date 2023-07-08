@@ -43,7 +43,7 @@ export function getApplicationMeta(name: string): AppMeta | null {
     if (keys[i] === name) {
       return APPLICATION_INDEX[name];
     }
-    if (APPLICATION_INDEX[keys[i]].App.alias.includes(name)) {
+    if (([...APPLICATION_INDEX[keys[i]].alias] as string[]).includes(name)) {
       return APPLICATION_INDEX[keys[i]];
     }
   }
@@ -56,7 +56,7 @@ export function getAppName(name: string): AppName | null {
     if (keys[i] === name) {
       return keys[i];
     }
-    if (APPLICATION_INDEX[keys[i]].App.alias.includes(name)) {
+    if (([...APPLICATION_INDEX[keys[i]].alias] as string[]).includes(name)) {
       return keys[i];
     }
   }

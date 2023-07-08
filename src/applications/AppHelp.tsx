@@ -9,7 +9,6 @@ import ApplicationController from './controllers/ApplicationController';
 
 class AppHelp extends BaseApplication {
   public name: AppName = 'help';
-  public static alias = ['man'];
 
   private printUsage() {
     this.print(
@@ -32,6 +31,7 @@ class AppHelp extends BaseApplication {
         <TextSplit
           left={
             <TextButton
+              className="gl-color-text-desc"
               onClick={() => {
                 ApplicationController.getInstance().runApplicationFromArgs([
                   name,

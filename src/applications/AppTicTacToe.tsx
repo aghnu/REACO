@@ -14,7 +14,6 @@ import TicTacToeMinMax, {
 
 class AppTicTacToe extends BaseApplication {
   public name: AppName = 'tictactoe';
-  public static alias = ['ttt'];
   private readonly playerMove: Move = 'x';
   private readonly reacoMove: Move = 'o';
   private readonly board: Board = [

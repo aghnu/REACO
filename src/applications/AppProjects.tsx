@@ -5,7 +5,6 @@ import TextProject from '@components/TextProject';
 
 class AppProjects extends BaseApplication {
   public name: AppName = 'projects';
-  public static alias = ['project'];
 
   protected validate(): boolean {
     return this.validateArgs();

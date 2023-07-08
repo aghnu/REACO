@@ -6,7 +6,6 @@ import { getClassName } from '@utils/helpers';
 
 class AppSitemap extends BaseApplication {
   public name: AppName = 'sitemap';
-  public static alias = ['ls'];
 
   protected validate(): boolean {
     return this.validateArgs();
