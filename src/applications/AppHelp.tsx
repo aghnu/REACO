@@ -27,28 +27,23 @@ class AppHelp extends BaseApplication {
 
   private printHelpCmd(name: AppName) {
     this.print(
-      <>
-        <TextSplit
-          left={
-            <TextButton
-              className="gl-color-text-desc"
-              onClick={() => {
-                ApplicationController.getInstance().runApplicationFromArgs([
-                  name,
-                ]);
-              }}
-            >
-              <p className="gl-word-break-normal">{name}</p>
-            </TextButton>
-          }
-          right={
-            <p className="gl-word-break-normal">
-              {APPLICATION_INDEX[name].desc}
-            </p>
-          }
-        />
-        <br />
-      </>
+      <TextSplit
+        left={
+          <TextButton
+            className="gl-color-text-desc"
+            onClick={() => {
+              ApplicationController.getInstance().runApplicationFromArgs([
+                name,
+              ]);
+            }}
+          >
+            <p className="gl-word-break-normal">{name}</p>
+          </TextButton>
+        }
+        right={
+          <p className="gl-word-break-normal">{APPLICATION_INDEX[name].desc}</p>
+        }
+      />
     );
   }
 
@@ -83,8 +78,8 @@ class AppHelp extends BaseApplication {
 
     const cmds = Object.keys(APPLICATION_INDEX) as AppName[];
     this.print(HELP_DESC);
-    this.print(<br />);
     cmds.forEach((cmd) => {
+      this.print(<br />);
       this.printHelpCmd(cmd);
     });
     this.stop();

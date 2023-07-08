@@ -99,7 +99,6 @@ class ApplicationController extends BaseAtomStore {
       this.displayController.print(<br />);
       return;
     }
-
     this.displayController.print(<TextRaw type="p" text={'> ' + input} />);
     await this.runApplicationFromArgsAsync(args);
   }

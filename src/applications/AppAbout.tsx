@@ -33,7 +33,6 @@ class AppAbout extends BaseApplication {
     this.runSubProcess('contact');
     this.print(PROMPT_SEP);
     this.print(<p>Designed & Built by Gengyuan Huang</p>);
-    this.print(<br />);
   }
 
   protected cleanup(): void {}

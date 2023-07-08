@@ -13,8 +13,8 @@ class AppPortfolio extends BaseApplication {
   protected run(): void {
     const datas: DataProject[] = projects;
     datas.forEach((d) => {
-      this.print(<TextPortfolio data={d} />);
       this.print(<br />);
+      this.print(<TextPortfolio data={d} />);
     });
   }
 

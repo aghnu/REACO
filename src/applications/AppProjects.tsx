@@ -11,18 +11,22 @@ class AppProjects extends BaseApplication {
   }
 
   protected run(): void {
+    // past
+    this.print(<br />);
     this.print(<p className="gl-color-text-desc">Past Projects: </p>);
-    this.print(<br />);
-    past.reverse().forEach((d) => {
-      this.print(<TextProject data={d} />);
+    for (let i = past.length - 1; i >= 0; i--) {
       this.print(<br />);
-    });
+      this.print(<TextProject data={past[i]} />);
+    }
+
+    // recent
+    this.print(<br />);
     this.print(<p className="gl-color-text-desc">Recent Projects: </p>);
-    this.print(<br />);
-    recent.reverse().forEach((d) => {
-      this.print(<TextProject data={d} />);
+    for (let i = recent.length - 1; i >= 0; i--) {
       this.print(<br />);
-    });
+      this.print(<TextProject data={recent[i]} />);
+    }
+
     this.stop();
   }
 

@@ -31,7 +31,7 @@ const APPLICATION_INDEX = {
   sitemap: {
     name: 'Sitemap',
     cmd: 'sitemap',
-    alias: [],
+    alias: ['ls'],
     App: AppSitemap,
     desc: 'display site map',
   },

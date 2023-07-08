@@ -37,7 +37,6 @@ class AppHome extends BaseApplication {
     this.runSubProcess('help', ['skills']);
     this.print(PROMPT_SEP);
     this.runSubProcess('contact');
-    this.print(PROMPT_SEP);
   }
 
   protected cleanup() {

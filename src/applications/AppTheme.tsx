@@ -14,7 +14,6 @@ class AppTheme extends BaseApplication {
     this.themeModes.forEach((name) => {
       this.print(<p>&nbsp;&nbsp;-&nbsp;{name}</p>);
     });
-    this.print(<br />);
   }
 
   protected validate(): boolean {
@@ -43,7 +42,6 @@ class AppTheme extends BaseApplication {
     const searchIndex = (this.themeModes as string[]).indexOf(option);
     if (searchIndex === -1) {
       this.print(<p>Cannot change theme</p>);
-      this.print(<br />);
       this.stop();
       return;
     }
@@ -52,7 +50,6 @@ class AppTheme extends BaseApplication {
       this.themeModes[searchIndex]
     );
     this.print(<p>Change theme to {this.themeModes[searchIndex]}</p>);
-    this.print(<br />);
     this.stop();
   }
 

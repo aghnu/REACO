@@ -12,8 +12,8 @@ class AppSkills extends BaseApplication {
 
   protected run(): void {
     skills.forEach((s) => {
-      this.print(<TextSkill data={s} />);
       this.print(<br />);
+      this.print(<TextSkill data={s} />);
     });
   }
 
