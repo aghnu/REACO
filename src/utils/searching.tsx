@@ -10,7 +10,24 @@ const searchFuse = new Fuse(Object.values(APPLICATION_INDEX), {
   isCaseSensitive: true,
   includeScore: true,
   includeMatches: true,
-  keys: ['name', 'desc', 'alias'],
+  keys: [
+    {
+      name: 'cmd',
+      weight: 0.35,
+    },
+    {
+      name: 'alias',
+      weight: 0.35,
+    },
+    {
+      name: 'name',
+      weight: 0.2,
+    },
+    {
+      name: 'desc',
+      weight: 0.1,
+    },
+  ],
 });
 
 export function searchApplicationIndex(
