@@ -12,6 +12,7 @@ import AppProjects from './AppProjects';
 import AppPortfolio from './AppPortfolio';
 import AppAbout from './AppAbout';
 import AppTicTacToe from './AppTicTacToe';
+import AppRng from './AppRng';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -105,11 +106,40 @@ const APPLICATION_INDEX = {
     App: AppTicTacToe,
     desc: 'play tic tac toe against REACO',
   },
+  rng: {
+    name: 'Random Number Generator',
+    cmd: 'rng',
+    alias: [],
+    App: AppRng,
+    desc: 'Generate a random number',
+  },
 } as const;
 
 // special excluding list
 const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard', 'theme'];
 const APPLICATION_EXCLUDE_LOCK: AppName[] = ['keyboard', 'theme'];
+const APPLICATION_CATE_FUN: AppName[] = ['theme', 'tictactoe', 'rng'];
+const APPLICATION_CATE_INFO: AppName[] = [
+  'portfolio',
+  'projects',
+  'skills',
+  'contact',
+  'location',
+];
+const APPLICATION_CATE_CORE: AppName[] = [
+  'home',
+  'about',
+  'sitemap',
+  'keyboard',
+  'clear',
+  'help',
+];
 
 export default APPLICATION_INDEX;
-export { APPLICATION_EXCLUDE_LIST_ROUTE, APPLICATION_EXCLUDE_LOCK };
+export {
+  APPLICATION_EXCLUDE_LIST_ROUTE,
+  APPLICATION_EXCLUDE_LOCK,
+  APPLICATION_CATE_FUN,
+  APPLICATION_CATE_CORE,
+  APPLICATION_CATE_INFO,
+};

@@ -1,9 +1,12 @@
 import BaseApplication from '@base/BaseApplication';
 import { type AppName } from '@type/ApplicationTypes';
-import APPLICATION_INDEX from '.';
-import { PROMPT_PARAM_INVALID } from './snippets';
+import APPLICATION_INDEX, {
+  APPLICATION_CATE_FUN,
+  APPLICATION_CATE_CORE,
+  APPLICATION_CATE_INFO,
+} from '.';
+import { PROMPT_PARAM_INVALID, HELP_DESC, PROMPT_SEP } from './snippets';
 import TextSplit from '@components/TextSplit';
-import { HELP_DESC } from './snippets/promptAppHelp';
 import TextButton from '@components/TextButton';
 import ApplicationController from './controllers/ApplicationController';
 
@@ -57,7 +60,6 @@ class AppHelp extends BaseApplication {
 
           this.print(PROMPT_PARAM_INVALID);
           this.printUsage();
-          this.print(<br />);
           return false;
         })();
       case 1:
@@ -68,21 +70,48 @@ class AppHelp extends BaseApplication {
     }
   }
 
-  protected run(): void {
-    if (this.args.length === 2) {
-      const option = this.args[1] as AppName;
-      this.printHelpCmd(option);
-      this.stop();
-      return;
-    }
+  private printHelpSingle() {
+    const option = this.args[1] as AppName;
+    this.printHelpCmd(option);
+    this.stop();
+  }
 
-    const cmds = Object.keys(APPLICATION_INDEX) as AppName[];
+  private printHelpAll() {
+    const cmdsFun = [...APPLICATION_CATE_FUN];
+    const cmdsInfo = [...APPLICATION_CATE_INFO];
+    const cmdsCore = [...APPLICATION_CATE_CORE];
+
     this.print(HELP_DESC);
-    cmds.forEach((cmd) => {
+    this.print(PROMPT_SEP);
+    this.print(<p className="gl-color-text-focus">Fun: </p>);
+    cmdsFun.forEach((cmd) => {
       this.print(<br />);
       this.printHelpCmd(cmd);
     });
+
+    this.print(PROMPT_SEP);
+    this.print(<p className="gl-color-text-focus">Info: </p>);
+    cmdsInfo.forEach((cmd) => {
+      this.print(<br />);
+      this.printHelpCmd(cmd);
+    });
+
+    this.print(PROMPT_SEP);
+    this.print(<p className="gl-color-text-focus">Core: </p>);
+    cmdsCore.forEach((cmd) => {
+      this.print(<br />);
+      this.printHelpCmd(cmd);
+    });
+
     this.stop();
+  }
+
+  protected run(): void {
+    if (this.args.length === 2) {
+      this.printHelpSingle();
+      return;
+    }
+    this.printHelpAll();
   }
 
   protected cleanup(): void {}
