@@ -9,9 +9,11 @@ import KeyboardController from './KeyboardController';
 import RouteController from './RouteController';
 import type BaseApplication from '@base/BaseApplication';
 import TextLabel from '@components/TextLabel';
+import TextButton from '@components/TextButton';
 import { type PromptApp } from '@type/SystemStateTypes';
 import { produce } from 'immer';
 import { v4 as uuid } from 'uuid';
+import { searchApplicationIndex } from '@utils/searching';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
@@ -82,8 +84,27 @@ class ApplicationController extends BaseAtomStore {
     if (args.length === 0) return;
 
     const appName = getAppName(args[0]);
+    const appNameSearch = searchApplicationIndex(args[0]);
     if (appName === null) {
-      this.displayController.print(<TextLabel text="Command Not Found" />);
+      this.displayController.print(
+        <TextLabel text={`${args[0]}: command not found`} />
+      );
+      if (appNameSearch.length !== 0) {
+        this.displayController.print(
+          <p>
+            <TextRaw text="Do you mean " />
+            <TextButton
+              className="gl-color-text-focus"
+              onClick={() => {
+                this.runApplicationFromArgs([appNameSearch[0].cmd]);
+              }}
+            >
+              {appNameSearch[0].cmd}
+            </TextButton>
+            <span>?</span>
+          </p>
+        );
+      }
       return;
     }
 
