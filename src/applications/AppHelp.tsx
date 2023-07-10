@@ -31,6 +31,7 @@ class AppHelp extends BaseApplication {
   private printHelpCmd(name: AppName) {
     this.print(
       <TextSplit
+        type="alt"
         left={
           <TextButton
             className="gl-color-text-desc"
