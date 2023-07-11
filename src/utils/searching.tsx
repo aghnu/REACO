@@ -12,6 +12,7 @@ function helperGetFuse() {
     isCaseSensitive: true,
     includeScore: true,
     includeMatches: true,
+    distance: 10,
     keys: [
       {
         name: 'cmd',
