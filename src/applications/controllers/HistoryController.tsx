@@ -8,6 +8,7 @@ class HistoryController extends BaseAtomStore {
   protected static instance: HistoryController | undefined;
   private historySelectIdx: number | null = null;
   private cleanFunc: (() => void) | undefined;
+  private sideEffectTimeoutInputBlink: number | undefined;
 
   protected constructor() {
     super();
@@ -50,8 +51,13 @@ class HistoryController extends BaseAtomStore {
       this.historySelectIdx === null ? 0 : this.historySelectIdx + 1;
     const historyPrompt =
       historyCurrentPrompt[historyCurrentPrompt.length - index - 1];
-    if (historyPrompt === undefined) return;
-    if (this.historySelectIdx === null && userInputCurrent !== '') return;
+    if (
+      historyPrompt === undefined ||
+      (this.historySelectIdx === null && userInputCurrent !== '')
+    ) {
+      this.blinkInput();
+      return;
+    }
 
     // set prompt
     KeyboardController.getInstance().setInput(historyPrompt.promptMessage);
@@ -60,7 +66,10 @@ class HistoryController extends BaseAtomStore {
 
   private handleNextHistory() {
     // special cases
-    if (this.historySelectIdx === null) return;
+    if (this.historySelectIdx === null) {
+      this.blinkInput();
+      return;
+    }
     if (this.historySelectIdx === 0) {
       KeyboardController.getInstance().setInput('');
       this.historySelectIdx = null;
@@ -130,6 +139,14 @@ class HistoryController extends BaseAtomStore {
 
   public clear() {
     this.storeSetAtom(systemState.historyAtom, new Map());
+  }
+
+  private blinkInput() {
+    window.clearTimeout(this.sideEffectTimeoutInputBlink);
+    this.sideEffectTimeoutInputBlink = window.setTimeout(() => {
+      this.storeSetAtom(systemState.isInputHighLightAtom, false);
+    }, 100);
+    this.storeSetAtom(systemState.isInputHighLightAtom, true);
   }
 }
 

@@ -11,6 +11,7 @@ import { atomWithLocalStorage, base64EncodeFuncs } from '@utils/helpers';
 const userInputAtom = atom('');
 
 const isInputCursorBlinkingAtom = atom(true);
+const isInputHighLightAtom = atom(false);
 const isVirtualKeyboardEnabledAtom = atomWithLocalStorage<boolean>(
   'atom-state__is-virtual-keyboard-enabled',
   false,
@@ -65,6 +66,7 @@ export {
   promptInfoAtom,
   userInputAtom,
   historyAtom,
+  isInputHighLightAtom,
   inputCurrentAtom,
   isInputCursorBlinkingAtom,
   isVirtualKeyboardEnabledAtom,

@@ -12,6 +12,7 @@ const UserInput = ({
   onUserInputUpdate?: () => void;
 }) => {
   const appPrompt = useAtomValue(systemState.promptAppTopAtom);
+  const isInputHighLight = useAtomValue(systemState.isInputHighLightAtom);
 
   const [userInputCmd, userInputCmdRest, userCmd] = useUserInputCmdSplit();
   const isUserCmdExist = useMemo(() => hasApplication(userCmd), [userCmd]);
@@ -29,16 +30,36 @@ const UserInput = ({
     <>
       <span className={styles.userInput}>
         {appPrompt !== null ? (
-          <TextRaw text={appPrompt.input} />
+          <TextRaw
+            text={appPrompt.input}
+            className={
+              isInputHighLight
+                ? 'gl-color-text-plain--reverse'
+                : 'gl-color-text-plain'
+            }
+          />
         ) : (
           <>
             <TextRaw
               className={
-                isUserCmdExist ? 'gl-color-text-calm' : 'gl-color-text-warn'
+                isUserCmdExist
+                  ? isInputHighLight
+                    ? 'gl-color-text-plain--reverse'
+                    : 'gl-color-text-calm'
+                  : isInputHighLight
+                  ? 'gl-color-text-plain--reverse'
+                  : 'gl-color-text-warn'
               }
               text={userInputCmd}
             />
-            <TextRaw text={userInputCmdRest} />
+            <TextRaw
+              text={userInputCmdRest}
+              className={
+                isInputHighLight
+                  ? 'gl-color-text-plain--reverse'
+                  : 'gl-color-text-plain'
+              }
+            />
           </>
         )}
       </span>
