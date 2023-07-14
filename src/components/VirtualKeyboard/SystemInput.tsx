@@ -35,8 +35,16 @@ const SystemInput = () => {
   useEffect(() => {
     const EnterKeyListner = (e: KeyboardEvent) => {
       const key = e.key;
-      if (key !== 'Enter') return;
-      if (isUsingSystemKeyboard.current) keyboardController.inputKey('Enter');
+      if (!isUsingSystemKeyboard.current) return;
+
+      switch (key) {
+        case 'Enter':
+        case 'ArrowUp':
+        case 'ArrowDown':
+          keyboardController.inputKey(key);
+          e.preventDefault();
+          break;
+      }
     };
     document.body.addEventListener('keydown', EnterKeyListner);
 
