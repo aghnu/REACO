@@ -14,6 +14,7 @@ import AppAbout from './AppAbout';
 import AppTicTacToe from './AppTicTacToe';
 import AppRng from './AppRng';
 import AppReset from './AppReset';
+import AppRefresh from './AppRefresh';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -121,11 +122,22 @@ const APPLICATION_INDEX = {
     App: AppReset,
     desc: 'Reset the state of REACO',
   },
+  refresh: {
+    name: 'Refresh',
+    cmd: 'refresh',
+    alias: [],
+    App: AppRefresh,
+    desc: 'Refresh the page',
+  },
 } as const;
 
 // special excluding list
-const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = ['keyboard', 'theme'];
-const APPLICATION_EXCLUDE_LOCK: AppName[] = ['keyboard', 'theme'];
+const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = [
+  'keyboard',
+  'theme',
+  'refresh',
+];
+const APPLICATION_EXCLUDE_LOCK: AppName[] = ['keyboard', 'theme', 'refresh'];
 const APPLICATION_CATE_FUN: AppName[] = ['theme', 'tictactoe', 'rng'];
 const APPLICATION_CATE_INFO: AppName[] = [
   'portfolio',
