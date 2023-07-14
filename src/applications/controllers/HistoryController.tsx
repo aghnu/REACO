@@ -124,6 +124,10 @@ class HistoryController extends BaseAtomStore {
       })
     );
   }
+
+  public clear() {
+    this.storeSetAtom(systemState.historyAtom, new Map());
+  }
 }
 
 export default HistoryController;
