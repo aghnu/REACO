@@ -115,6 +115,9 @@ class HistoryController extends BaseAtomStore {
       systemState.historyAtom,
       produce(currentState, (draft) => {
         const quene = draft.get(type) ?? [];
+        const dupIndex = quene.findIndex((e) => e.promptMessage === message);
+        if (dupIndex !== -1) quene.splice(dupIndex, 1);
+
         quene.push({
           promptMessage: message,
           promptType: type,
