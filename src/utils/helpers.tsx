@@ -89,12 +89,23 @@ export function addLabelToAtom<
  */
 export function atomWithLocalStorage<T = unknown>(
   key: string,
-  initialValue: T
+  initialValue: T,
+  transformFuncs: {
+    set: (data: T) => string;
+    get: (data: string) => T;
+  } = {
+    set: (d) => JSON.stringify(d),
+    get: (d) => JSON.parse(d),
+  }
 ): PrimitiveAtom<T> {
   const getInitialValue = () => {
     const item = localStorage.getItem(key);
     if (item !== null) {
-      return JSON.parse(item);
+      try {
+        return transformFuncs.get(item);
+      } catch (_) {
+        return initialValue;
+      }
     }
     return initialValue;
   };
@@ -105,7 +116,7 @@ export function atomWithLocalStorage<T = unknown>(
       const nextValue =
         typeof update === 'function' ? update(get(baseAtom)) : update;
       set(baseAtom, nextValue);
-      localStorage.setItem(key, JSON.stringify(nextValue));
+      localStorage.setItem(key, transformFuncs.set(nextValue));
     }
   );
   return derivedAtom;
