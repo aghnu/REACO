@@ -1,8 +1,9 @@
 import { version } from '@data/system.json';
+import { Base64 } from 'js-base64';
 
 const STORAGE_KEY_VERSION = 'version' as const;
-const key = btoa(STORAGE_KEY_VERSION);
-const value = btoa(version);
+const key = Base64.encode(STORAGE_KEY_VERSION);
+const value = Base64.encode(version);
 
 export function resetStorage() {
   localStorage.clear();

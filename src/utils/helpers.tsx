@@ -2,6 +2,7 @@ import { type DynamicClassName } from '@type/UtilsTypes';
 import APPLICATION_INDEX from '@applications/index';
 import type { AppMeta, AppName } from '@type/ApplicationTypes';
 import { type PrimitiveAtom, type Atom, atom } from 'jotai';
+import { Base64 } from 'js-base64';
 
 export function getClassName(dynamicClassNames: DynamicClassName) {
   const classNameArray: string[] = [];
@@ -134,6 +135,6 @@ export function atomWithLocalStorage<T = unknown>(
 }
 
 export const base64EncodeFuncs = {
-  get: (d: string) => atob(d),
-  set: (d: string) => btoa(d),
+  get: (d: string) => Base64.decode(d),
+  set: (d: string) => Base64.encode(d),
 };

@@ -18,6 +18,7 @@
     "jotai-devtools": "^0.5.3",
     "jotai-immer": "^0.2.0",
     "jotai-optics": "^0.3.0",
+    "js-base64": "^3.7.5",
     "optics-ts": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
