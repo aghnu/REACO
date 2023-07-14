@@ -44,4 +44,9 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
   },
+  define: {
+    // TODO: https://github.com/jotaijs/jotai-devtools/issues/82
+    // temp patch for jotai-devtools@0.6.0
+    'process.platform': null,
+  },
 });
