@@ -15,11 +15,9 @@ class AppRng extends BaseApplication {
           <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
         </p>
         <p>
-          <p>
-            <TextRaw text="  -" />
-            <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
-            <span>[max range]</span>
-          </p>
+          <TextRaw text="  -" />
+          <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
+          <span>[max range]</span>
         </p>
       </>
     );
