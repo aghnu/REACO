@@ -21,7 +21,12 @@ const promptInfoAtom = atom<PromptInfo>({
   systemDomain: 'aghnu.me',
   systemPath: '/',
 });
-const historyAtom = atom<Map<PromptHistoryType, PromptHistory[]>>(new Map());
+const historyAtom = atomWithLocalStorage<
+  Map<PromptHistoryType, PromptHistory[]>
+>('atom-state__history', new Map(), {
+  get: (d) => new Map(JSON.parse(d)),
+  set: (d) => JSON.stringify(Array.from(d)),
+});
 
 // derived atom
 const promptAppTopAtom = atom<null | PromptApp>((get) => {
