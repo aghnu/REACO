@@ -13,6 +13,7 @@ import AppPortfolio from './AppPortfolio';
 import AppAbout from './AppAbout';
 import AppTicTacToe from './AppTicTacToe';
 import AppRng from './AppRng';
+import AppReset from './AppReset';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -113,6 +114,13 @@ const APPLICATION_INDEX = {
     App: AppRng,
     desc: 'Generate a random number',
   },
+  reset: {
+    name: 'Reset',
+    cmd: 'reset',
+    alias: ['kill'],
+    App: AppReset,
+    desc: 'Reset the state of REACO',
+  },
 } as const;
 
 // special excluding list
@@ -130,9 +138,10 @@ const APPLICATION_CATE_CORE: AppName[] = [
   'home',
   'about',
   'sitemap',
+  'help',
   'keyboard',
   'clear',
-  'help',
+  'reset',
 ];
 
 export default APPLICATION_INDEX;
