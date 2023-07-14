@@ -2,14 +2,16 @@ import { atom } from 'jotai';
 import { breakpoints } from '@config/breakpoints';
 import { type BreakpointName, type Breakpoints } from '@type/BreakpointTypes';
 import { type DisplayThemeMode } from '@type/GlobalStyleTypes';
-import { atomWithLocalStorage } from '@utils/helpers';
+import { atomWithLocalStorage, base64EncodeFuncs } from '@utils/helpers';
 
 // atoms
 const desktopWidthAtom = atom(0);
 const desktopHeightAtom = atom(0);
 const displayThemeMode = atomWithLocalStorage<DisplayThemeMode>(
   'atom-state__display-theme-mode',
-  'light'
+  'light',
+  undefined,
+  base64EncodeFuncs
 );
 
 // derived atoms

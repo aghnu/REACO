@@ -5,7 +5,7 @@ import type {
   PromptHistory,
   PromptHistoryType,
 } from '@type/SystemStateTypes';
-import { atomWithLocalStorage } from '@utils/helpers';
+import { atomWithLocalStorage, base64EncodeFuncs } from '@utils/helpers';
 
 // atoms
 const userInputAtom = atom('');
@@ -13,7 +13,9 @@ const userInputAtom = atom('');
 const isInputCursorBlinkingAtom = atom(true);
 const isVirtualKeyboardEnabledAtom = atomWithLocalStorage<boolean>(
   'atom-state__is-virtual-keyboard-enabled',
-  false
+  false,
+  undefined,
+  base64EncodeFuncs
 );
 const promptAppAtom = atom<PromptApp[]>([]);
 const promptInfoAtom = atom<PromptInfo>({
@@ -23,10 +25,15 @@ const promptInfoAtom = atom<PromptInfo>({
 });
 const historyAtom = atomWithLocalStorage<
   Map<PromptHistoryType, PromptHistory[]>
->('atom-state__history', new Map(), {
-  get: (d) => new Map(JSON.parse(d)),
-  set: (d) => JSON.stringify(Array.from(d)),
-});
+>(
+  'atom-state__history',
+  new Map(),
+  {
+    get: (d) => new Map(JSON.parse(d)),
+    set: (d) => JSON.stringify(Array.from(d)),
+  },
+  base64EncodeFuncs
+);
 
 // derived atom
 const promptAppTopAtom = atom<null | PromptApp>((get) => {

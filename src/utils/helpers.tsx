@@ -96,13 +96,21 @@ export function atomWithLocalStorage<T = unknown>(
   } = {
     set: (d) => JSON.stringify(d),
     get: (d) => JSON.parse(d),
+  },
+  encodeFuncs: {
+    set: (data: string) => string;
+    get: (data: string) => string;
+  } = {
+    set: (d) => d,
+    get: (d) => d,
   }
 ): PrimitiveAtom<T> {
+  const keyReal = encodeFuncs.set(key);
   const getInitialValue = () => {
-    const item = localStorage.getItem(key);
+    const item = localStorage.getItem(keyReal);
     if (item !== null) {
       try {
-        return transformFuncs.get(item);
+        return transformFuncs.get(encodeFuncs.get(item));
       } catch (_) {
         return initialValue;
       }
@@ -116,8 +124,16 @@ export function atomWithLocalStorage<T = unknown>(
       const nextValue =
         typeof update === 'function' ? update(get(baseAtom)) : update;
       set(baseAtom, nextValue);
-      localStorage.setItem(key, transformFuncs.set(nextValue));
+      localStorage.setItem(
+        keyReal,
+        encodeFuncs.set(transformFuncs.set(nextValue))
+      );
     }
   );
   return derivedAtom;
 }
+
+export const base64EncodeFuncs = {
+  get: (d: string) => atob(d),
+  set: (d: string) => btoa(d),
+};
