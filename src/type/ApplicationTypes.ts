@@ -34,3 +34,9 @@ export interface DataSkill {
   name: string;
   skills: string[];
 }
+
+export enum APPLICATION_TERMINAL_STATE {
+  SUCCESS,
+  FAIL,
+  UNKNOWN,
+}

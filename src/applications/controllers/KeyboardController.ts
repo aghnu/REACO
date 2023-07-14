@@ -6,6 +6,8 @@ import {
   buildEventListenerContextManager,
 } from '@utils/eventListenerWithContext';
 import { produce } from 'immer';
+import ApplicationController from './ApplicationController';
+import HistoryController from './HistoryController';
 
 class KeyboardController extends BaseAtomStore {
   protected static instance: KeyboardController | undefined;
@@ -59,6 +61,29 @@ class KeyboardController extends BaseAtomStore {
     }
   }
 
+  private handleEnterKey() {
+    const promptAppTop = this.storeGetAtom(systemState.promptAppTopAtom);
+    const applicationController = ApplicationController.getInstance();
+    const historyController = HistoryController.getInstance();
+
+    if (promptAppTop === null) {
+      const input = this.storeGetAtom(systemState.userInputAtom);
+      const args = [...this.storeGetAtom(systemState.userCmdArgsAtom)];
+      void applicationController.handlerInputArgs(input, args);
+
+      this.storeSetAtom(systemState.userInputAtom, '');
+      historyController.handleInputReset('userInput', input);
+    } else {
+      const input = promptAppTop.input;
+
+      promptAppTop.inputListener(input);
+      applicationController.updateAppPrompt(promptAppTop.id, {
+        input: '',
+      });
+      historyController.handleInputReset(promptAppTop.id, input);
+    }
+  }
+
   public setInput(input: string) {
     this.inputSet(input);
   }
@@ -84,19 +109,23 @@ class KeyboardController extends BaseAtomStore {
   public inputKey(key: string) {
     if (!isKeyAllowed(key)) return;
 
+    // broadcast
+    this.broadcastKey(key);
+
     // handle key
     switch (key) {
       case 'Backspace':
         this.inputSet(this.inputGet().slice(0, -1));
         break;
       case 'Enter':
+        this.handleEnterKey();
+        break;
+      case 'ArrowUp':
+      case 'ArrowDown':
         break;
       default:
         this.inputSet(this.inputGet() + key);
     }
-
-    // broadcast
-    this.broadcastKey(key);
   }
 
   public broadcastKey(key: string) {

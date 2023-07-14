@@ -5,27 +5,20 @@ import { getAppName } from '@utils/helpers';
 import { type AppName } from '@type/ApplicationTypes';
 import APPLICATION_INDEX, { APPLICATION_EXCLUDE_LOCK } from '@/applications';
 import TextRaw from '@components/TextRaw';
-import KeyboardController from './KeyboardController';
 import RouteController from './RouteController';
 import type BaseApplication from '@base/BaseApplication';
 import TextLabel from '@components/TextLabel';
 import TextButton from '@components/TextButton';
 import { type PromptApp } from '@type/SystemStateTypes';
 import { produce } from 'immer';
-import { v4 as uuid } from 'uuid';
 import { searchApplicationIndex } from '@utils/searching';
 
 class ApplicationController extends BaseAtomStore {
   protected static instance: ApplicationController | undefined;
-  protected displayController: DisplayController =
-    DisplayController.getInstance();
-
-  protected enterKeyListnerUnSubFunc: (() => void) | undefined;
   private appLock: string | undefined = undefined;
 
   protected constructor() {
     super();
-    this.init();
   }
 
   public static getInstance(): ApplicationController {
@@ -39,8 +32,6 @@ class ApplicationController extends BaseAtomStore {
     this.instance.unlockForce();
     this.instance.storeClearSubs();
     this.instance.clearApplications();
-    if (this.instance.enterKeyListnerUnSubFunc !== undefined)
-      this.instance.enterKeyListnerUnSubFunc();
     this.instance.deleteAllAppPrompt();
     this.instance = undefined;
   }
@@ -66,7 +57,9 @@ class ApplicationController extends BaseAtomStore {
       );
       if (appLockInstance !== undefined) {
         const appName = appLockInstance.name;
-        this.displayController.print(<TextLabel text={`Application Locked`} />);
+        DisplayController.getInstance().print(
+          <TextLabel text={`Application Locked`} />
+        );
         RouteController.getInstance().appRouteUpdate(appName);
         return null;
       } else {
@@ -86,11 +79,11 @@ class ApplicationController extends BaseAtomStore {
     const appName = getAppName(args[0]);
     const appNameSearch = searchApplicationIndex(args[0]);
     if (appName === null) {
-      this.displayController.print(
+      DisplayController.getInstance().print(
         <TextLabel text={`${args[0]}: command not found`} />
       );
       if (appNameSearch.length !== 0) {
-        this.displayController.print(
+        DisplayController.getInstance().print(
           <p>
             <TextRaw text="Do you mean " />
             <TextButton
@@ -117,31 +110,13 @@ class ApplicationController extends BaseAtomStore {
 
   public async handlerInputArgs(input: string, args: string[]) {
     if (args.length === 0) {
-      this.displayController.print(<br />);
+      DisplayController.getInstance().print(<br />);
       return;
     }
-    this.displayController.print(<TextRaw type="p" text={'> ' + input} />);
+    DisplayController.getInstance().print(
+      <TextRaw type="p" text={'> ' + input} />
+    );
     await this.runApplicationFromArgsAsync(args);
-  }
-
-  private enterKeyListner() {
-    const promptAppTop = this.storeGetAtom(systemState.promptAppTopAtom);
-    if (promptAppTop === null) {
-      const input = this.storeGetAtom(systemState.userInputAtom);
-      const args = [...this.storeGetAtom(systemState.userCmdArgsAtom)];
-      void this.handlerInputArgs(input, args);
-      this.storeSetAtom(systemState.userInputAtom, '');
-    } else {
-      promptAppTop.inputListener(promptAppTop.input);
-      this.updateAppPrompt(promptAppTop.id, { input: '' });
-    }
-  }
-
-  private init() {
-    this.enterKeyListnerUnSubFunc =
-      KeyboardController.getInstance().subscribeKey('Enter', () => {
-        this.enterKeyListner();
-      });
   }
 
   public clearApplications() {
@@ -156,6 +131,7 @@ class ApplicationController extends BaseAtomStore {
 
   public initAppPrompt(
     inputListener: (input: string) => void,
+    promptId: AppName,
     {
       promptStr = '',
       input = '',
@@ -164,11 +140,10 @@ class ApplicationController extends BaseAtomStore {
       input?: string;
     } = {}
   ): string {
-    const id = uuid();
     const prompt: PromptApp = {
       promptStr,
       input,
-      id,
+      id: promptId,
       inputListener,
     };
 
@@ -179,7 +154,7 @@ class ApplicationController extends BaseAtomStore {
       })
     );
 
-    return id;
+    return promptId;
   }
 
   public clearAppPrompt(id: string) {

@@ -49,6 +49,7 @@ export const KEYS_DISPLAY_SYMBOL = {
 export const KEYS_ALLOWED_ADDITIONAL = [
   ['%', '^', '=', '|', '`', '~'],
   ['{', '}', '[', ']', '<', '>'],
+  ['ArrowDown', 'ArrowUp'],
 ];
 
 const KEYS_ALL = (() => {

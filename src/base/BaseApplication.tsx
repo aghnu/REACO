@@ -134,9 +134,13 @@ abstract class BaseApplication extends BaseAtomStore {
 
   protected initAppPrompt(inputListner: (input: string) => void) {
     if (this.appPromptId !== undefined) return;
-    this.appPromptId = this.applicationController.initAppPrompt(inputListner, {
-      promptStr: '>>>',
-    });
+    this.appPromptId = this.applicationController.initAppPrompt(
+      inputListner,
+      this.name,
+      {
+        promptStr: '>>>',
+      }
+    );
   }
 
   protected updateAppPrompt({
