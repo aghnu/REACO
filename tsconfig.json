@@ -16,6 +16,7 @@
       "@base/*": ["./src/base/*"],
       "@config/*": ["./src/config/*"],
       "@data/*": ["./src/data/*"],
+      "@vanilla/*": ["./src/vanilla/*"],
       "@/*": ["./src/*"],
     },
 
