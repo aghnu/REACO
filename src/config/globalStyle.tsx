@@ -12,12 +12,12 @@ export const defaultGlobalStyleColorDark: GlobalStyleColor = {
 };
 
 export const defaultGlobalStyleColorLight: GlobalStyleColor = {
-  '--color-plain': '#002d8b',
-  '--color-focus': '#ff0c00',
-  '--color-desc': '#00393d',
+  '--color-plain': '#47474b',
+  '--color-focus': '#e84c40',
+  '--color-desc': '#3f585a',
   '--color-neon': '#ff7f7f',
-  '--color-warn': '#b70c0f',
+  '--color-warn': '#e80000',
   '--color-calm': '#005fd7',
-  '--color-background': '#ffeeee',
-  '--color-background-fade': '#feebeb',
+  '--color-background': '#fff3e1',
+  '--color-background-fade': '#fef1dd'
 };
