@@ -1,9 +1,8 @@
-import BaseApplication from "@base/BaseApplication";
-import { AppName } from "@type/ApplicationTypes";
-import TextRaw from "@components/TextRaw";
-import { PROMPT_PARAM_INVALID } from "./snippets";
-import { produce } from "immer";
-
+import BaseApplication from '@base/BaseApplication';
+import { type AppName } from '@type/ApplicationTypes';
+import TextRaw from '@components/TextRaw';
+import { PROMPT_PARAM_INVALID } from './snippets';
+import { produce } from 'immer';
 class AppMath extends BaseApplication {
   public name: AppName = 'math';
 
@@ -16,7 +15,7 @@ class AppMath extends BaseApplication {
           <TextRaw text={` ${this.args[0]} `} className="gl-color-text-calm" />
           <span>expression</span>
         </p>
-      </>
+      </>,
     );
   }
 
@@ -29,42 +28,54 @@ class AppMath extends BaseApplication {
     return true;
   }
 
-  private prettyPrint(type: 'exp' | 'result', msg: string) {
+  private prettyPrint(type: 'exp' | 'result' | 'err', msg: string) {
     this.print(
       <>
         <p>
-          <TextRaw text={type === 'exp' ? "  - " : "  > "} />
-          <TextRaw text={msg} className={type === 'exp' ? "gl-color-text-plain" : "gl-color-text-calm"} />
+          <TextRaw text={type === 'exp' ? '  - ' : '  > '} />
+          <TextRaw
+            text={msg}
+            className={
+              type === 'exp'
+                ? 'gl-color-text-plain'
+                : type === 'err'
+                ? 'gl-color-text-warn'
+                : 'gl-color-text-calm'
+            }
+          />
         </p>
-      </>
+      </>,
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   private compute(mathModule: typeof import('mathjs'), expression: string) {
     try {
       const result = mathModule.evaluate(expression);
       if (result === null || result === undefined) throw new Error();
       this.prettyPrint('result', String(result));
-    } catch(_) {
-      this.prettyPrint('result', 'invalid expression');
+    } catch (_) {
+      this.prettyPrint('err', 'invalid expression');
     }
   }
 
-
   protected run(): void {
     const expression = produce(this.args, (draft) => {
-      draft.shift()
+      draft.shift();
       return draft;
     }).join('');
     this.prettyPrint('exp', expression);
-    import("mathjs").then((module) => {
-      this.compute(module, expression)
-      this.stop();
-    }).catch(() => {
-      this.prettyPrint('result', 'error loading module');
-      this.stop();
-    });
+    import('mathjs')
+      .then((module) => {
+        this.compute(module, expression);
+        this.stop();
+      })
+      .catch(() => {
+        this.prettyPrint('err', 'error loading module');
+        this.stop();
+      });
   }
+
   protected cleanup() {}
 }
 
