@@ -1,6 +1,7 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import { resetStorage } from '@vanilla/storageManagement';
+import { stopApplication } from './controllers';
 
 class AppReset extends BaseApplication {
   public name: AppName = 'reset';
@@ -10,9 +11,13 @@ class AppReset extends BaseApplication {
   }
 
   protected run() {
-    resetStorage();
-    window.history.replaceState(null, '', window.location.pathname);
-    location.reload();
+    // produce event for reset after a short delay
+    window.setTimeout(() => {
+      stopApplication();
+      resetStorage();
+      window.history.replaceState(null, '', window.location.pathname);
+      location.reload();
+    }, 100);
     this.stop();
   }
 

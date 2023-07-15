@@ -9,7 +9,9 @@ class AppRefresh extends BaseApplication {
   }
 
   protected run() {
-    location.reload();
+    window.setTimeout(() => {
+      location.reload();
+    }, 100);
     this.stop();
   }
 

@@ -14,6 +14,12 @@ const CONTROLLERS = [
   HistoryController,
 ] as const;
 
+export function stopApplication() {
+  CONTROLLERS.forEach((C) => {
+    C.destroy();
+  });
+}
+
 export function startApplication() {
   CONTROLLERS.forEach((C) => C.getInstance());
 
