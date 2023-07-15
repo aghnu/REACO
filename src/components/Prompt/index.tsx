@@ -20,9 +20,9 @@ const Prompt = ({
     <>
       <CmdSuggestion onSuggestionChange={onSuggestionChange} />
       <p className={styles.prompt}>
+        <BlinkingCursor />
         <PromptString />
         <UserInput onUserInputUpdate={onUserInputUpdate} />
-        <BlinkingCursor />
       </p>
     </>
   );

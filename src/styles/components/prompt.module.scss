@@ -1,16 +1,26 @@
 .prompt {
+  position: relative;
   width: 100%;
   padding: 0 $padding-content;
 }
 
 .cursor {
+  position: absolute;
+  pointer-events: none;
   @keyframes blink {
     50% {
       opacity: 0;
     }
   }
+
+  &::before {
+    content: attr(data-text);
+    visibility: hidden;
+    word-break: break-all;
+  }
+
   &::after {
-    content: '_';
+    content: '█';
   }
 
   &.blink::after {
