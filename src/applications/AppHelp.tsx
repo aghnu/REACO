@@ -24,7 +24,7 @@ class AppHelp extends BaseApplication {
           &nbsp;&nbsp;-&nbsp;<span className="gl-color-text-calm">help</span>
           &nbsp;<span>[command name]</span>
         </p>
-      </>
+      </>,
     );
   }
 
@@ -47,7 +47,7 @@ class AppHelp extends BaseApplication {
         right={
           <p className="gl-word-break-normal">{APPLICATION_INDEX[name].desc}</p>
         }
-      />
+      />,
     );
   }
 

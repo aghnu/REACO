@@ -14,7 +14,7 @@ class AppLocation extends BaseApplication {
 
   private getDateElement(): JSX.Element {
     const dateParsedString = getDateParsedString(
-      getCurrentDateInfoWithTimeOffset(this.timezoneOffsetUTC)
+      getCurrentDateInfoWithTimeOffset(this.timezoneOffsetUTC),
     );
 
     return (
@@ -36,7 +36,7 @@ class AppLocation extends BaseApplication {
         left={<p className="gl-color-text-focus">Location</p>}
         right={<p className="gl-color-text-desc">{this.location}</p>}
         type="alt"
-      />
+      />,
     );
     const timeElementId = this.print(this.getDateElement());
     this.animationInterval = window.setInterval(() => {

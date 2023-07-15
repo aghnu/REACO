@@ -46,19 +46,19 @@ class ApplicationController extends BaseAtomStore {
       args?: string[];
       isShowLabel?: boolean;
       isChangeRoute?: boolean;
-    } = {}
+    } = {},
   ): BaseApplication | null {
     if (this.appLock !== undefined && !APPLICATION_EXCLUDE_LOCK.includes(app)) {
       const applicationInstances = this.storeGetAtom(
-        applicationState.applicationInstancesAtom
+        applicationState.applicationInstancesAtom,
       );
       const appLockInstance = applicationInstances.find(
-        (appInstance) => appInstance.id === this.appLock
+        (appInstance) => appInstance.id === this.appLock,
       );
       if (appLockInstance !== undefined) {
         const appName = appLockInstance.name;
         DisplayController.getInstance().print(
-          <TextLabel text={`Application Locked`} />
+          <TextLabel text={`Application Locked`} />,
         );
         RouteController.getInstance().appRouteUpdate(appName);
         return null;
@@ -80,7 +80,7 @@ class ApplicationController extends BaseAtomStore {
     const appNameSearch = searchApplicationIndex(args[0]);
     if (appName === null) {
       DisplayController.getInstance().print(
-        <TextLabel text={`${args[0]}: command not found`} />
+        <TextLabel text={`${args[0]}: command not found`} />,
       );
       if (appNameSearch.length !== 0) {
         DisplayController.getInstance().print(
@@ -95,7 +95,7 @@ class ApplicationController extends BaseAtomStore {
               {appNameSearch[0].cmd}
             </TextButton>
             <span>?</span>
-          </p>
+          </p>,
         );
       }
       return;
@@ -114,14 +114,14 @@ class ApplicationController extends BaseAtomStore {
       return;
     }
     DisplayController.getInstance().print(
-      <TextRaw type="p" text={'> ' + input} />
+      <TextRaw type="p" text={'> ' + input} />,
     );
     await this.runApplicationFromArgsAsync(args);
   }
 
   public clearApplications() {
     const applications = this.storeGetAtom(
-      applicationState.applicationInstancesAtom
+      applicationState.applicationInstancesAtom,
     );
 
     applications.forEach((app) => {
@@ -138,7 +138,7 @@ class ApplicationController extends BaseAtomStore {
     }: {
       promptStr?: string;
       input?: string;
-    } = {}
+    } = {},
   ): string {
     const prompt: PromptApp = {
       promptStr,
@@ -151,7 +151,7 @@ class ApplicationController extends BaseAtomStore {
       systemState.promptAppAtom,
       produce(this.storeGetAtom(systemState.promptAppAtom), (draft) => {
         draft.push(prompt);
-      })
+      }),
     );
 
     return promptId;
@@ -162,7 +162,7 @@ class ApplicationController extends BaseAtomStore {
       systemState.promptAppAtom,
       produce(this.storeGetAtom(systemState.promptAppAtom), (draft) => {
         return draft.filter((prompt) => prompt.id !== id);
-      })
+      }),
     );
   }
 
@@ -180,7 +180,7 @@ class ApplicationController extends BaseAtomStore {
       promptStr?: string | undefined;
       input?: string | undefined;
       inputListener?: ((input: string) => void) | undefined;
-    } = {}
+    } = {},
   ) {
     this.storeSetAtom(
       systemState.promptAppAtom,
@@ -191,7 +191,7 @@ class ApplicationController extends BaseAtomStore {
         prompt.input = input ?? prompt.input;
         prompt.promptStr = promptStr ?? prompt.promptStr;
         prompt.inputListener = inputListener ?? prompt.inputListener;
-      })
+      }),
     );
   }
 

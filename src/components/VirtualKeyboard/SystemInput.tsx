@@ -23,7 +23,7 @@ const SystemInput = () => {
 
   const iconElement = useMemo(
     () => icon.input('var(--color-plain)', '100%'),
-    []
+    [],
   );
 
   useEffect(() => {

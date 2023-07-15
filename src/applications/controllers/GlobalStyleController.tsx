@@ -69,7 +69,7 @@ class GlobalStyleController extends BaseAtomStore {
 
   private updateRootColorVariables(
     styleColor: GlobalStyleColor,
-    animationMode: ThemeSwitchMode
+    animationMode: ThemeSwitchMode,
   ) {
     this.cleanGsapAnimation();
     this.gsapContext = gsap.context(() => {

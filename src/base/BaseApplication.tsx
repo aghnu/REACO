@@ -26,7 +26,7 @@ abstract class BaseApplication extends BaseAtomStore {
 
   public async start(
     args: string[],
-    { isShowLabel = true }: { isShowLabel?: boolean } = {}
+    { isShowLabel = true }: { isShowLabel?: boolean } = {},
   ): Promise<void> {
     this.addApplicationInstanceToState();
     this.args = args;
@@ -36,7 +36,7 @@ abstract class BaseApplication extends BaseAtomStore {
     }
     if (isShowLabel) {
       this.displayController.print(
-        <TextLabel text={APPLICATION_INDEX[this.name].name} />
+        <TextLabel text={APPLICATION_INDEX[this.name].name} />,
       );
     }
     this.run();
@@ -73,7 +73,7 @@ abstract class BaseApplication extends BaseAtomStore {
   // other methods
   protected isForeground(): boolean {
     const topInstance = this.storeGetAtom(
-      applicationState.applicationTopInstanceAtom
+      applicationState.applicationTopInstanceAtom,
     );
     if (topInstance === null || topInstance.id !== this.id) return false;
     return true;
@@ -104,7 +104,7 @@ abstract class BaseApplication extends BaseAtomStore {
 
   private removeApplicationInstanceFromState() {
     const currentState = this.storeGetAtom(
-      applicationState.applicationInstancesAtom
+      applicationState.applicationInstancesAtom,
     );
     const nextState = produce(currentState, (draft) => {
       return draft.filter((app) => app.id !== this.id);
@@ -114,7 +114,7 @@ abstract class BaseApplication extends BaseAtomStore {
 
   private addApplicationInstanceToState() {
     const currentState = this.storeGetAtom(
-      applicationState.applicationInstancesAtom
+      applicationState.applicationInstancesAtom,
     );
     const nextState = produce(currentState, (draft) => {
       draft.push({
@@ -139,7 +139,7 @@ abstract class BaseApplication extends BaseAtomStore {
       this.name,
       {
         promptStr: '>>>',
-      }
+      },
     );
   }
 

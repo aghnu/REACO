@@ -25,7 +25,7 @@ class AppHome extends BaseApplication {
         cowsayId,
         [HOME_WELCOME_COWSAY_FRAME_1, HOME_WELCOME_COWSAY_FRAME_2][
           Math.floor(Math.random() * 1.35)
-        ]
+        ],
       );
     }, 500);
     this.print(PROMPT_RESUME);

@@ -15,7 +15,7 @@ const VirtualKeyboard = () => {
       breakpoint === '--bp-narrower' ||
       breakpoint === '--bp-narrow' ||
       breakpoint === '--bp-wide',
-    [breakpoint]
+    [breakpoint],
   );
 
   const handleChangeKeySet = useCallback((k: KeySetsSet) => {

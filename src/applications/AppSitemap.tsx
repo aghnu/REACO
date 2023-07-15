@@ -20,7 +20,7 @@ class AppSitemap extends BaseApplication {
           link={link}
         >
           {link}
-        </TextLink>
+        </TextLink>,
       );
     });
     this.stop();

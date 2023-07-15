@@ -51,12 +51,12 @@ class KeyboardController extends BaseAtomStore {
         systemState.promptAppAtom,
         produce(this.storeGetAtom(systemState.promptAppAtom), (draft) => {
           const index = draft.findIndex(
-            (prompt) => prompt.id === promptAppTop.id
+            (prompt) => prompt.id === promptAppTop.id,
           );
           if (index === -1) return;
           const prompt = draft[index];
           prompt.input = input;
-        })
+        }),
       );
     }
   }

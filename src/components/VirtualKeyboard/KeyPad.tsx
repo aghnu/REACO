@@ -41,7 +41,7 @@ const KeyPad = ({
       breakpoint === '--bp-narrower'
         ? getShortLabel(keyId)
         : getKeyLabel(keyId),
-    [keyId, breakpoint]
+    [keyId, breakpoint],
   );
   const size = useMemo(() => getKeySize(keyId), [keyId]);
   const variant = useMemo(() => getKeyVariant(keyId), [keyId]);

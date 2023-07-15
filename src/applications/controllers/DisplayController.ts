@@ -34,17 +34,20 @@ class DisplayController extends BaseAtomStore {
   }
 
   private startConsumePrintJob() {
-    this.printJobsTimeout = window.setTimeout(() => {
-      window.requestAnimationFrame(() => {
-        const job = this.printJobsQuene.shift();
-        if (job !== undefined) {
-          job.type === 'print' &&
-            KeyboardController.getInstance().inputCursorPause();
-          job.callback();
-        }
-        if (this.printJobsQuene.length > 0) this.startConsumePrintJob();
-      });
-    }, Math.floor(Math.random() * 15) + 5);
+    this.printJobsTimeout = window.setTimeout(
+      () => {
+        window.requestAnimationFrame(() => {
+          const job = this.printJobsQuene.shift();
+          if (job !== undefined) {
+            job.type === 'print' &&
+              KeyboardController.getInstance().inputCursorPause();
+            job.callback();
+          }
+          if (this.printJobsQuene.length > 0) this.startConsumePrintJob();
+        });
+      },
+      Math.floor(Math.random() * 15) + 5,
+    );
   }
 
   private stopConsumePrintJob() {
@@ -73,7 +76,7 @@ class DisplayController extends BaseAtomStore {
   public printUpdate(
     id: string,
     element: JSX.Element,
-    quened: boolean = false
+    quened: boolean = false,
   ): void {
     const job = () => {
       const state = this.storeGetAtom(displayState.displayJobsAtom);

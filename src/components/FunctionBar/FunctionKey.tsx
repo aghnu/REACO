@@ -17,7 +17,7 @@ const FunctionKey = ({
 }) => {
   const iconElement = useMemo(
     () => iconFunc(colorStyle, '100%'),
-    [iconFunc, colorStyle]
+    [iconFunc, colorStyle],
   );
   return (
     <>

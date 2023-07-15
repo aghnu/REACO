@@ -87,7 +87,7 @@ class AppTicTacToe extends BaseApplication {
         className="gl-color-text-calm gl-double gl-nowrap"
         text="     1  2  3"
         type="p"
-      />
+      />,
     );
     this.print(<>{rows}</>);
   }
@@ -113,7 +113,7 @@ class AppTicTacToe extends BaseApplication {
       <p>
         <span className="gl-color-text-desc">&gt;&nbsp;</span>
         <TextRaw text={input} />
-      </p>
+      </p>,
     );
   }
 
@@ -208,7 +208,7 @@ class AppTicTacToe extends BaseApplication {
           this.print(
             <p className="gl-word-break-normal">
               {"Please enter a valid response 'y' or 'n'"}
-            </p>
+            </p>,
           );
           break;
       }
@@ -216,7 +216,7 @@ class AppTicTacToe extends BaseApplication {
     this.print(
       <p className="gl-word-break-normal">
         Do you wish to play Tic Tac Toe with me? (Y/n)
-      </p>
+      </p>,
     );
   }
 

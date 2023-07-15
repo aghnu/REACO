@@ -12,14 +12,14 @@ class AppRng extends BaseApplication {
         <p>Usage:</p>
         <p>
           <TextRaw text="  -" />
-          <TextRaw text={`${ this.args[0]} `} className="gl-color-text-calm" />
+          <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
         </p>
         <p>
           <TextRaw text="  -" />
-          <TextRaw text={`${ this.args[0]} `} className="gl-color-text-calm" />
+          <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
           <span>[max range]</span>
         </p>
-      </>
+      </>,
     );
   }
 

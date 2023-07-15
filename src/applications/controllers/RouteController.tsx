@@ -72,7 +72,7 @@ class RouteController extends BaseAtomStore {
       produce((draft) => {
         draft.systemDomain = window.location.host;
         draft.systemPath = window.location.pathname;
-      })
+      }),
     );
   }
 

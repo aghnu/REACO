@@ -22,7 +22,7 @@ class AppClear extends BaseApplication {
           <TextRaw text={`${this.args[0]} `} className="gl-color-text-calm" />
           <span>[option]</span>
         </p>
-      </>
+      </>,
     );
   }
 

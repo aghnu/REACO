@@ -47,7 +47,7 @@ class AppTheme extends BaseApplication {
     }
     this.storeSetAtom(
       globalStyleState.displayThemeMode,
-      this.themeModes[searchIndex]
+      this.themeModes[searchIndex],
     );
     this.print(<p>Change theme to {this.themeModes[searchIndex]}</p>);
     this.stop();

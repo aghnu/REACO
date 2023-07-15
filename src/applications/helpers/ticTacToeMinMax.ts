@@ -2,7 +2,7 @@ export type Move = 'x' | 'o' | '.';
 export type Board = [
   [Move, Move, Move],
   [Move, Move, Move],
-  [Move, Move, Move]
+  [Move, Move, Move],
 ];
 export type MoveBoard = [number, number];
 
@@ -100,7 +100,7 @@ class TicTacToeMinMax {
 
   public getGameResult(
     board: Board,
-    winner: Move = this.player
+    winner: Move = this.player,
   ): 'continue' | 'win' | 'lose' | 'draw' {
     const score = this.evaluateScore(board, winner);
     if (score === 1) return 'win';

@@ -45,7 +45,7 @@ class HistoryController extends BaseAtomStore {
   private handlePrevHistory() {
     const userInputCurrent = this.storeGetAtom(systemState.inputCurrentAtom);
     const historyCurrentPrompt = this.storeGetAtom(
-      systemState.historyCurrentPromptAtom
+      systemState.historyCurrentPromptAtom,
     );
     const index =
       this.historySelectIdx === null ? 0 : this.historySelectIdx + 1;
@@ -77,7 +77,7 @@ class HistoryController extends BaseAtomStore {
     }
 
     const historyCurrentPrompt = this.storeGetAtom(
-      systemState.historyCurrentPromptAtom
+      systemState.historyCurrentPromptAtom,
     );
     const index = this.historySelectIdx - 1;
     const historyPrompt =
@@ -106,10 +106,10 @@ class HistoryController extends BaseAtomStore {
       produce(historyPromptMap, (draft) => {
         draft.set(
           type,
-          historyPrompt.filter((_, i) => i !== indexToRemove)
+          historyPrompt.filter((_, i) => i !== indexToRemove),
         );
         return draft;
-      })
+      }),
     );
 
     // save
@@ -133,7 +133,7 @@ class HistoryController extends BaseAtomStore {
         });
         draft.set(type, quene);
         return draft;
-      })
+      }),
     );
   }
 

@@ -8,7 +8,7 @@ class AppKeyboard extends BaseApplication {
   private toggleKeyboard() {
     this.storeSetAtom(
       systemState.isVirtualKeyboardEnabledAtom,
-      !this.storeGetAtom(systemState.isVirtualKeyboardEnabledAtom)
+      !this.storeGetAtom(systemState.isVirtualKeyboardEnabledAtom),
     );
   }
 

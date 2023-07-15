@@ -7,7 +7,7 @@ abstract class BaseAtomStore {
 
   protected storeSubToAtom(
     atom: Atom<unknown>,
-    listner: () => void
+    listner: () => void,
   ): () => void {
     const unsub = this.store.sub(atom, listner);
     this.storeUnsubFuncs.push(unsub);
