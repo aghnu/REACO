@@ -49,7 +49,7 @@ export const KEYS_DISPLAY_SYMBOL = {
 export const KEYS_ALLOWED_ADDITIONAL = [
   ['%', '^', '=', '|', '`', '~'],
   ['{', '}', '[', ']', '<', '>'],
-  ['ArrowDown', 'ArrowUp'],
+  ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'],
 ];
 
 const KEYS_ALL = (() => {
@@ -120,7 +120,7 @@ function lockTempFunc(callback: () => void) {
 export function getKeyHandler(
   key: string,
   setKeySet: (keySetsSet: KeySetsSet) => void,
-  defaultHandler: () => void
+  defaultHandler: () => void,
 ): () => void {
   if (key === 'ABC')
     return () => {

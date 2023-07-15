@@ -8,13 +8,15 @@ import {
 import { produce } from 'immer';
 import ApplicationController from './ApplicationController';
 import HistoryController from './HistoryController';
+import { type PrimitiveAtom, atom } from 'jotai';
 
 class KeyboardController extends BaseAtomStore {
   protected static instance: KeyboardController | undefined;
   protected eventListenerContextManager: EventListenerContextManager;
   protected sideEffectTimeoutInputCursor: number | undefined;
   protected keyListners = new Map<string, Array<() => void>>();
-  protected isBlur: boolean = false;
+  protected isBlur: PrimitiveAtom<boolean> = atom(false);
+  protected cursorOffset: PrimitiveAtom<number> = atom(0);
 
   protected constructor() {
     super();
@@ -59,6 +61,7 @@ class KeyboardController extends BaseAtomStore {
         }),
       );
     }
+    this.moveCursorOffset(0);
   }
 
   private handleEnterKey() {
@@ -82,9 +85,11 @@ class KeyboardController extends BaseAtomStore {
       });
       historyController.handleInputReset(promptAppTop.id, input);
     }
+    this.resetCursorOffset();
   }
 
   public setInput(input: string) {
+    this.resetCursorOffset();
     this.inputSet(input);
   }
 
@@ -115,7 +120,7 @@ class KeyboardController extends BaseAtomStore {
     // handle key
     switch (key) {
       case 'Backspace':
-        this.inputSet(this.inputGet().slice(0, -1));
+        this.handleDeleteKey();
         break;
       case 'Enter':
         this.handleEnterKey();
@@ -123,8 +128,14 @@ class KeyboardController extends BaseAtomStore {
       case 'ArrowUp':
       case 'ArrowDown':
         break;
+      case 'ArrowLeft':
+        this.moveCursorOffset(1);
+        break;
+      case 'ArrowRight':
+        this.moveCursorOffset(-1);
+        break;
       default:
-        this.inputSet(this.inputGet() + key);
+        this.handleInputKey(key);
     }
   }
 
@@ -136,12 +147,57 @@ class KeyboardController extends BaseAtomStore {
     });
   }
 
+  private handleDeleteKey() {
+    const currentInput = this.inputGet();
+    const deleteIndex = Math.min(
+      currentInput.length - 1,
+      currentInput.length - this.storeGetAtom(this.cursorOffset) - 1,
+    );
+    if (deleteIndex < 0) return;
+    this.inputSet(
+      currentInput.slice(0, deleteIndex) + currentInput.slice(deleteIndex + 1),
+    );
+  }
+
+  private handleInputKey(char: string) {
+    if (char.length !== 1) return;
+
+    const cursorOffset = this.storeGetAtom(this.cursorOffset);
+    const currentInput = this.inputGet();
+    const insertIndex = Math.min(
+      currentInput.length,
+      currentInput.length - cursorOffset,
+    );
+
+    this.inputSet(
+      currentInput.slice(0, insertIndex) +
+        char +
+        currentInput.slice(insertIndex),
+    );
+  }
+
+  private moveCursorOffset(offset: number) {
+    const currentInput = this.storeGetAtom(systemState.inputCurrentAtom);
+    const currentOffset = this.storeGetAtom(this.cursorOffset);
+    const newOffset = Math.max(
+      Math.min(offset + currentOffset, currentInput.length),
+      0,
+    );
+    this.storeSetAtom(this.cursorOffset, newOffset);
+  }
+
+  private resetCursorOffset() {
+    this.storeSetAtom(this.cursorOffset, 0);
+  }
+
   public blur() {
-    this.isBlur = true;
+    this.storeSetAtom(this.isBlur, true);
+    this.resetCursorOffset();
   }
 
   public focus() {
-    this.isBlur = false;
+    this.storeSetAtom(this.isBlur, false);
+    this.resetCursorOffset();
   }
 
   public inputCursorPause() {
@@ -155,12 +211,20 @@ class KeyboardController extends BaseAtomStore {
   private init() {
     this.eventListenerContextManager.set(document.body, 'keydown', (e) => {
       const key = (e as KeyboardEvent).key;
-      if (this.isBlur) return;
+      if (this.storeGetAtom(this.isBlur)) return;
       if (!isKeyAllowed(key)) return;
       e.preventDefault();
       this.inputCursorPause();
       this.inputKey(key);
     });
+  }
+
+  public getCursorOffsetAtom() {
+    return this.cursorOffset;
+  }
+
+  public getKeyboardBlurAtom() {
+    return this.isBlur;
   }
 }
 
