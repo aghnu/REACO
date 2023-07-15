@@ -16,7 +16,7 @@ const isVirtualKeyboardEnabledAtom = atomWithLocalStorage<boolean>(
   'atom-state__is-virtual-keyboard-enabled',
   false,
   undefined,
-  base64EncodeFuncs
+  base64EncodeFuncs,
 );
 const promptAppAtom = atom<PromptApp[]>([]);
 const promptInfoAtom = atom<PromptInfo>({
@@ -33,7 +33,7 @@ const historyAtom = atomWithLocalStorage<
     get: (d) => new Map(JSON.parse(d)),
     set: (d) => JSON.stringify(Array.from(d)),
   },
-  base64EncodeFuncs
+  base64EncodeFuncs,
 );
 
 // derived atom
