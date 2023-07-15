@@ -20,7 +20,8 @@
   .top {
     @include mixin-w-h-fill;
     @include hide-scroll-bar;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .bottom {
