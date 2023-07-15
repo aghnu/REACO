@@ -84,7 +84,7 @@ class AppHelp extends BaseApplication {
 
     this.print(HELP_DESC);
     this.print(PROMPT_SEP);
-    this.print(<p className="gl-color-text-focus">Fun: </p>);
+    this.print(<p className="gl-color-text-focus">Tool: </p>);
     cmdsFun.forEach((cmd) => {
       this.print(<br />);
       this.printHelpCmd(cmd);

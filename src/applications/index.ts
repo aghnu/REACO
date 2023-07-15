@@ -146,7 +146,7 @@ const APPLICATION_EXCLUDE_LIST_ROUTE: AppName[] = [
   'refresh',
 ];
 const APPLICATION_EXCLUDE_LOCK: AppName[] = ['keyboard', 'theme', 'refresh'];
-const APPLICATION_CATE_FUN: AppName[] = ['theme', 'tictactoe', 'rng'];
+const APPLICATION_CATE_FUN: AppName[] = ['theme', 'tictactoe', 'rng', 'math'];
 const APPLICATION_CATE_INFO: AppName[] = [
   'portfolio',
   'projects',
