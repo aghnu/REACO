@@ -15,6 +15,7 @@ import AppTicTacToe from './AppTicTacToe';
 import AppRng from './AppRng';
 import AppReset from './AppReset';
 import AppRefresh from './AppRefresh';
+import AppMath from './AppMath';
 
 const APPLICATION_INDEX = {
   projects: {
@@ -129,6 +130,13 @@ const APPLICATION_INDEX = {
     App: AppRefresh,
     desc: 'Refresh the page',
   },
+  math: {
+    name: 'Math',
+    cmd: 'math',
+    alias: ['cal', 'calculate', 'calc'],
+    App: AppMath,
+    desc: 'Parse and compute math expression'
+  }
 } as const;
 
 // special excluding list
