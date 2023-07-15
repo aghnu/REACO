@@ -4,9 +4,15 @@
   padding: 0 $padding-content;
 }
 
+.input {
+  position: relative;
+  z-index: 1;
+}
+
 .cursor {
   position: absolute;
   pointer-events: none;
+  z-index: 0;
   @keyframes blink {
     50% {
       opacity: 0;
@@ -25,6 +31,7 @@
 
   &::after {
     content: '█';
+    opacity: 0.75;
   }
 
   &.blink::after {
