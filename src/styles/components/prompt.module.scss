@@ -26,7 +26,7 @@
   &::before {
     content: attr(data-text);
     visibility: hidden;
-    word-break: break-all;
+    overflow-wrap: anywhere;
   }
 
   &::after {
