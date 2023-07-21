@@ -68,11 +68,11 @@ const KeyPad = ({
 
     document.addEventListener('keydown', handlePhysicalKeydown);
     document.addEventListener('keyup', handlePhysicalKeyup);
-    document.addEventListener('blur', handleBlurKeyup);
+    window.addEventListener('blur', handleBlurKeyup);
     return () => {
       document.removeEventListener('keydown', handlePhysicalKeydown);
       document.removeEventListener('keyup', handlePhysicalKeyup);
-      document.removeEventListener('blur', handleBlurKeyup);
+      window.removeEventListener('blur', handleBlurKeyup);
     };
   }, [keyId]);
 

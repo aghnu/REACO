@@ -8,7 +8,7 @@ document.addEventListener('keyup', (e: KeyboardEvent) => {
   keydowns.delete(e.key);
 });
 
-document.addEventListener('blur', () => {
+window.addEventListener('blur', () => {
   keydowns.clear();
 });
 
