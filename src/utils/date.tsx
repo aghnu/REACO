@@ -8,7 +8,7 @@ interface DateInfo {
 }
 
 export function getCurrentDateInfoWithTimeOffset(
-  offsetHours: number
+  offsetHours: number,
 ): DateInfo {
   const date = new Date();
   const utc = date.getTime() + date.getTimezoneOffset() * 60000;

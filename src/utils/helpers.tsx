@@ -73,7 +73,7 @@ export function checkIsDevEnv() {
 }
 
 export function addLabelToAtom<
-  T extends Atom<unknown> | PrimitiveAtom<unknown>
+  T extends Atom<unknown> | PrimitiveAtom<unknown>,
 >(label: string, atom: T): T {
   if (checkIsDevEnv()) {
     atom.debugLabel = label;
@@ -104,7 +104,7 @@ export function atomWithLocalStorage<T = unknown>(
   } = {
     set: (d) => d,
     get: (d) => d,
-  }
+  },
 ): PrimitiveAtom<T> {
   const keyReal = encodeFuncs.set(key);
   const getInitialValue = () => {
@@ -127,9 +127,9 @@ export function atomWithLocalStorage<T = unknown>(
       set(baseAtom, nextValue);
       localStorage.setItem(
         keyReal,
-        encodeFuncs.set(transformFuncs.set(nextValue))
+        encodeFuncs.set(transformFuncs.set(nextValue)),
       );
-    }
+    },
   );
   return derivedAtom;
 }

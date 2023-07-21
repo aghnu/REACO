@@ -17,7 +17,7 @@ export function buildEventListenerContextManager() {
   function set(
     element: EventListnerElement,
     type: string,
-    listener: (ev: Event) => void
+    listener: (ev: Event) => void,
   ) {
     element.addEventListener(type, listener);
     const ctx = {

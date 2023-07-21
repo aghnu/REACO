@@ -37,7 +37,7 @@ function helperGetFuse() {
 let searchFuse: Fuse<AppMeta> | undefined;
 export function searchApplicationIndex(
   input: string,
-  maxOut: number = 2
+  maxOut: number = 2,
 ): SearchAppResult[] {
   if (searchFuse === undefined) {
     searchFuse = helperGetFuse();
