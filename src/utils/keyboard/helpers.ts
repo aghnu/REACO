@@ -5,6 +5,7 @@ import {
   KEYS_DISPLAY_SYMBOL,
   KEYS_PREVENT_DEFAULT,
   KEYS_ALL,
+  KEYS_SKIP_INPUT,
 } from './constants';
 import { isKeyDown } from './globalKeyHandling';
 
@@ -117,7 +118,7 @@ export function handleKeydownWithDecoration(
   e: KeyboardEvent,
   handlerFunc: ({ key, event }: { key: string; event: KeyboardEvent }) => void,
 ) {
-  if (isKeyDown('Control')) return;
+  if (isKeyDown(KEYS_SKIP_INPUT.flat())) return;
   preventKeyDefaultSelective(e);
   handlerFunc({ key: e.key, event: e });
 }

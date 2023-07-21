@@ -12,6 +12,16 @@ window.addEventListener('blur', () => {
   keydowns.clear();
 });
 
-export function isKeyDown(key: string): boolean {
-  return keydowns.has(key);
+window.addEventListener('focus', () => {
+  keydowns.clear();
+});
+
+export function isKeyDown(key: string | string[]): boolean {
+  if (typeof key === 'string') return keydowns.has(key);
+
+  for (let i = 0; i < key.length; i++) {
+    if (keydowns.has(key[i])) return true;
+  }
+
+  return false;
 }

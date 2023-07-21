@@ -55,6 +55,10 @@ export const KEYS_PREVENT_DEFAULT = [
   ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'],
   ['Tab'],
 ];
+
+export const KEYS_SKIP_INPUT = [
+  ['Control', 'Alt', 'OS', 'Meta'],
+];
 /* eslint-enable prettier/prettier */
 
 export const KEYS_ALL = (() => {
