@@ -51,7 +51,8 @@ export const KEYS_ALLOWED_ADDITIONAL = [
 ];
 
 export const KEYS_PREVENT_DEFAULT = [
-  ['/', "'"]
+  ['/', "'"],
+  ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'],
 ];
 /* eslint-enable prettier/prettier */
 
