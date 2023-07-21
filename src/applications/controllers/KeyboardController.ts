@@ -1,6 +1,6 @@
 import BaseAtomStore from '@base/BaseAtomStore';
 import { systemState } from '@/store';
-import { isKeyAllowed } from '@utils/keyboard';
+import { handleKeydownWithDecoration, isKeyAllowed } from '@utils/keyboard';
 import {
   type EventListenerContextManager,
   buildEventListenerContextManager,
@@ -210,12 +210,12 @@ class KeyboardController extends BaseAtomStore {
 
   private init() {
     this.eventListenerContextManager.set(document.body, 'keydown', (e) => {
-      const key = (e as KeyboardEvent).key;
-      if (this.storeGetAtom(this.isBlur)) return;
-      if (!isKeyAllowed(key)) return;
-      e.preventDefault();
-      this.inputCursorPause();
-      this.inputKey(key);
+      handleKeydownWithDecoration(e as KeyboardEvent, ({ key }) => {
+        if (this.storeGetAtom(this.isBlur)) return;
+        if (!isKeyAllowed(key)) return;
+        this.inputCursorPause();
+        this.inputKey(key);
+      });
     });
   }
 

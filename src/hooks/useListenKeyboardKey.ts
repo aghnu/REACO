@@ -1,12 +1,12 @@
+import { handleKeydownWithDecoration } from '@utils/keyboard';
 import { useEffect } from 'react';
 
 function useListenKeyboardKey(key: string, listner: () => void) {
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent) => {
-      if (key === e.key) {
-        e.preventDefault();
-        listner();
-      }
+      handleKeydownWithDecoration(e, ({ event }) => {
+        if (key === event.key) listner();
+      });
     };
     document.addEventListener('keydown', keydownHandler);
 

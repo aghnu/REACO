@@ -4,6 +4,7 @@ import styles from '@styles/components/virtual-keyboard.module.scss';
 import { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import TextIcon from '@components/TextIcon';
 import { icon } from '@utils/svgFactory';
+import { handleKeydownWithDecoration } from '@utils/keyboard';
 
 const SystemInput = () => {
   const keyboardController = KeyboardController.getInstance();
@@ -34,17 +35,17 @@ const SystemInput = () => {
 
   useEffect(() => {
     const EnterKeyListner = (e: KeyboardEvent) => {
-      const key = e.key;
-      if (!isUsingSystemKeyboard.current) return;
+      handleKeydownWithDecoration(e, ({ key }) => {
+        if (!isUsingSystemKeyboard.current) return;
 
-      switch (key) {
-        case 'Enter':
-        case 'ArrowUp':
-        case 'ArrowDown':
-          keyboardController.inputKey(key);
-          e.preventDefault();
-          break;
-      }
+        switch (key) {
+          case 'Enter':
+          case 'ArrowUp':
+          case 'ArrowDown':
+            keyboardController.inputKey(key);
+            break;
+        }
+      });
     };
     document.body.addEventListener('keydown', EnterKeyListner);
 
