@@ -53,6 +53,7 @@ export const KEYS_ALLOWED_ADDITIONAL = [
 export const KEYS_PREVENT_DEFAULT = [
   ['/', "'"],
   ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'],
+  ['Tab'],
 ];
 /* eslint-enable prettier/prettier */
 
