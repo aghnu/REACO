@@ -5,12 +5,13 @@ import {
   getCurrentDateInfoWithTimeOffset,
   getDateParsedString,
 } from '@utils/date';
+import { location, timezoneOffsetUTC } from '@data/location.json';
 
 class AppLocation extends BaseApplication {
   public name: AppName = 'location';
   protected animationInterval: number | undefined = undefined;
-  private readonly location = 'Calgary, AB, Canada';
-  private readonly timezoneOffsetUTC = 6;
+  private readonly location = location;
+  private readonly timezoneOffsetUTC = timezoneOffsetUTC;
 
   private getDateElement(): JSX.Element {
     const dateParsedString = getDateParsedString(
