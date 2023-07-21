@@ -14,7 +14,7 @@ function helperAddPointerEvents(
   handlerDown: () => void,
   handlerHoverOn: () => void,
   handlerHoverOff: () => void,
-  isAllowHold: boolean = true
+  isAllowHold: boolean = true,
 ) {
   // state
   let keyPressed = false;
@@ -101,7 +101,7 @@ function helperAddPointerEvents(
 function usePointerClick(
   htmlEl: HTMLElement | null,
   onPointerClick: () => void = () => {},
-  isAllowHold: boolean = true
+  isAllowHold: boolean = true,
 ) {
   const pointerDownAtom = useMemo(() => atom(false), []);
   const pointerHoverAtom = useMemo(() => atom(false), []);
@@ -135,7 +135,7 @@ function usePointerClick(
       handlePointerDown,
       handlePointerHoverOn,
       handlePointerHoverOff,
-      isAllowHold
+      isAllowHold,
     );
     return () => {
       clean();
