@@ -13,7 +13,7 @@ const DateTime = ({
   className,
 }: {
   timezoneOffset: number;
-  className: string;
+  className?: string;
 }) => {
   const [dateParsedString, setDateParsedString] = useState(
     getDateString(timezoneOffset),
