@@ -1,0 +1,9 @@
+.enter-active,
+.leave-active {
+  transition: all 2s ease-out;
+}
+
+.leave-to,
+.enter-from {
+  opacity: 0;
+}
