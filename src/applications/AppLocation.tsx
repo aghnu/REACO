@@ -23,7 +23,7 @@ class AppLocation extends BaseApplication {
     );
     this.print(
       <TextSplit
-        left={<p className={'gl-color-text-docus'}>Time</p>}
+        left={<p className={'gl-color-text-focus'}>Time</p>}
         right={
           <DateTime
             className={'gl-color-text-desc'}
