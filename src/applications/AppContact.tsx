@@ -21,6 +21,7 @@ class AppContact extends BaseApplication {
     this.print(PROMPT_CONTACT_GITHUB);
     this.print(PROMPT_CONTACT_LINKEDIN);
     this.print(PROMPT_CONTACT_EMAIL);
+    this.stop();
   }
 
   public cleanup() {}

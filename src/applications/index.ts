@@ -135,8 +135,8 @@ const APPLICATION_INDEX = {
     cmd: 'math',
     alias: ['cal', 'calculate', 'calc'],
     App: AppMath,
-    desc: 'Parse and compute math expression'
-  }
+    desc: 'Parse and compute math expression',
+  },
 } as const;
 
 // special excluding list

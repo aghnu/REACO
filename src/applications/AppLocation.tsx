@@ -1,31 +1,13 @@
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
 import TextSplit from '@components/TextSplit';
-import {
-  getCurrentDateInfoWithTimeOffset,
-  getDateParsedString,
-} from '@utils/date';
 import { location, timezoneOffsetUTC } from '@data/location.json';
+import DateTime from '@applications/components/DateTime';
 
 class AppLocation extends BaseApplication {
   public name: AppName = 'location';
-  protected animationInterval: number | undefined = undefined;
   private readonly location = location;
   private readonly timezoneOffsetUTC = timezoneOffsetUTC;
-
-  private getDateElement(): JSX.Element {
-    const dateParsedString = getDateParsedString(
-      getCurrentDateInfoWithTimeOffset(this.timezoneOffsetUTC),
-    );
-
-    return (
-      <TextSplit
-        left={<p className={'gl-color-text-docus'}>Time</p>}
-        right={<p className={'gl-color-text-desc'}>{dateParsedString}</p>}
-        type="alt"
-      />
-    );
-  }
 
   protected validate(): boolean {
     return this.validateArgs();
@@ -39,15 +21,22 @@ class AppLocation extends BaseApplication {
         type="alt"
       />,
     );
-    const timeElementId = this.print(this.getDateElement());
-    this.animationInterval = window.setInterval(() => {
-      this.printUpdate(timeElementId, this.getDateElement());
-    }, 1000);
+    this.print(
+      <TextSplit
+        left={<p className={'gl-color-text-docus'}>Time</p>}
+        right={
+          <DateTime
+            className={'gl-color-text-desc'}
+            timezoneOffset={this.timezoneOffsetUTC}
+          />
+        }
+        type="alt"
+      />,
+    );
+    this.stop();
   }
 
-  protected cleanup() {
-    window.clearInterval(this.animationInterval);
-  }
+  protected cleanup() {}
 }
 
 export default AppLocation;

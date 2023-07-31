@@ -1,17 +1,10 @@
+import Cowsay from '@applications/components/Cowsay';
 import { type AppName } from '@type/ApplicationTypes';
 import BaseApplication from '@base/BaseApplication';
-import {
-  HOME_WELCOME,
-  HOME_WELCOME_COWSAY_FRAME_1,
-  HOME_WELCOME_COWSAY_FRAME_2,
-  HELP_DESC,
-  PROMPT_SEP,
-  PROMPT_RESUME,
-} from './snippets';
+import { HOME_WELCOME, HELP_DESC, PROMPT_SEP, PROMPT_RESUME } from './snippets';
 
 class AppHome extends BaseApplication {
   public name: AppName = 'home';
-  protected animationInterval: number | undefined = undefined;
 
   protected validate(): boolean {
     return this.validateArgs();
@@ -19,15 +12,7 @@ class AppHome extends BaseApplication {
 
   protected run() {
     this.print(HOME_WELCOME);
-    const cowsayId = this.print(HOME_WELCOME_COWSAY_FRAME_1);
-    this.animationInterval = window.setInterval(() => {
-      this.printUpdate(
-        cowsayId,
-        [HOME_WELCOME_COWSAY_FRAME_1, HOME_WELCOME_COWSAY_FRAME_2][
-          Math.floor(Math.random() * 1.35)
-        ],
-      );
-    }, 500);
+    this.print(<Cowsay />);
     this.print(PROMPT_RESUME);
     this.print(PROMPT_SEP);
     this.print(HELP_DESC);
@@ -37,11 +22,10 @@ class AppHome extends BaseApplication {
     this.runSubProcess('help', ['skills']);
     this.print(PROMPT_SEP);
     this.runSubProcess('contact');
+    this.stop();
   }
 
-  protected cleanup() {
-    window.clearInterval(this.animationInterval);
-  }
+  protected cleanup() {}
 }
 
 export default AppHome;

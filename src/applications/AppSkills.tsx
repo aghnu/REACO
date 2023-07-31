@@ -15,6 +15,7 @@ class AppSkills extends BaseApplication {
       this.print(<br />);
       this.print(<TextSkill data={s} />);
     });
+    this.stop();
   }
 
   protected cleanup(): void {}

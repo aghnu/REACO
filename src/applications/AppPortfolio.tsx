@@ -16,6 +16,7 @@ class AppPortfolio extends BaseApplication {
       this.print(<br />);
       this.print(<TextPortfolio data={d} />);
     });
+    this.stop();
   }
 
   protected cleanup(): void {}
