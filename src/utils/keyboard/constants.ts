@@ -51,7 +51,7 @@ export const KEYS_ALLOWED_ADDITIONAL = [
 ];
 
 export const KEYS_PREVENT_DEFAULT = [
-  ['/', "'"],
+  ['/', "'", "Enter"],
   ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'],
   ['Tab'],
 ];
